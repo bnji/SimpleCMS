@@ -1,0 +1,122 @@
+﻿@model SimpleCMS.ViewModels.PluginCreateOrEditViewModel
+@if (!@Request.IsAjaxRequest())
+{
+    ViewBag.Title = @SimpleCMS.SimpleCMS.Resources.Blog.Resources.Create;
+    <h2>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Create</h2>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @if (!@Request.IsAjaxRequest())
+        {
+            <h4>Plugin</h4>
+            <hr />
+        }
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Files, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-offset-0 col-md-8">
+                <ul>
+                    @foreach (var file in Model.Files)
+                    {
+                        <li>@file.FileName</li>
+                    }
+                </ul>
+                @Html.Partial("_FileUploadHandler", new SimpleCMS.Helpers.FileUploadHandlerParameters() { Accept = "*/*", ControllerName = "Plugins", Multiple = true })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.ArtTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                <input id="ArtType" name="ArtType" type="text" class="form-control" placeholder="Slag" value="@Model.ArtTypeName" />
+            </div>
+            <div class="col-md-8">
+                <span id="ArtTypeDescription"></span>
+                <input type="hidden" id="ArtTypeId" name="ArtTypeId" value="@Model.ArtTypeId" />
+            </div>
+        </div>*@
+        
+        @if (!@Request.IsAjaxRequest())
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        }
+    </div>
+}
+<script>
+
+    //var artTypeSource = CreateDataSource(10, "/ArtType/Find", "#ArtType");
+
+    $(function () {
+
+        //SetupAutoComplete($("#ArtType"), "Name", '#: data.Name #', artTypeSource, function (item) {
+        //    $("#ArtTypeId").val(item.Id);
+        //    $("#ArtTypeDescription").html(item.Description);
+        //});
+    });
+
+    function onComplete() {
+        alert("done");
+    }
+
+    function HandleUpload(idPrefix, e, onSuccess) {
+        console.log(e);
+        var files = e.files;
+        if (files.length > 0) {
+            var size = files[0].size;
+            //alert(size + " / " + maxFileSize);
+            var maxFileSize = 10 * 1024 * 1024;
+            if (size > maxFileSize) {
+                e.preventDefault();
+                alert("Fílan er ov stór. Vinaliga vel eina aðra ella minka um støddina á fíluni.");
+            }
+            else {
+                var ext = files[0].extension;
+                if (ext === ".js" || ext == ".css" || ext == ".zip") {
+                    SetFileData(idPrefix, files[0]);
+                    if (onSuccess) {
+                        onSuccess();
+                    }
+                }
+                else {
+                    e.preventDefault();
+                    alert("Bert .js, .css, og .zip fílur eru loyvdar. Vinaliga vel eina aðra fílu.");
+                }
+            }
+        }
+    }
+</script>
+@if (!@Request.IsAjaxRequest())
+{
+    @Html.Partial("_BackToListPartial")
+
+    @section Scripts {
+        @Scripts.Render("~/js/jqueryval")
+        @Scripts.Render("~/js/cms.file")
+        @Scripts.Render("~/js/serialize")
+    }
+}

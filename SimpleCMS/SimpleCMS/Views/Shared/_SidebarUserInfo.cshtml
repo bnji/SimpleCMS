@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    var culture = General.Helpers.CultureHelper.GetCurrentCulture();
+    var cultureUILowerInvariant = General.Helpers.CultureHelper.GetCurrentUICultureLowerInvariant();
+    var userName = "";
+    var userBirthday = "";
+    var hometown = "";
+    var currentUser = SimpleCMS.BLL.AccountHandler.Instance.User;
+    if (currentUser != null)
+    {
+        userName = currentUser.UserName;
+        if (currentUser.Birthday != null)
+        {
+            userBirthday = currentUser.Birthday.Value.ToShortDateString();
+        }
+        hometown = currentUser.HomeTown;
+    }
+}
+Username: @userName
+<br />
+Birthday: @userBirthday
+<br />
+Hometown: @hometown
+<hr />
+<h4>Culture Info</h4>
+Culture: @culture
+<br />
+Culture UI Lower Invariant: @cultureUILowerInvariant
+<br />

@@ -1,0 +1,294 @@
+﻿@model SimpleCMS.ViewModels.ImageContentCreateOrEditViewModel
+@if (!@Request.IsAjaxRequest())
+{
+    ViewBag.Title = @SimpleCMS.SimpleCMS.Resources.Blog.Resources.Create;
+    <h2>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Create</h2>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @if (!@Request.IsAjaxRequest())
+        {
+            <h4>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.ImageContent</h4>
+            <hr />
+        }
+        @Html.ValidationSummary(true)
+
+        <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+        <input type="hidden" id="ParentId" name="ParentId" value="@Model.ParentId" />
+
+        @if (!@Request.Browser.IsMobileDevice)
+        {
+            @*@if (!@Request.IsAjaxRequest()) {
+            }*@
+            <ul id="tabs" class="nav nav-tabs" role="tablist">
+                <li class="active"><a href="#tab1" role="tab" data-toggle="tab">@SimpleCMS.SimpleCMS.Resources.Blog.Resources.General</a></li>
+                <li><a href="#tab2" role="tab" data-toggle="tab">@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Shared</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab1">
+
+                    <br />
+       
+                    @*@if (Request.QueryString["isNew"] == "true")
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ContentTranslation, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                <input id="ContentTranslationName" name="ContentTranslationName" type="text" class="form-control" placeholder="@SimpleCMS.SimpleCMS.Resources.Blog.Resources.ContentTranslation" value="@(Model.ContentTranslationId.HasValue ? @Model.ContentTranslation.Language : "")" />
+                            </div>
+                            <div class="col-md-8">
+                                <span id="ContentTranslationDescription" value="@(Model.ContentTranslation != null ? @Model.ContentTranslation.Description : "")"></span>
+                                @Html.HiddenFor(m => m.ContentTranslationId)
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        @Html.HiddenFor(m => m.ContentTranslationId)
+                    }*@
+                    @Html.HiddenFor(m => m.ContentTranslationId)
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Image, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <textarea id="ImageHtml" name="ImageHtml" rows="10" cols="30" style="height:440px">@Html.Raw(@HttpUtility.HtmlDecode(@Model.Image))</textarea>
+                            @*@(Html.Kendo().Editor()
+          .Name("ImageHtml")
+          .HtmlAttributes(new { style = "width:100%;height:440px" })
+          .Tools(tools => tools
+                .Clear()
+                //.Bold().Italic().Underline().Strikethrough()
+                //.JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+                //.InsertUnorderedList().InsertOrderedList()
+                //.Outdent().Indent()
+                //.CreateLink().Unlink()
+                .InsertImage()
+                //.InsertFile()
+                //.SubScript()
+                //.SuperScript()
+                //.TableEditing()
+                //.ViewHtml()
+                //.Formatting()
+                //.CleanFormatting()
+                //.FontName()
+                //.FontSize()
+                //.FontColor().BackColor()
+                //.Print()
+          )
+          //.Resizable(resizable => resizable.Content(true).Toolbar(true))
+          .ImageBrowser(imageBrowser => imageBrowser
+              .Image("~/SimpleCMS/Data/Images/{0}")
+              .Read("Read", "ImageBrowser")
+              .Create("Create", "ImageBrowser")
+              .Destroy("Destroy", "ImageBrowser")
+              .Upload("Upload", "ImageBrowser")
+              .Thumbnail("Thumbnail", "ImageBrowser")
+          )
+          .Value(@<text>@Html.Raw(@HttpUtility.HtmlDecode(@Model.Image))</text>)
+    )*@
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Caption, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Caption, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Caption)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Description)
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tab-pane" id="tab2">
+
+                    <br />
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.HasRSS, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.CheckBoxFor(model => model.HasRSS, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.HasRSS)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IsDraft, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.CheckBoxFor(model => model.IsDraft, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.IsDraft)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IsPublished, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.CheckBoxFor(model => model.IsPublished, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.IsPublished)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PublishedBy, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PublishedBy, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PublishedBy)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PublishedOn, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PublishedOn, new { htmlAttributes = new { @class = "form-control datefield" } })
+                            @Html.ValidationMessageFor(model => model.PublishedOn)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ActiveFrom, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ActiveFrom, new { htmlAttributes = new { @class = "form-control datefield" } })
+                            @Html.ValidationMessageFor(model => model.ActiveFrom)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ActiveTo, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ActiveTo, new { htmlAttributes = new { @class = "form-control datefield" } })
+                            @Html.ValidationMessageFor(model => model.ActiveTo)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Index, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Index, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Index)
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                        @Html.LabelFor(model => model.ViewName, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ViewName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ViewName)
+                        </div>
+                    </div>*@
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ViewTemplate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-2">
+                            <input id="ViewName" name="ViewName" type="text" class="form-control" placeholder="@SimpleCMS.SimpleCMS.Resources.Blog.Resources.ViewName" value="@(Model.ViewTemplateId.HasValue ? @Model.ViewTemplate.Name : "")" />
+                        </div>
+                        <div class="col-md-8">
+                            <span id="ViewTemplateDescription" value="@(Model.ViewTemplate != null ? @Model.ViewTemplate.Description : "")"></span>
+                            @Html.HiddenFor(m => m.ViewTemplateId)
+                            @*<input type="hidden" id="ViewTemplateId" name="ViewTemplateId" value="@Model.ViewTemplateId" />*@
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+
+        @if (!@Request.IsAjaxRequest())
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        }
+    </div>
+}
+<script>
+
+    var viewTemplateSource = CreateDataSource(10, "/ViewTemplate/Find", "#ViewName", { "pageContentTypeName": "Image" });
+    var languageSource = CreateDataSource(10, "/ContentTranslation/Find", "#ContentTranslationName");
+
+    $(function () {
+        activateDatePicker();
+
+        ParseInputDate("#ActiveFrom, #ActiveTo, #PublishedOn");
+
+        SetupAutoComplete($("#ViewName"), "Name", '#: data.Name #', viewTemplateSource, function (item) {
+            $("#ViewTemplateId").val(item.Id);
+            $("#ViewTemplateDescription").html(item.Description);
+        });
+
+        SetupAutoComplete($("#ContentTranslationName"), "Language", '#: data.Language #', languageSource, function (item) {
+            $("#ContentTranslationId").val(item.Id);
+            $("#ContentTranslationDescription").html(item.Description);
+        });
+
+        // create Editor from textarea HTML element with default set of tools
+        $("#ImageHtml").kendoEditor({
+            tools: [
+                "insertImage",
+                "justifyLeft",
+                "justifyCenter",
+                "justifyRight"
+                //"insertFile"
+            ],
+            imageBrowser: {
+                messages: {
+                    dropFilesHere: "Drop files here"
+                },
+                transport: {
+                    read: "/ImageBrowser/GetPictures",
+                    destroy: {
+                        url: "/ImageBrowser/Destroy",
+                        type: "POST"
+                    },
+                    create: {
+                        url: "/ImageBrowser/Create",
+                        type: "POST"
+                    },
+                    thumbnailUrl: "/ImageBrowser/Thumbnail",
+                    uploadUrl: "/ImageBrowser/Upload",
+                    imageUrl: "/ImageBrowser/Image?path={0}"
+                }
+            }//,
+            //fileBrowser: {
+            //    messages: {
+            //        dropFilesHere: "Drop files here"
+            //    },
+            //    transport: {
+            //        read: "/FileBrowser/Read",
+            //        destroy: {
+            //            url: "/FileBrowser/Destroy",
+            //            type: "POST"
+            //        },
+            //        create: {
+            //            url: "/FileBrowser/Create",
+            //            type: "POST"
+            //        },
+            //        uploadUrl: "/FileBrowser/Upload",
+            //        fileUrl: "/FileBrowser/File?fileName={0}"
+            //    }
+            //}
+        });
+    });
+</script>
+@if (!@Request.IsAjaxRequest())
+{
+    @Html.Partial("_BackToListPartial")
+
+    @section Scripts {
+        @Scripts.Render("~/js/jqueryval")
+        @*@Scripts.Render("~/js/cms.file")*@
+        @Scripts.Render("~/js/serialize")
+    }
+}

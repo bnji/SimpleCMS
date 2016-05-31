@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Use this area to provide additional information.</p>
+<a class="fancybox" rel="fancybox-media" href="http://www.youtube.com/watch?v=opj24KnzrWo">Youtube</a>
+
+<a class="fancybox" rel="fancybox-thumb" href="http://farm1.staticflickr.com/313/19831416459_5ddd26103e_b.jpg" title="Sgwd Ddwli Uchaf, Brecon Waterfalls (technodean2000)">
+    <img src="http://farm1.staticflickr.com/313/19831416459_5ddd26103e_m.jpg" alt="" />
+</a>
+<a class="fancybox" rel="fancybox-thumb" href="http://farm6.staticflickr.com/5444/17679973232_568353a624_b.jpg" title="Golden Manarola (Sanjeev Deo)">
+    <img src="http://farm6.staticflickr.com/5444/17679973232_568353a624_m.jpg" alt="" />
+</a>
+<a class="fancybox" rel="fancybox-thumb" href="http://farm8.staticflickr.com/7367/16426879675_e32ac817a8_b.jpg" title="Codirosso spazzacamino (Massimo Greco _Foligno)">
+    <img src="http://farm8.staticflickr.com/7367/16426879675_e32ac817a8_m.jpg" alt="" />
+</a>
+<a class="fancybox" rel="fancybox-thumb" href="http://farm6.staticflickr.com/5612/15344856989_449794889d_b.jpg" title="Morning Twilight (Jose Hamra Images)">
+    <img src="http://farm6.staticflickr.com/5612/15344856989_449794889d_m.jpg" alt="" />
+</a>
+<a class="fancybox" rel="fancybox-thumb" href="http://farm6.staticflickr.com/5612/15344856989_449794889d_b.jpg" title="Morning Twilight (Jose Hamra Images)">
+    <img src="http://farm6.staticflickr.com/5612/15344856989_449794889d_m.jpg" alt="" />
+</a>
+<ul>
+    <li><a class="fancybox-media" href="http://www.youtube.com/watch?v=opj24KnzrWo">Youtube</a></li>
+    <li><a class="fancybox-media" href="http://vimeo.com/36031564">Vimeo</a></li>
+    <li><a class="fancybox-media" href="http://www.metacafe.com/watch/7635964/">Metacafe</a></li>
+    <li><a class="fancybox-media" href="http://www.dailymotion.com/video/xoeylt_electric-guest-this-head-i-hold_music">Dailymotion</a></li>
+    <li><a class="fancybox-media" href="http://twitvid.com/QY7MD">Twitvid</a></li>
+    <li><a class="fancybox-media" href="http://twitpic.com/7p93st">Twitpic</a></li>
+    <li><a class="fancybox-media" href="http://instagr.am/p/IejkuUGxQn">Instagram</a></li>
+    <li>
+        Google maps
+        <ul>
+            <li><a class="fancybox-media" href="http://maps.google.com/maps?q=Eiffel+Tower,+Avenue+Gustave+Eiffel,+Paris,+France&t=h&z=17">Search results</a></li>
+            <li><a class="fancybox-media" href="http://maps.google.com/?ll=48.85796,2.295231&spn=0.003833,0.010568&t=h&z=17">Direct link</a></li>
+            <li><a class="fancybox-media" href="http://maps.google.com/?ll=48.859463,2.292626&spn=0.000965,0.002642&t=m&z=19&layer=c&cbll=48.859524,2.292532&panoid=YJ0lq28OOy3VT2IqIuVY0g&cbp=12,151.58,,0,-15.56">Street view</a></li>
+        </ul>
+    </li>
+</ul>
+<script>
+    $(document).ready(function () {
+        $(".fancybox").fancybox({
+            openEffect: 'none',
+            closeEffect: 'none',
+            prevEffect: 'none',
+            nextEffect: 'none',
+            helpers: {
+                title: {
+                    type: 'outside'
+                },
+                thumbs: {
+                    width: 50,
+                    height: 50
+                },
+                media: {}
+            }
+        });
+    });
+</script>

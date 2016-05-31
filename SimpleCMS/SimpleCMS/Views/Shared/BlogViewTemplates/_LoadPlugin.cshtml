@@ -1,0 +1,18 @@
+﻿@model SimpleCMS.Helpers.LoadPluginParameters
+
+@{
+    foreach (var file in SimpleCMS.IO.FileHelper.GetFiles(Server.MapPath("~/SimpleCMS/Data/Plugins")))
+    {
+        if (@Model.Extensions != null && @Model.Extensions.Where(x => x.Equals(file.Extension)).FirstOrDefault() != null)
+        {
+            if (file.Extension.ToLower().Equals(".js"))
+            {
+                @Scripts.Render("~/SimpleCMS/Data/Plugins/" + file.Name);
+            }
+            else if (file.Extension.ToLower().Equals(".css"))
+            {
+                @Styles.Render("~/SimpleCMS/Data/Plugins/" + file.Name);
+            }
+        }
+    }
+}

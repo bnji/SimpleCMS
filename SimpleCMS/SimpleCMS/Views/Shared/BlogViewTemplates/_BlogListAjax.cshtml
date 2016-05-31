@@ -1,0 +1,58 @@
+@using SimpleCMS.Models;
+@{
+    var culture = General.Helpers.CultureHelper.GetCurrentCulture();
+    var cultureUILowerInvariant = General.Helpers.CultureHelper.GetCurrentUICultureLowerInvariant();
+}
+<br />
+<div data-bind="template: { name: 'pagination-template', foreach: PaginationList }"></div>
+
+<script type="text/html" id="pagination-template">
+    <div data-bind="if: Title">
+        <br />
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1><a data-bind="text: Title, attr: { href: Page.Permalink.Name, title: Page.Title }"></a></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span data-bind="html: Body"></span>
+                    @*<div data-bind="if: Excerpt, ifnot: Body">
+                        <span data-bind="html: Excerpt"></span>
+                    </div>
+                    <div data-bind="if: Body, ifnot: Excerpt">
+                        <span data-bind="html: Body"></span>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+        <br />
+    </div>
+    <div data-bind="if: !Title">
+        @Html.Partial("~/SimpleCMS/Views/Shared/BlogViewTemplates/_ContentTranslationMissing.cshtml")
+    </div>
+</script>
+
+<script>
+    function PaginationListViewModel(_list) {
+        this.PaginationList = _list;
+    }
+
+    $(function () {
+        GetPaginatedList({ 'pageNumber': '@Request.Params["page"]', 'paginationCount': 5, 'culture': '@culture' });
+    });
+
+    function GetPaginatedList(data) {
+        $.ajax({
+            url: "/BlogList/GetPaginatedList",
+            type: "POST",
+            accept: 'application/json',
+            data: data,
+            success: function (result) {
+                ko.applyBindings(new PaginationListViewModel(result.List));
+                console.log(result);
+            }
+        });
+    }
+</script>

@@ -1,0 +1,366 @@
+﻿@model SimpleCMS.Models.Blog.Plugin
+@if (!@Request.IsAjaxRequest())
+{
+    ViewBag.Title = @SimpleCMS.SimpleCMS.Resources.Blog.Resources.Details;
+}
+<style>
+    /*.plugin-file {
+        width:100%;
+    }*/
+    .delete-file {
+        text-align: right;
+    }
+</style>
+<style type="text/css" media="screen">
+    #code-editor {
+        position: relative;
+        height: 200px !important;
+    }
+
+    .fullScreen {
+        height: auto;
+        width: auto;
+        border: 0;
+        margin: 0;
+        position: fixed !important;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+    }
+</style>
+<div>
+    <div class="row">
+        <div class="col-md-12 col-md-offset-0">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <strong>@ViewBag.Title</strong>
+                        @if (!@Request.IsAjaxRequest())
+                        {
+                            <span class="pull-right">
+                                @Html.Partial("_BackToListPartial", Model)
+                            </span>
+                        }
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="container-fluid">
+
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "PluginForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                                @Html.ValidationSummary(true)
+
+                                @Html.HiddenFor(m=>m.Id)
+
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label bold-label" })
+                                    </div>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @id = "name", @class = "form-control" } })
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top:10px;">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label bold-label" })
+                                    </div>
+                                    <div class="col-md-10">
+                                        @Html.TextAreaFor(model => model.Description, new { @id = "description", @rows = "5", @class = "form-control" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-md-2">
+                                <label class="control-label">
+                                    Code
+                                </label>
+                            </div>
+                            <div class="col-md-10">
+                                @Html.Partial("_FileUploadHandler", new SimpleCMS.Helpers.FileUploadHandlerParameters() { Accept = "*/*", ControllerName = "Plugins", Multiple = true })
+                                <select id="pluginsList" class="pull-left" data-bind="options: PluginsList,
+                                                   optionsText: function(item) {
+                                                       return item.File.Name;
+                                                   },
+                                                   value: SelectedPlugin,
+                                                   optionsCaption: 'Choose...'"></select>
+                                <div class="pull-right">
+                                    <a title="@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Save" href="#" class="save-file" data-bind="attr: { 'data-file-id': SelectedPlugin() ? SelectedPlugin().File.Id : -1 }">
+                                        <span class=" glyphicon glyphicon-floppy-save" aria-hidden="true">
+                                        </span>
+                                    </a>
+                                    <a title="@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Delete" href="#" class="delete-file" data-bind="attr: { 'data-file-id': SelectedPlugin() ? SelectedPlugin().File.Id : -1 }">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </a>
+                                </div>
+                                <div style="height:300px;">
+                                    <span id="editor-status" class="pull-left"></span>
+                                    <br />
+                                    <textarea id="code-editor" class="plugin-file"></textarea>
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var dom = require("ace/lib/dom");
+    //add command to all new editor instaces
+    require("ace/commands/default_commands").commands.push({
+        name: "Toggle Fullscreen",
+        bindKey: "F11",
+        exec: function(editor) {
+            $(".navbar").toggle();
+            var fullScreen = dom.toggleCssClass(document.body, "fullScreen");
+            if(fullScreen) {
+                $(".navbar").hide();
+                $(".ace_editor").height("100%");
+            } else{
+                $(".navbar").show();
+                $(".ace_editor").height("70%");
+            }
+            dom.setCssClass(editor.container, "fullScreen", fullScreen);
+            editor.setAutoScrollEditorIntoView(!fullScreen);
+            editor.resize();
+        }
+    });
+
+    var pluginsViewModel = null;
+
+    function PluginsListViewModel(_list) {
+        this.PluginsList = ko.observableArray(_list);
+        this.SelectedPlugin = ko.observable(this.PluginsList()[0]);
+    }
+    
+    function GetPluginFiles(data, onSuccess) {
+        $.ajax({
+            url: "/Plugins/GetPluginFiles",
+            type: "POST",
+            accept: 'application/json',
+            data: data,
+            success: function (result) {
+                onSuccess(result);
+                //console.log("plugin files");
+                //console.log(result);
+            }
+        });
+    }
+
+    function GetFileContent(data, onSuccess) {
+        $.ajax({
+            url: "/Plugins/GetFileContent",
+            type: "POST",
+            accept: 'application/json',
+            data: data,
+            success: function (result) {
+                onSuccess(result);
+            }
+        });
+    }
+
+    var editor = ace.edit("code-editor");
+    var session = editor.getSession();
+    editor.setTheme("ace/theme/chrome");
+    session.setMode("ace/mode/javascript");
+    editor.$blockScrolling = Infinity;
+    session.setUseWrapMode(true);
+    session.setWrapLimitRange(80, 80);
+
+    editor.commands.addCommand({
+        name: 'saveCommmand',
+        bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
+        exec: function(editor) {
+            SaveEditorData(editor);
+        },
+        readOnly: true // false if this command should not apply in readOnly mode
+    });
+    $(".ace_editor").height("70%"); // <--- THIS is a workaround! if not set, then the height of the editor is 14px!
+
+
+    $(function () {
+        @*$.navbarContextMenu("@Resources.Functions <span class='caret'></span>", [
+            "<a href='#' class='edit-action'  data-toggle='modal' data-controller-name='Plugins' data-action-name='Edit?id=@Model.Id' data-model-name='Plugin'>@Resources.Edit</a>"
+        ]);*@
+
+        $("#PluginForm input, #PluginForm textarea").blur(function() {
+            Update();
+        });
+
+        $("#pluginsList").on("change", function() {
+            setTimeout(function() {
+                var selPlugin = pluginsViewModel.SelectedPlugin();
+                if(selPlugin != null) {
+                    //alert(selPlugin.File.Id);
+                    GetFileContent({ 'id': selPlugin.FileId }, function (result) {
+                        editor.setValue(result, 1);
+                    });
+                }
+            }, 100);
+        });
+
+        GetPluginFiles({ 'id': parseInt('@Model.Id') }, function (result) {
+            //console.log(JSON.parse(result));
+            pluginsViewModel = new PluginsListViewModel(JSON.parse(result));
+            ko.applyBindings(pluginsViewModel);
+            var files = pluginsViewModel.PluginsList();
+            if(files.length > 0) {
+                var file = files[0].File;
+                GetFileContent({ 'id': file.Id }, function (result) {
+                    editor.setValue(result, 1);
+                });
+            }
+        });
+
+        $(".save-file").click(function () {
+            SaveEditorData(editor);
+        });
+
+        $(".delete-file").click(function () {
+            if(confirm("@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Delete ?")) {
+                var self = $(this);
+                //var id = self.data('file-id');
+                var selPlugin = pluginsViewModel.SelectedPlugin();
+                var id = selPlugin.Id;
+                $.post("/Plugins/DeleteFileAsync", { "id" : id }, function (d, s, xhr) {
+                    var json = xhr.responseJSON;
+                    //self.parent().remove();
+                    pluginsViewModel.PluginsList.remove(selPlugin);
+                    pluginsViewModel.SelectedPlugin(pluginsViewModel.PluginsList()[0]);
+                })
+                .fail(function (error) {
+                    console.log("error: ");
+                    console.log(error);
+                });
+            }
+        });
+    });
+
+    function Update() {
+        var url = "/Plugins/Edit";
+        var form1 = $("#PluginForm");
+        var form2 = $("#files-to-upload");
+        var requestData = $.extend({}, form1.serializeObject(), form2.serializeObject());
+        $.ajax({
+            url: url,
+            type: "POST",
+            accept: 'application/json',
+            data: requestData,
+            success: function (result) {
+                console.log(result);
+            }
+        });
+    }
+
+    function SaveEditorData(_editor) {
+        var id = pluginsViewModel.SelectedPlugin().Id;
+        var data = _editor.getValue();
+        $.post("/Plugins/SaveFileAsync", { "id" : id, "data" : data }, function (d, s, xhr) {
+            var json = xhr.responseJSON;
+            console.log(json);
+            $("#editor-status")
+                .html("saved!")
+                .fadeIn("slow", function() {
+                    $(this).fadeOut("slow");
+                });
+        })
+        .fail(function (error) {
+            console.log("error: ");
+            console.log(error);
+        });
+    }
+
+    function HandleUpload(idPrefix, e, onSuccess) {
+        console.log(e);
+        var files = e.files;
+        if (files.length > 0) {
+            var size = files[0].size;
+            //alert(size + " / " + maxFileSize);
+            if (size > maxFileSize) {
+                e.preventDefault();
+                alert("Fílan er ov stór. Vinaliga vel eina aðra ella minka um støddina á fíluni.");
+            }
+            else {
+                var ext = files[0].extension;
+                if (ext === ".js" || ext === ".css") {
+                    SetFileData(idPrefix, files[0]);
+                    if (onSuccess) {
+                        onSuccess();
+                    }
+                }
+                else {
+                    e.preventDefault();
+                    alert("Bert JavaScript ella CSS fílur eru loyvdar. Vinaliga vel eina aðra fílu.");
+                }
+            }
+        }
+    }
+
+    function onComplete() {
+        //https://github.com/macek/jquery-serialize-object
+        var url = "/Plugins/AddFileToObject";
+        var form = $("#files-to-upload");
+        var requestData = $.extend({}, { PluginId: @Model.Id }, form.serializeObject());
+        form.find("input[type=hidden], input[type=text], textarea, input[type=password]").val("");
+        //console.log(requestData);
+        $.ajax({
+            url: url,
+            type: "POST",
+            accept: 'application/json',
+            data: requestData,
+            success: function (result) {
+                console.log("AddImageToPlugin result: ");
+                console.log(result);
+
+                @*var img = "<img src=" + @Url.Action("GetImage", "Plugin", new { @id = 29 }) + " class='plugin-file' />";*@
+                //$.get("/Plugin/GetImage", { id: 28}, function(data) {
+                //    $("#newlyAddedFiles").html("<img src='" + result + "' class='plugin-file' />");
+                //});
+                //var fileInfo = JSON.stringify(result);
+                //$("#newlyAddedFiles").append("<li>Fíla løgd inn: " + result.Name + "(" + result.Length + ")</li>");// "<img src='" + result + "' class='plugin-file' />");
+            }
+        });
+    }
+
+    function getTimeDiff(stPluginDate, endDate) {
+        var diff = endDate - stPluginDate;
+        //console.log(diff);
+        var seconds = Math.round(diff / 1000.0);
+        return seconds;
+    }
+
+    function getTimeFormatted(time) {
+        var seconds = time % 60;
+        if (time < 60) {
+            //return seconds + " sekund";
+            return "00:00:" + ("0" + seconds).slice(-2);
+        }
+        var minutes = Math.round(Math.floor(time / 60));
+        if (minutes < 60) {
+            //return minutes + " min. " + seconds + " sekund";
+            return "00:" + ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
+        }
+        var hours = Math.round(Math.floor(minutes / 60));
+        minutes = minutes % 60;
+        //var hourStr = hours > 1 ? "tímar" : "tími";
+        //return hours + " " + hourStr + " " + minutes + " min. " + seconds + " sek.";
+        return hours + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
+    }
+</script>
+@section Scripts {
+    @Scripts.Render("~/js/cms.file")
+    @Scripts.Render("~/js/serialize")
+}

@@ -1,0 +1,129 @@
+﻿@model SimpleCMS.Models.Blog.BlogFeedSettings
+@if (!@Request.IsAjaxRequest())
+{
+    ViewBag.Title = @SimpleCMS.SimpleCMS.Resources.Blog.Resources.Details;
+}
+<div>
+    <div class="row">
+        <div class="col-md-12 col-md-offset-0">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <strong>@ViewBag.Title</strong>
+                        @*@if (!@Request.IsAjaxRequest())
+                        {
+                            <span class="pull-right">
+                                @Html.Partial("_BackToListPartial", Model)
+                            </span>
+                        }*@
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="container-fluid">
+
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "BlogFeedSettingsForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-horizontal">
+                                @Html.ValidationSummary(true)
+
+                                @Html.HiddenFor(m=>m.Id)
+
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        &nbsp;
+                                    </div>
+                                    <div class="col-md-10">
+                                        <span id="status"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label bold-label" })
+                                    </div>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @id = "name", @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Title)
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top:10px;">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label bold-label" })
+                                    </div>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @id = "description", @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Description)
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top:10px;">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.BaseUri, htmlAttributes: new { @class = "control-label bold-label" })
+                                    </div>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.BaseUri, new { htmlAttributes = new { @id = "baseUri", @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.BaseUri)
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top:10px;">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.UriName, htmlAttributes: new { @class = "control-label bold-label" })
+                                    </div>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.UriName, new { htmlAttributes = new { @id = "uriName", @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.UriName)
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        @*$.navbarContextMenu("@Resources.Functions <span class='caret'></span>", [
+            "<a href='#' class='edit-action'  data-toggle='modal' data-controller-name='BlogFeedSettings' data-action-name='Edit?id=@Model.Id' data-model-name='Plugin'>@Resources.Edit</a>"
+        ]);*@
+
+        $("#BlogFeedSettingsForm input, #BlogFeedSettingsForm textarea").blur(function() {
+            Update();
+        });
+
+    });
+
+    function Update() {
+        var url = "/BlogFeedSettings/Edit";
+        //var form1 = $("#BlogFeedSettingsForm");
+        //var form2 = $("#files-to-upload");
+        //var requestData = $.extend({}, form1.serializeObject(), form2.serializeObject());
+        var requestData = $("#BlogFeedSettingsForm").serializeObject();
+        $.ajax({
+            url: url,
+            type: "POST",
+            accept: 'application/json',
+            data: requestData,
+            success: function (result) {
+                $("#status")
+                    .html("saved!")
+                    .fadeIn("slow", function () {
+                        $(this).fadeOut("slow");
+                    });
+                console.log(result);
+            }
+        });
+    }
+
+</script>
+@section Scripts {
+    @Scripts.Render("~/js/serialize")
+}

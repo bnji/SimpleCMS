@@ -1,0 +1,168 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = CMSExtensions.PageTitle + " - " + ViewBag.PageTitle;
+    var controllerName = ViewContext.GetControllerName();
+    var controllerNam = CMSExtensions.ControllerName;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/css/cms.general")
+    @Styles.Render("~/css/bootstrap")
+    @Styles.Render("~/Content/kendo/styles/kendocss")
+    @Styles.Render("~/Content/fontawesome")
+    @Styles.Render("~/css/fancybox")
+    @Styles.Render("~/css/datatables")
+    @Styles.Render("~/css/summernote")
+    <link rel="stylesheet" type="text/css" href="~/SimpleCMS/Content/blog/css/sticky-footer.css">
+    @Html.Partial("~/SimpleCMS/Views/Shared/BlogViewTemplates/_LoadPlugin.cshtml", new LoadPluginParameters() { Extensions = new string[] { ".css" } })
+    @Scripts.Render("~/js/jquery")
+    @Scripts.Render("~/js/modernizr")
+    @*@Scripts.Render("~/css/jqueryui")*@
+    @*@Styles.Render("~/css/fuelux")*@
+    @*@Styles.Render("~/css/bootstrap-datepicker")*@
+    @*@Styles.Render("~/css/editable")*@
+    @*@Styles.Render("~/css/datatable")*@
+    @RenderSection("head", required: false)
+</head>
+<body>
+    @Html.Partial("~/SimpleCMS/Views/Shared/BlogViewTemplates/_FBInit.cshtml")
+    @*@Html.Partial("_LayoutMenu")*@
+    @Html.Partial("~/SimpleCMS/Views/Shared/BlogViewTemplates/_LayoutMenu.cshtml")
+    @*<div class="container body-content">*@
+    <div class="container-fluid">
+
+        <div class="row row-offcanvas row-offcanvas-left">
+
+            <div class="col-sm-0 col-md-0 sidebar-offcanvas" id="sidebar" role="navigation">
+
+                @*@RenderSection("SidebarMenu", false)*@
+
+                @*@Html.Partial("_SidebarUserInfo")*@
+            </div><!--/span-->
+
+            <div class="col-sm-12 col-md-12 main">
+
+                <!--toggle sidebar button-->
+                <p class="visible-xs">
+                    <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
+                </p>
+
+                @*<h1 class="page-header">
+                        Dashboard
+                        <p class="lead">(with off-canvas sidebar)</p>
+                    </h1>*@
+                <div class="row placeholders">
+                    <div id="main">
+                        @RenderBody()
+                    </div>
+                    @*<footer>
+                            <p>@Core.Settings.Instance.AppRegInfo</p>
+                        </footer>*@
+
+                    @Html.Partial("_ModalCRUDPartial")
+
+                    @Html.Partial("_ModalDebugPartial")
+
+                    @*<form><input type="hidden" name="preventTabClose" id="preventTabClose" /></form>*@
+                </div>
+            </div><!--/row-->
+        </div>
+    </div><!--/.container-->
+    @if (!Request.IsAuthenticated || CMSExtensions.IsPreview)
+    {
+        @Html.Partial("~/SimpleCMS/Views/Shared/BlogViewTemplates/_Footer.cshtml")
+    }
+    @Scripts.Render("~/js/bootstrap")
+    @*@Scripts.Render("~/js/bootstrap-datepicker")*@
+    @Scripts.Render("~/js/knockout")
+    @Scripts.Render("~/js/linq")
+    @Scripts.Render("~/js/maskedinput")
+    @Scripts.Render("~/js/jqueryval")
+    @Scripts.Render("~/js/underscore")
+    @Scripts.Render("~/js/json2")
+    @Scripts.Render("~/js/cms.general")
+    @Scripts.Render("~/js/cms.file")
+    @Scripts.Render("~/js/shortcuts")
+    @Scripts.Render("~/js/datatables")
+    @*@Scripts.Render("~/js/editable")
+        @Scripts.Render("~/js/datatable")
+        @Scripts.Render("~/js/fuelux")*@
+    @Scripts.Render("~/js/kendoaspnetmvc")
+    @Scripts.Render("~/js/moment")
+    @Scripts.Render("~/js/fancybox")
+    @Scripts.Render("~/js/summernote")
+    <script src="@Url.Content("~/SimpleCMS/Content/kendo/js/cultures/kendo.culture." + CMSExtensions.Culture.ToLower() + ".min.js")"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    @RenderSection("scripts", required: false)
+    @Html.Partial("~/SimpleCMS/Views/Shared/BlogViewTemplates/_LoadPlugin.cshtml", new LoadPluginParameters() { Extensions = new string[] { ".js" } })
+    @*@Scripts.Render("~/js/globalize")*@
+    <script>
+        console.log(kendo);
+        kendo.culture("@CMSExtensions.Culture.ToLower()");
+        console.log("kendo culture: ")
+        console.log(kendo.culture());
+        $(function () {
+            var tempForm;
+
+            $(".dropdown").hover(
+                function () { $(this).addClass('open') },
+                function () { $(this).removeClass('open') }
+            );
+
+            //shortcut.add("Ctrl+O", function () {
+            //    alert("Hi there!");
+            //});
+
+            // Update (visible) Kendo Grids after modal has been closed
+            $(document).on("modalClosed", function (e, d) {
+                var modalBody = $(this).find('.modal-body');
+                // Reset content of modal body
+                modalBody.html("");
+                UpdateVisibleGrids();
+            });
+
+            $('#modalCRUD,#modalDebug').on('show.bs.modal', function () {
+                setModalHeight(0.98);
+            });
+            $(window).resize(function () {
+                setModalHeight(0.98);
+            });
+
+            $('#modalCRUD,#modalDebug').on('shown.bs.modal', function (e) {
+                tempForm = $("#modalCRUD").find("form");
+            });
+
+            // Hide menu bar when scrolling
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 50) {
+                    $('.navbar').fadeOut();
+                } else {
+                    $('.navbar').fadeIn();
+                }
+            });
+            @*if (Modernizr.inputtypes.date) {
+                    $(".datefield").datepicker({
+                        autoClose: true,
+                        format: 'dd-mm-yyyy'
+                        //language: "@culture.ToUpper()"
+                    });
+                }*@
+            //$('.datefield').datepicker({
+            //})
+            //.on('changeDate', function (e) {
+            //    console.log(e);
+            //});
+
+            moment.locale("@CMSExtensions.Culture.ToUpper()");
+            @*Globalize.locale("@culture.ToUpper()");*@
+        });
+    </script>
+</body>
+</html>

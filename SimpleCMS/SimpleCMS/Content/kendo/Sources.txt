@@ -1,0 +1,14 @@
+﻿http://kendo.cdn.telerik.com/2016.2.504/styles/kendo.common.min.css
+http://kendo.cdn.telerik.com/2016.2.504/styles/kendo.default.min.css
+http://kendo.cdn.telerik.com/2016.2.504/styles/kendo.dataviz.min.css
+http://kendo.cdn.telerik.com/2016.2.504/styles/kendo.dataviz.default.min.css
+http://kendo.cdn.telerik.com/2016.2.504/styles/kendo.dataviz.mobile.min.css
+http://kendo.cdn.telerik.com/2016.2.504/styles/kendo.common-bootstrap.min.css
+http://kendo.cdn.telerik.com/2016.2.504/styles/kendo.uniform.min.css
+
+http://kendo.cdn.telerik.com/2016.2.504/js/jquery.min.js
+http://kendo.cdn.telerik.com/2016.2.504/js/kendo.ui.core.min.js
+http://kendo.cdn.telerik.com/2016.2.504/js/kendo.aspnetmvc.min.js
+http://kendo.cdn.telerik.com/2016.2.504/js/cultures/kendo.culture.fo.min.js
+http://kendo.cdn.telerik.com/2016.2.504/js/cultures/kendo.culture.da.min.js
+http://kendo.cdn.telerik.com/2016.2.504/js/cultures/kendo.culture.en.min.js

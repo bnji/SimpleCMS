@@ -1,0 +1,147 @@
+﻿@model SimpleCMS.Models.Blog.BlogWebsiteSettings
+@if (!@Request.IsAjaxRequest())
+{
+    ViewBag.Title = @SimpleCMS.SimpleCMS.Resources.Blog.Resources.Details;
+}
+<div>
+    <div class="row">
+        <div class="col-md-12 col-md-offset-0">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <strong>@ViewBag.Title</strong>
+                        @*@if (!@Request.IsAjaxRequest())
+                        {
+                            <span class="pull-right">
+                                @Html.Partial("_BackToListPartial", Model)
+                            </span>
+                        }*@
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="container-fluid">
+
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "BlogWebsiteSettingsForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                                @Html.ValidationSummary(true)
+
+                                @Html.HiddenFor(m=>m.Id)
+
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        &nbsp;
+                                    </div>
+                                    <div class="col-md-10">
+                                        <span id="status"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label bold-label" })
+                                    </div>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @id = "name", @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Name)
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top:10px;">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label bold-label" })
+                                    </div>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @id = "description", @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Description)
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top:10px;">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.PostsPerPage, htmlAttributes: new { @class = "control-label bold-label" })
+                                    </div>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.PostsPerPage, new { htmlAttributes = new { @id = "postsPerPage", @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.PostsPerPage)
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top:10px;">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.DefaultFrontPage, htmlAttributes: new { @class = "control-label bold-label" })
+                                    </div>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.DefaultFrontPage, new { htmlAttributes = new { @id = "defaultFrontPage", @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.DefaultFrontPage)
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top:10px;">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.DefaultLanguage, htmlAttributes: new { @class = "control-label bold-label" })
+                                    </div>
+                                        <div class="col-md-2">
+                                            <input id="DefaultLanguageName" name="DefaultLanguageName" type="text" class="form-control" placeholder="@SimpleCMS.SimpleCMS.Resources.Blog.Resources.DefaultLanguage" value="@(Model.DefaultLanguageId.HasValue ? @Model.DefaultLanguage.Language : "")" />
+                                        </div>
+                                        <div class="col-md-8">
+                                            <span id="DefaultLanguageDescription" value="@(Model.DefaultLanguage != null ? @Model.DefaultLanguage.Description : "-")"></span>
+                                            @Html.HiddenFor(m => m.DefaultLanguageId)
+                                        </div>
+                                </div>
+
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    $(function () {
+        var languageSource = CreateDataSource(10, "/ContentTranslation/Find", "#DefaultLanguageName");
+        @*$.navbarContextMenu("@Resources.Functions <span class='caret'></span>", [
+            "<a href='#' class='edit-action'  data-toggle='modal' data-controller-name='BlogWebsiteSettings' data-action-name='Edit?id=@Model.Id' data-model-name='Plugin'>@Resources.Edit</a>"
+        ]);*@
+
+        SetupAutoComplete($("#DefaultLanguageName"), "Language", '#: data.Language #', languageSource, function (item) {
+            $("#DefaultLanguageId").val(item.Id);
+            $("#DefaultLanguageDescription").html(item.Description);
+        });
+
+        $("#BlogWebsiteSettingsForm input, #BlogWebsiteSettingsForm textarea").blur(function() {
+            Update();
+        });
+
+    });
+
+    function Update() {
+        var url = "/BlogWebsiteSettings/Edit";
+        //var form1 = $("#BlogWebsiteSettingsForm");
+        //var form2 = $("#files-to-upload");
+        //var requestData = $.extend({}, form1.serializeObject(), form2.serializeObject());
+        var requestData = $("#BlogWebsiteSettingsForm").serializeObject();
+        $.ajax({
+            url: url,
+            type: "POST",
+            accept: 'application/json',
+            data: requestData,
+            success: function (result) {
+                $("#status")
+                    .html("saved!")
+                    .fadeIn("slow", function () {
+                        $(this).fadeOut("slow");
+                    });
+                console.log(result);
+            }
+        });
+    }
+
+</script>
+@section Scripts {
+    @Scripts.Render("~/js/serialize")
+}

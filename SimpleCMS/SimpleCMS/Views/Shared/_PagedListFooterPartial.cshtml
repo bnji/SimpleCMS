@@ -1,0 +1,52 @@
+﻿@model PagedList.IPagedList<dynamic>
+@using PagedList.Mvc;
+
+@if (@Model.PageCount > 1)
+{
+    @*@Html.Raw(@Resources.Page + " " + (Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) + " " + @Resources.Of.ToLower() + " " + @Model.PageCount);*@
+    @Html.Raw(@Html.PagedListPager(Model, page => Url.Content("#/page/" + page))); @*page => Url.Action("Index", new { page, sortName = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })));*@
+    
+    @*@Html.Raw(@Html.PagedListPager(Model, page => Url.Content("#/page/" + page), PagedListRenderOptions.ClassicPlusFirstAndLast));*@
+
+
+}
+<script>
+    $(function () {
+        $(".pagination, .PagedList-skipToPrevious, .PagedList-skipToNext").click(function (e) {
+            var activeListItem = $("ul.pagination > li.active");
+            var targetListItem = e;
+            var currentPage = indexVM.currentPage();
+
+            var newPage = e.target.innerText;
+            //newPage = newPage.trim().length > 0 ? newPage : "1";
+            newPage = parseInt(newPage);
+            //alert(newPage);
+            console.log("Page Index Before: " + currentPage);
+            console.log("Page Index Now: " + newPage);
+            //var nextValue = parseInt(activeListItem.text());
+            if (newPage == currentPage)
+                return;
+
+            activeListItem.removeClass("active");
+
+            if (newPage > currentPage)
+            {
+                var nextListItem;
+                for (i = currentPage; i < newPage; i++)
+                    nextListItem = activeListItem.next();
+                nextListItem.addClass("active");
+            }
+            if (newPage > 0 && newPage < currentPage) {
+                var prevListItem;
+                for (i = currentPage; i > newPage; i--)
+                    prevListItem = activeListItem.prev();
+                prevListItem.addClass("active");
+            }
+            var hash = e.target.hash;
+            hash = hash.trim().length > 0 ? hash : "#/page/1";
+            //alert(hash);
+            app.run(hash);
+            //e.preventDefault();
+        });
+    });
+</script>

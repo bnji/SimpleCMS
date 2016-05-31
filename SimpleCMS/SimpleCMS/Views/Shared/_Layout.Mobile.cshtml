@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html> 
+<html> 
+    <head> 
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>@ViewBag.Title</title> 
+        @Styles.Render("~/css/Mobile", "~/css/jqueryMobile")
+        @Scripts.Render("~/js/jquery", "~/js/jqueryMobile")
+        <script>
+            $(document).ready(function () {
+                //$.mobile.ajaxEnabled = false; 
+            });
+        </script>
+    </head> 
+<body> 
+    @RenderSection("featured", false)
+    @RenderBody()
+    
+    @*<div data-role="page" data-theme="a">
+
+        <div data-role="header" data-theme="b">
+            <h1>@ViewBag.Title</h1>
+        </div>
+
+        <div data-role="content">
+            @RenderSection("featured", false)
+            @RenderBody()		
+        </div>
+
+
+        <div data-role="footer">
+            @Html.Partial("_ViewSwitcher")
+        </div>
+
+    </div>*@
+
+</body>
+</html>

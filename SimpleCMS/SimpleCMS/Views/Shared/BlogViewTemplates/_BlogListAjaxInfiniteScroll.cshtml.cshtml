@@ -1,0 +1,74 @@
+@using BootstrapWebApplication.Models;
+@{
+    var culture = Kthusid.Helpers.CultureHelper.GetCurrentCulture();
+    var cultureUILowerInvariant = Kthusid.Helpers.CultureHelper.GetCurrentUICultureLowerInvariant();
+}
+<div data-bind="template: { name: 'pagination-template', foreach: PaginationList }"></div>
+<script type="text/html" id="pagination-template">
+    <div data-bind="if: Title">
+        <br />
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1><a data-bind="text: Title, attr: { href: Page.Permalink.Name, title: Page.Title }"></a></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @*<div data-bind="if: Excerpt, ifnot: Body">
+                        <span data-bind="html: Excerpt"></span>
+                    </div>
+                    <div data-bind="if: Body, ifnot: Excerpt">
+                        <span data-bind="html: Body"></span>
+                    </div>*@
+                    <span data-bind="html: Body"></span>
+                </div>
+            </div>
+        </div>
+        <br />
+    </div>
+    <div data-bind="if: !Title">
+        @Html.Partial("~/Views/Shared/BlogViewTemplates/_ContentTranslationMissing.cshtml")
+    </div>
+</script>
+<script>
+    var pageNumber = 1;
+    var paginationViewModel = null;
+
+    function PaginationListViewModel(_list) {
+        this.PaginationList = ko.observableArray(_list);
+    }
+
+    $(function () {
+        GetPaginatedList({ 'pageNumber': (""+pageNumber), 'paginationCount': 5, 'culture': '@culture' }, function (result) {
+            paginationViewModel = new PaginationListViewModel(result.List);
+            ko.applyBindings(paginationViewModel);
+        });
+
+        // http://code.tutsplus.com/tutorials/how-to-create-infinite-scroll-pagination--wp-24873
+        $(window).scroll(function () {
+            if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+                pageNumber++;
+                GetPaginatedList({ 'pageNumber': (""+pageNumber), 'paginationCount': 5, 'culture': '@culture' }, function (result) {
+                    $.each(result.List, function (k, v) {
+                        paginationViewModel.PaginationList.push(v);
+                        //console.log(v);
+                    });
+                });
+            }
+        });
+    });
+
+    function GetPaginatedList(data, onSuccess) {
+        $.ajax({
+            url: "/BlogList/GetPaginatedList",
+            type: "POST",
+            accept: 'application/json',
+            data: data,
+            success: function (result) {
+                onSuccess(result);
+                //console.log(result);
+            }
+        });
+    }
+</script>

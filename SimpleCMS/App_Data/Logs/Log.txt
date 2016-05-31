@@ -1,0 +1,6 @@
+ERROR [2015-07-17 12:46:31] Origin [WebPiranha.BeginRequest] Message [Unhandled exception]
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Piranha.Models.Page.GetStartpage(Boolean draft)
+   at Piranha.Mvc.RouteHandler.HandleStartpage(HttpContext context)
+   at Piranha.Web.Handlers.PermalinkHandler.HandleRequest(HttpContext context, Boolean draft, String[] args)
+   at Piranha.WebPages.WebPiranha.BeginRequest(HttpContext context)

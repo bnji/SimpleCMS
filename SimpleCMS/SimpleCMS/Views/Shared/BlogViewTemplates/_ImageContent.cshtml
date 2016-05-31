@@ -1,0 +1,36 @@
+@model SimpleCMS.Models.Blog.ImageContent
+@{
+    var culture = General.Helpers.CultureHelper.GetCurrentCulture();
+    var cultureUILowerInvariant = General.Helpers.CultureHelper.GetCurrentUICultureLowerInvariant();
+    var contentData = @Model.ContentData.Where(x => x.Translation.Language.ToLower().Equals(culture.ToLower())).FirstOrDefault();
+}
+@if (contentData == null)
+{
+    @Html.Partial("~/SimpleCMS/Views/Shared/BlogViewTemplates/_ContentTranslationMissing.cshtml")
+}
+else
+{
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12" style="max-width:100%;">
+                @if (@Model.Image != null)
+                {
+                    //var base64String = Convert.ToBase64String(@Model.File.File.Data, 0, @Model.File.File.Data.Length);
+                    //var imgUrl = "data:image/png;base64," + base64String;
+                    @*<img src="@imgUrl" />*@
+                    var data = HttpUtility.HtmlDecode(@Model.Image);
+                    //if (!string.IsNullOrEmpty(data))
+                    //{
+                    //    data = data.Replace("<img ", "<img style='max-width:100%;'");
+                    //}
+                    @Html.Raw(data)
+                }
+                <br />
+                <p class="text-center">
+                    @contentData.Caption
+                </p>
+            </div>
+        </div>
+    </div>
+    <br />
+}

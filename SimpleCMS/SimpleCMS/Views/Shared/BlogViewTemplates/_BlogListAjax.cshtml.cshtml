@@ -1,0 +1,63 @@
+@using BootstrapWebApplication.Models;
+@{
+    var culture = Kthusid.Helpers.CultureHelper.GetCurrentCulture();
+    var cultureUILowerInvariant = Kthusid.Helpers.CultureHelper.GetCurrentUICultureLowerInvariant();
+}
+<br />
+<div data-bind="template: { name: 'pagination-template', foreach: PaginationList }"></div>
+
+<script type="text/html" id="pagination-template">
+    <div data-bind="if: Title">
+        <br />
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1><a data-bind="text: Title, attr: { href: Page.Permalink.Name, title: Page.Title }"></a></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p><span data-bind="text: Body"></span></p>
+                    @*@if (!string.IsNullOrEmpty(blogContentData.Excerpt))
+                    {
+                        @blogContentData.Excerpt
+                    }
+                    else
+                    {
+                        @Html.Raw(@Kthusid.Html.HtmlRemoval.StripTagsRegexCompiled(@HttpUtility.HtmlDecode(@blogContentData.Body)).Substring(0, @blogContentData.Body.Length >= 500 ? 500 : @blogContentData.Body.Length))
+                    }*@
+                </div>
+            </div>
+        </div>
+        <br />
+    </div>
+    <div data-bind="if: !Title">
+        @Html.Partial("~/Views/Shared/BlogViewTemplates/_ContentTranslationMissing.cshtml")
+    </div>
+</script>
+
+<script>
+    function PaginationListViewModel(_list) {
+        this.PaginationList = _list;
+    }
+
+    $(function () {
+        GetPaginatedList({ 'pageNumber': '@Request.Params["page"]', 'paginationCount': 5, 'culture': '@culture' });
+    });
+
+    function GetPaginatedList(data) {
+        $.ajax({
+            url: "/BlogList/GetPaginatedList",
+            type: "POST",
+            accept: 'application/json',
+            data: data,
+            success: function (result) {
+                //$.each(result.List, function (k, v) {
+                //    console.log(v);
+                //});
+                ko.applyBindings(new PaginationListViewModel(result.List));
+                console.log(result);
+            }
+        });
+    }
+</script>

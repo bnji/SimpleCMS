@@ -1,0 +1,13 @@
+﻿@model SimpleCMS.Helpers.ActionLinkData
+
+@*@{
+    var modalEditId = "editModal_" + new Random((int)DateTime.Now.Ticks).Next(0, int.MaxValue);//.AppendRandomNumberString();
+    var modalDetailsId = "detailsModal_" + new Random((int)DateTime.Now.Ticks).Next(0, int.MaxValue);//.AppendRandomNumberString();
+    var modalDeleteId = "deleteModal_" + new Random((int)DateTime.Now.Ticks).Next(0, int.MaxValue);//.AppendRandomNumberString();
+}
+@Html.ActionModalButton(@modalEditId, @Resources.Edit, "btn btn-default btn-xs", "edit")
+@Html.ActionModalButton(@modalDetailsId, @Resources.Details, "btn btn-info btn-xs", "details")
+@Html.ActionModalButton(@modalDeleteId, @Resources.Delete, "btn btn-danger btn-xs", "delete")
+@Html.ModalDialog(@modalEditId, @Resources.Close, @Resources.Save, @Resources.Edit, "/" + @Model.ControllerName + "/Edit", @Html.Action("Edit", @Model.ControllerName, new { Id = @Model.Model.Id, IsPartial = true }), new { @class = "btn btn-primary editModal" }, new { @class = "btn btn-default close-modal" })
+@Html.ModalDialog(@modalDetailsId, @Resources.Close, @Resources.Details, @Resources.Details, "/" + @Model.ControllerName + "/Details", @Html.Action("Details", @Model.ControllerName, new { Id = @Model.Model.Id, IsPartial = true }), new { @class = "btn btn-info detailsModal" }, new { @class = "btn btn-default close-modal" })
+@Html.ModalDialog(@modalDeleteId, @Resources.Close, @Resources.Delete, @Resources.Delete, "/" + @Model.ControllerName + "/Delete", @Html.Action("Delete", @Model.ControllerName, new { Id = @Model.Model.Id, IsPartial = true }), new { @class = "btn btn-danger deleteModal" }, new { @class = "btn btn-default close-modal" })*@

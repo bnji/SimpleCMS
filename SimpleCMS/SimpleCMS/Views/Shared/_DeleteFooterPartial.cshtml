@@ -1,0 +1,21 @@
+﻿@model SimpleCMS.Helpers.FormDeleteData
+
+@if (!@Request.IsAjaxRequest())
+{
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken();
+
+        <div class="form-actions no-color">
+            <input type="submit" value="@Resources.Delete" class="btn btn-default" /> | @Html.ActionLink(@Resources.BackToList, "Index")
+        </div>
+    }
+}
+else
+{
+    using (Html.BeginForm("Delete", ViewContext.GetControllerName(), FormMethod.Post))
+    {
+        @Html.Hidden("id", @Model.Id);
+        @Html.AntiForgeryToken();
+    }
+}

@@ -1,0 +1,762 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActiveFrom" xml:space="preserve">
+    <value>Aktiv fra</value>
+  </data>
+  <data name="ActiveTo" xml:space="preserve">
+    <value>Aktiv til</value>
+  </data>
+  <data name="AddBlogItemContent" xml:space="preserve">
+    <value>Tilføj blogindlæg</value>
+  </data>
+  <data name="AddBlogListContent" xml:space="preserve">
+    <value>Tilføj blogliste</value>
+  </data>
+  <data name="AddHtmlContent" xml:space="preserve">
+    <value>Tilføj HTML</value>
+  </data>
+  <data name="AddImageContent" xml:space="preserve">
+    <value>Tilføj billede</value>
+  </data>
+  <data name="AddPageContent" xml:space="preserve">
+    <value>Tilføj side indhold</value>
+  </data>
+  <data name="Blog" xml:space="preserve">
+    <value>Blog</value>
+  </data>
+  <data name="Body" xml:space="preserve">
+    <value>Indhold</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Indhold</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beskrivelse</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="Draft" xml:space="preserve">
+    <value>Kladde</value>
+  </data>
+  <data name="EditPage" xml:space="preserve">
+    <value>Ændre side</value>
+  </data>
+  <data name="EditPageContent" xml:space="preserve">
+    <value>Ændre indhold</value>
+  </data>
+  <data name="Excerpt" xml:space="preserve">
+    <value>Uddrag</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Fil</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>Filer</value>
+  </data>
+  <data name="HasRSS" xml:space="preserve">
+    <value>Har RSS?</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Højde</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Billede</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>Billeder</value>
+  </data>
+  <data name="IncludeInMenu" xml:space="preserve">
+    <value>Inkluder i menuen?</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Prioritet</value>
+  </data>
+  <data name="IsDraft" xml:space="preserve">
+    <value>Kladde?</value>
+  </data>
+  <data name="IsPublished" xml:space="preserve">
+    <value>Udgivet?</value>
+  </data>
+  <data name="Keyword" xml:space="preserve">
+    <value>Nøgleord</value>
+  </data>
+  <data name="Keywords" xml:space="preserve">
+    <value>Nøgleord</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Side</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Sider</value>
+  </data>
+  <data name="Permalink" xml:space="preserve">
+    <value>Permalink</value>
+  </data>
+  <data name="PermalinkName" xml:space="preserve">
+    <value>Permalink navn</value>
+  </data>
+  <data name="Plugin" xml:space="preserve">
+    <value>Plugin</value>
+  </data>
+  <data name="Plugins" xml:space="preserve">
+    <value>Plugins</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Udgiv</value>
+  </data>
+  <data name="Published" xml:space="preserve">
+    <value>Udgivet</value>
+  </data>
+  <data name="PublishedBy" xml:space="preserve">
+    <value>Udgivet af</value>
+  </data>
+  <data name="PublishedOn" xml:space="preserve">
+    <value>Udgivet den</value>
+  </data>
+  <data name="RowIndex" xml:space="preserve">
+    <value>Række nr</value>
+  </data>
+  <data name="RSS" xml:space="preserve">
+    <value>RSS</value>
+  </data>
+  <data name="Tag" xml:space="preserve">
+    <value>Tag</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="TemplateName" xml:space="preserve">
+    <value>Skabelon navn</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Tittel</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="ViewName" xml:space="preserve">
+    <value>View navn</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Bredde</value>
+  </data>
+  <data name="BlogItemContent" xml:space="preserve">
+    <value>Blogindlæg</value>
+  </data>
+  <data name="BlogListContent" xml:space="preserve">
+    <value>Blogliste</value>
+  </data>
+  <data name="HtmlContent" xml:space="preserve">
+    <value>HTML</value>
+  </data>
+  <data name="ImageContent" xml:space="preserve">
+    <value>Billede</value>
+  </data>
+  <data name="PageItemContent" xml:space="preserve">
+    <value>Side indhold</value>
+  </data>
+  <data name="PageContentType" xml:space="preserve">
+    <value>Side indholdstype</value>
+  </data>
+  <data name="Template" xml:space="preserve">
+    <value>Skabelon</value>
+  </data>
+  <data name="ViewTemplate" xml:space="preserve">
+    <value>Skærm skabelon</value>
+  </data>
+  <data name="ViewTemplates" xml:space="preserve">
+    <value>Skærm skabeloner</value>
+  </data>
+  <data name="DeletePageContent" xml:space="preserve">
+    <value>Slet indhold</value>
+  </data>
+  <data name="Caption" xml:space="preserve">
+    <value>Billedtekst</value>
+  </data>
+  <data name="DeletePage" xml:space="preserve">
+    <value>Slet side</value>
+  </data>
+  <data name="ContentTranslation" xml:space="preserve">
+    <value>Oversættelse af indhold</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Sprog</value>
+  </data>
+  <data name="Languages" xml:space="preserve">
+    <value>Sprog</value>
+  </data>
+  <data name="Translate" xml:space="preserve">
+    <value>Oversæt</value>
+  </data>
+  <data name="Translation" xml:space="preserve">
+    <value>Oversættelse</value>
+  </data>
+  <data name="PreviewPage" xml:space="preserve">
+    <value>Preview af side</value>
+  </data>
+  <data name="Prewview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>Generelt</value>
+  </data>
+  <data name="PageContentTypes" xml:space="preserve">
+    <value>Side indholdstyper</value>
+  </data>
+  <data name="Shared" xml:space="preserve">
+    <value>Delt</value>
+  </data>
+  <data name="AtomFeed" xml:space="preserve">
+    <value>Atom feed</value>
+  </data>
+  <data name="IsAtomFeed" xml:space="preserve">
+    <value>Er Atom feed?</value>
+  </data>
+  <data name="IsFeed" xml:space="preserve">
+    <value>Er feed?</value>
+  </data>
+  <data name="IsRssFeed" xml:space="preserve">
+    <value>Er RSS feed?</value>
+  </data>
+  <data name="RssFeed" xml:space="preserve">
+    <value>RSS feed</value>
+  </data>
+  <data name="Parent" xml:space="preserve">
+    <value>Overordnede</value>
+  </data>
+  <data name="ParentPage" xml:space="preserve">
+    <value>Overordnede side</value>
+  </data>
+  <data name="BlogSettings" xml:space="preserve">
+    <value>Blog indstillinger</value>
+  </data>
+  <data name="FeedSettings" xml:space="preserve">
+    <value>Feed indstillinger</value>
+  </data>
+  <data name="GeneralSettings" xml:space="preserve">
+    <value>Generlle indstillinger</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Indstillinger</value>
+  </data>
+  <data name="DefaultFrontPage" xml:space="preserve">
+    <value>Standard forside</value>
+  </data>
+  <data name="DefaultLanguage" xml:space="preserve">
+    <value>Standard sprog</value>
+  </data>
+  <data name="PostsPerPage" xml:space="preserve">
+    <value>Indlæg per side</value>
+  </data>
+  <data name="ContentType" xml:space="preserve">
+    <value>Indholdstype</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>Fil størrelse</value>
+  </data>
+  <data name="Length" xml:space="preserve">
+    <value>Længde</value>
+  </data>
+  <data name="Activate" xml:space="preserve">
+    <value>Aktiver</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Addresse</value>
+  </data>
+  <data name="Addresses" xml:space="preserve">
+    <value>Addresser</value>
+  </data>
+  <data name="AddressLine1" xml:space="preserve">
+    <value>Addresse linje 1</value>
+  </data>
+  <data name="AddressLine2" xml:space="preserve">
+    <value>Addresse linje 2</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>Alder</value>
+  </data>
+  <data name="AnErrorHasOccurred" xml:space="preserve">
+    <value>Der opstod en fejl</value>
+  </data>
+  <data name="Authenticate" xml:space="preserve">
+    <value>Godkend</value>
+  </data>
+  <data name="Authentication" xml:space="preserve">
+    <value>Godkendelse</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Tilbage</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Tilbage til liste</value>
+  </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>Fødselsdag</value>
+  </data>
+  <data name="CareOf" xml:space="preserve">
+    <value>C/O</value>
+  </data>
+  <data name="ChangedBy" xml:space="preserve">
+    <value>Ændret af</value>
+  </data>
+  <data name="ChangedFrom" xml:space="preserve">
+    <value>Ændret fra</value>
+  </data>
+  <data name="ChangedTo" xml:space="preserve">
+    <value>Ændret til</value>
+  </data>
+  <data name="ChangeEvent" xml:space="preserve">
+    <value>Ændring</value>
+  </data>
+  <data name="ChangeEvents" xml:space="preserve">
+    <value>Ændringer</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Ændre adgangskode</value>
+  </data>
+  <data name="Choose" xml:space="preserve">
+    <value>Vælg</value>
+  </data>
+  <data name="ChooseLanguage" xml:space="preserve">
+    <value>Vælg sprog</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>By</value>
+  </data>
+  <data name="ClickHereToLogIn" xml:space="preserve">
+    <value>Tryk her for at logge ind</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Luk</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Kommentar</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Kommentarer</value>
+  </data>
+  <data name="ConfirmAccount" xml:space="preserve">
+    <value>Bekræft brugerkonto</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Er du sikker at du ønsker at slette dette?</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Bekræft ny adgangskode</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Godkend adgangskode</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Videre</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Kopier</value>
+  </data>
+  <data name="Countries" xml:space="preserve">
+    <value>Lande</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="CountryCode" xml:space="preserve">
+    <value>Landekode</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Opret</value>
+  </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>Opretted af</value>
+  </data>
+  <data name="CreatedOn" xml:space="preserve">
+    <value>Opretted den</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Nuværende adgangskode</value>
+  </data>
+  <data name="DailyAdministrations" xml:space="preserve">
+    <value>Daglige administreringer</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Dato</value>
+  </data>
+  <data name="DateRequired" xml:space="preserve">
+    <value>Feltet skal være en dato</value>
+  </data>
+  <data name="DeActivate" xml:space="preserve">
+    <value>Deaktiver</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Slet</value>
+  </data>
+  <data name="DeletedBy" xml:space="preserve">
+    <value>Slettet af</value>
+  </data>
+  <data name="DeletedOn" xml:space="preserve">
+    <value>Slettet den</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Detaljer</value>
+  </data>
+  <data name="Disable" xml:space="preserve">
+    <value>Deaktiver</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Ændre</value>
+  </data>
+  <data name="EditApplicationSettings" xml:space="preserve">
+    <value>Ændre programindstillinger</value>
+  </data>
+  <data name="EditBasicInfo" xml:space="preserve">
+    <value>Ændre grundlæggende oplysinger</value>
+  </data>
+  <data name="EditUserSettings" xml:space="preserve">
+    <value>Ændre bruger indstillinger</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>Email addresse</value>
+  </data>
+  <data name="EmailAddresses" xml:space="preserve">
+    <value>Email addresser</value>
+  </data>
+  <data name="EmailOrUserIdCode" xml:space="preserve">
+    <value>Email eller Bruger kode</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>Tom</value>
+  </data>
+  <data name="Functions" xml:space="preserve">
+    <value>Funktioner</value>
+  </data>
+  <data name="Hometown" xml:space="preserve">
+    <value>Hjemby</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="InputRequired" xml:space="preserve">
+    <value>Feltet er påkrævet</value>
+  </data>
+  <data name="InvalidLength" xml:space="preserve">
+    <value>Længden er ikke valid</value>
+  </data>
+  <data name="InvalidUsernameOrPassword" xml:space="preserve">
+    <value>Forkert brugernavn eller adgangskode</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Aktiv?</value>
+  </data>
+  <data name="IsPrimary" xml:space="preserve">
+    <value>Primær?</value>
+  </data>
+  <data name="IsRequired" xml:space="preserve">
+    <value>Er påkrævet</value>
+  </data>
+  <data name="IsVerified" xml:space="preserve">
+    <value>Bekræftet?</value>
+  </data>
+  <data name="ItemChanged" xml:space="preserve">
+    <value>Post ændret</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Indlæser</value>
+  </data>
+  <data name="LoadingPleaseWait" xml:space="preserve">
+    <value>Indlæser. Vent venligst...</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Log ud</value>
+  </data>
+  <data name="LogOn" xml:space="preserve">
+    <value>Log ind</value>
+  </data>
+  <data name="ManageAccount" xml:space="preserve">
+    <value>Administrer konto</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="Misc" xml:space="preserve">
+    <value>Diverse</value>
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
+    <value>Diverse</value>
+  </data>
+  <data name="MsgNewPasswordDontMatch" xml:space="preserve">
+    <value>Den nye adgangskode og bekræftelsen stemmer ikke overens.</value>
+  </data>
+  <data name="MsgNoLocalAccount" xml:space="preserve">
+    <value>Du har ikke en lokal brugernavn / kodeord for dette websted. Tilføj en lokal konto, så du kan logge ind uden et eksternt login.</value>
+  </data>
+  <data name="MsgPasswordDontMatch" xml:space="preserve">
+    <value>Adgangskoden og bekræftelsen stemmer ikke overens.</value>
+  </data>
+  <data name="MustBeAtleast" xml:space="preserve">
+    <value>skal være mindst</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Ny adgangskode</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Nej</value>
+  </data>
+  <data name="NoUserFound" xml:space="preserve">
+    <value>Ingen bruger fundet</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Adgangskode</value>
+  </data>
+  <data name="Person" xml:space="preserve">
+    <value>Person</value>
+  </data>
+  <data name="Persons" xml:space="preserve">
+    <value>Personer</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Telefonnummer</value>
+  </data>
+  <data name="PhoneNumbers" xml:space="preserve">
+    <value>Telefonnumre</value>
+  </data>
+  <data name="PleaseCheckYourEmailToResetPassword" xml:space="preserve">
+    <value>Venligst tjek din email for at nulstille din adgangskode</value>
+  </data>
+  <data name="PleaseSignIn" xml:space="preserve">
+    <value>Venligst log ind</value>
+  </data>
+  <data name="Postal" xml:space="preserve">
+    <value>Postnummer</value>
+  </data>
+  <data name="Postals" xml:space="preserve">
+    <value>Postnumre</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Opdater</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Tilmeld</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Husk mig</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Påkrævet</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Gem</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Søg</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="SetPassword" xml:space="preserve">
+    <value>Angiv adgangskode</value>
+  </data>
+  <data name="SSN" xml:space="preserve">
+    <value>P-tal</value>
+  </data>
+  <data name="ThankYouForConfirmingYourAccount" xml:space="preserve">
+    <value>Tak for at du har bekræftet din brugerkonto</value>
+  </data>
+  <data name="TheExternalLoginWasRemoved" xml:space="preserve">
+    <value>Eksterne login blev fjernet</value>
+  </data>
+  <data name="TwoFactorAuthentication" xml:space="preserve">
+    <value>To faktor godkendelse</value>
+  </data>
+  <data name="UpdatedBy" xml:space="preserve">
+    <value>Opdateret af</value>
+  </data>
+  <data name="UpdatedOn" xml:space="preserve">
+    <value>Opdateret den</value>
+  </data>
+  <data name="UploadFile" xml:space="preserve">
+    <value>Upload file</value>
+  </data>
+  <data name="Uri" xml:space="preserve">
+    <value>Hjemmeside</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Bruger</value>
+  </data>
+  <data name="UserDoesntExistOrNotConfirmed" xml:space="preserve">
+    <value>Brugeren enten ikke eksisterer eller ikke er bekræftet</value>
+  </data>
+  <data name="UserIdCode" xml:space="preserve">
+    <value>Bruger kode</value>
+  </data>
+  <data name="UserInformation" xml:space="preserve">
+    <value>Brugeroplysninger</value>
+  </data>
+  <data name="UserLevel" xml:space="preserve">
+    <value>Brugerniveau</value>
+  </data>
+  <data name="VAT" xml:space="preserve">
+    <value>CVR</value>
+  </data>
+  <data name="Verified" xml:space="preserve">
+    <value>Bekræftet</value>
+  </data>
+  <data name="Verify" xml:space="preserve">
+    <value>Bekræft</value>
+  </data>
+  <data name="Website" xml:space="preserve">
+    <value>Hjemmeside</value>
+  </data>
+  <data name="Websites" xml:space="preserve">
+    <value>Hjemmesider</value>
+  </data>
+  <data name="Week" xml:space="preserve">
+    <value>Uge</value>
+  </data>
+  <data name="Weeks" xml:space="preserve">
+    <value>Uger</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>År</value>
+  </data>
+  <data name="Years" xml:space="preserve">
+    <value>År</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="YourPasswordHasBeenChanged" xml:space="preserve">
+    <value>Din adgangskode er ændret</value>
+  </data>
+  <data name="YourPasswordHasBeenSet" xml:space="preserve">
+    <value>Adgangskode er bleve sat</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Postnummer</value>
+  </data>
+  <data name="ZipCodes" xml:space="preserve">
+    <value>Postnumre</value>
+  </data>
+</root>

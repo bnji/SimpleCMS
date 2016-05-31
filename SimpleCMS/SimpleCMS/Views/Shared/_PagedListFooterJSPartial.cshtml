@@ -1,0 +1,40 @@
+﻿@model PagedListFooterData
+<br />
+<div class="row">
+    <div class="col-xs-6 col-md-6">
+        <form id="pagination-controller" class="form-inline" role="form">
+            <button data-bind="click: back" class="btn btn-default"><i class="glyphicon glyphicon-chevron-left"></i></button>
+            <input style="max-width:65px; text-align:center;" type="text" class="form-control go-to" data-bind="value: currentPage" />
+            /
+            <input style="max-width:65px; text-align:center;" type="text" class="form-control" data-bind="value: pageCount" />
+            <button data-bind="click: forward" class="btn btn-default"><i class="glyphicon glyphicon-chevron-right"></i></button>
+        </form>
+    </div>
+    <div class="col-xs-6 col-md-6">
+        <form class="form form-inline pull-right">
+            <div class="form-group">
+                @Resources.ResultsPrPage
+                <input id="page-size" style="max-width:55px; text-align:center;" type="text" class="form-control" data-bind="value: pageSize" />
+            </div>
+        </form>
+    </div>
+</div>
+@Scripts.Render("~/Scripts/ViewModel/List.js")
+<script>
+    $(function () {
+        indexVM = new ViewModel('@Model.ViewModelUrl', @Model.PagedList.PageCount, 10);//@*, @Core.Settings.Instance.PagingResultsPerPage, @Model.PageNumber, @Model.PageCount);*@
+        indexVM.app.run('#/page/1');
+        indexVM.onNavigate(function () {
+            console.log("page navigate...");
+        });
+        indexVM.onLoadNextPage(function () {
+            console.log("loaded next page");
+        });
+
+        $("a.sortField").click(function (e) {
+            console.log($(this));
+            e.preventDefault();
+            indexVM.sort(e.target.id);
+        });
+    });
+</script>

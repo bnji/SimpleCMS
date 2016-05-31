@@ -1,0 +1,71 @@
+﻿@model SimpleCMS.ViewModels.ContentTranslationCreateOrEditViewModel
+@if (!@Request.IsAjaxRequest())
+{
+    ViewBag.Title = @SimpleCMS.SimpleCMS.Resources.Blog.Resources.Create;
+    <h2>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Create</h2>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @if (!@Request.IsAjaxRequest())
+        {
+            <h4>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Language</h4>
+            <hr />
+        }
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Language, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Language, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Language)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+        
+        @if (!@Request.IsAjaxRequest())
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        }
+    </div>
+}
+<script>
+
+    //var pageSource = CreateDataSource(10, "/Page/Find", "#ParentName");
+
+    $(function () {
+        //activateDatePicker();
+
+        //ParseInputDate("#ActiveFrom, #ActiveTo");
+
+        //SetupAutoComplete($("#ParentName"), "Name", '#: data.Name #', pageSource, function (item) {
+        //    $("#ParentId").val(item.Id);
+        //    $("#ParentDescription").html(item.Description);
+        //});
+    });
+
+</script>
+@if (!@Request.IsAjaxRequest())
+{
+    @Html.Partial("_BackToListPartial")
+
+    @section Scripts {
+        @Scripts.Render("~/js/jqueryval")
+        @*@Scripts.Render("~/js/cms.file")*@
+        @Scripts.Render("~/js/serialize")
+    }
+}

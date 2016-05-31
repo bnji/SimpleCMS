@@ -1,0 +1,85 @@
+﻿@model SimpleCMS.Models.Blog.PageContentType
+@if (!@Request.IsAjaxRequest())
+{
+    ViewBag.Title = @SimpleCMS.SimpleCMS.Resources.Blog.Resources.Details;
+}
+<style>
+    /*.plugin-file {
+        width:100%;
+    }*/
+    .delete-file {
+        text-align: right;
+    }
+</style>
+<style type="text/css" media="screen">
+    #code-editor {
+        position: relative;
+        height: 200px !important;
+    }
+</style>
+<div>
+    <div class="row">
+        <div class="col-md-12 col-md-offset-0">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <strong>@ViewBag.Title</strong>
+                        @if (!@Request.IsAjaxRequest())
+                        {
+                            <span class="pull-right">
+                                @Html.Partial("_BackToListPartial", Model)
+                            </span>
+                        }
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="container-fluid">
+
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "PageContentTypeForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                                @Html.ValidationSummary(true)
+
+                                @Html.HiddenFor(m=>m.Id)
+
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label bold-label" })
+                                    </div>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @id = "name", @class = "form-control" } })
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top:10px;">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label bold-label" })
+                                    </div>
+                                    <div class="col-md-10">
+                                        @Html.TextAreaFor(model => model.Description, new { @id = "description", @rows = "5", @class = "form-control" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        @*$.navbarContextMenu("@Resources.Functions <span class='caret'></span>", [
+            "<a href='#' class='edit-action'  data-toggle='modal' data-controller-name='Plugin' data-action-name='Edit?id=@Model.Id' data-model-name='Plugin'>@Resources.Edit</a>"
+        ]);*@
+    });
+
+</script>
+@section Scripts {
+    @Scripts.Render("~/js/cms.file")
+    @Scripts.Render("~/js/serialize")
+}

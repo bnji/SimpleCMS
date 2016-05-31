@@ -1,0 +1,369 @@
+﻿@model SimpleCMS.Models.Blog.ViewTemplate
+@if (!@Request.IsAjaxRequest())
+{
+    ViewBag.Title = @Model.Name;// @SimpleCMS.SimpleCMS.Resources.Blog.Resources.Details;
+}
+<style>
+    /*.ViewTemplate-file {
+        width:100%;
+    }*/
+    .delete-file {
+        text-align: right;
+    }
+</style>
+<style type="text/css" media="screen">
+    #code-editor {
+        position: relative;
+        height: 200px !important;
+    }
+
+    .fullScreen {
+        height: auto;
+        width: auto;
+        border: 0;
+        margin: 0;
+        position: fixed !important;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+    }
+</style>
+<div>
+    <div class="row">
+        <div class="col-md-12 col-md-offset-0">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <strong>@ViewBag.Title</strong>
+                        @if (!@Request.IsAjaxRequest())
+                        {
+                            <span class="pull-right">
+                                @Html.Partial("_BackToListPartial", Model)
+                            </span>
+                        }
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="container-fluid">
+
+                        
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "ViewTemplateForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                                @Html.ValidationSummary(true)
+
+                                @Html.HiddenFor(m=>m.Id)
+                                @Html.HiddenFor(m=>m.Name)
+
+                                @*<div class="row">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label bold-label" })
+                                    </div>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @id = "name", @class = "form-control" } })
+                                    </div>
+                                </div>*@
+
+                                <div class="row" style="margin-top:10px;">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label bold-label" })
+                                    </div>
+                                    <div class="col-md-10">
+                                        @Html.TextAreaFor(model => model.Description, new { @id = "description", @rows = "5", @class = "form-control" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-md-2">
+                                <label class="control-label">
+                                    Code
+                                </label>
+                            </div>
+                            <div class="col-md-10">
+                                @*@Html.Partial("_FileUploadHandler", new SimpleCMS.Helpers.FileUploadHandlerParameters() { Accept = "*/*", ControllerName = "ViewTemplate", Multiple = true })*@
+                                @*<br />*@
+                                @*<ul id="newlyAddedFiles"></ul>*@
+                                @{
+                                    //var count = 0;
+                                    foreach (var file in Model.Files)
+                                    {
+                                        @*@Html.Raw(count % 2 == 0 ? "<div class=row>" : "")*@
+                                        @*<div class="col-md-10">*@
+                                        <div id="image_@file.Id" style="height:300px;">
+                                            <input type="hidden" id="fileId" name="fileId" value="@file.Id" />
+                                            <span id="editor-status" class="pull-left"></span>
+                                            @*<div class="pull-right">
+                                                <a title="@Resources.Save" href="#" class="save-file" data-file-id="@file.Id">
+                                                    <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+                                                </a>
+                                                <a title="@Resources.Delete" href="#" class="delete-file" data-file-id="@file.Id">
+                                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                                </a>
+                                            </div>*@
+                                            <br />
+                                            @*@Url.Action("GetFile", "ViewTemplate", new { @id = image.FileId })*@
+                                            <textarea id="code-editor" class="ViewTemplate-file">@System.Text.Encoding.Default.GetString(@file.File.Data)</textarea>
+                                            <br />
+                                        </div>
+                                        @*</div>*@
+                                        @*@Html.Raw(count % 2 == 1 ? "</div>" : "")
+                                            count++;*@
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js" type="text/javascript" charset="utf-8"></script>
+@*<script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/theme-monokai.js" type="text/javascript" charset="utf-8"></script>*@
+<script>
+    var dom = require("ace/lib/dom");
+    //add command to all new editor instaces
+    require("ace/commands/default_commands").commands.push({
+        name: "Toggle Fullscreen",
+        bindKey: "F11",
+        exec: function(editor) {
+            var fullScreen = dom.toggleCssClass(document.body, "fullScreen");
+            if(fullScreen) {
+                $(".navbar").hide();
+                $(".ace_editor").height("100%");
+            } else{
+                $(".navbar").show();
+                $(".ace_editor").height("70%");
+            }
+            dom.setCssClass(editor.container, "fullScreen", fullScreen);
+            editor.setAutoScrollEditorIntoView(!fullScreen);
+            editor.resize();
+        }
+    });
+
+    var editor = ace.edit("code-editor");
+    var session = editor.getSession();
+    editor.setTheme("ace/theme/chrome");
+    session.setMode("ace/mode/csharp");
+    session.setUseWrapMode(true);
+    //session.setWrapLimitRange(80, 80);
+
+    editor.commands.addCommand({
+        name: 'saveCommmand',
+        bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
+        exec: function(editor) {
+            SaveEditorData(editor);
+        },
+        readOnly: true // false if this command should not apply in readOnly mode
+    });
+    $(".ace_editor").height("70%"); // <--- THIS is a workaround! if not set, then the height of the editor is 14px!
+
+
+    $(function () {
+        @*$.navbarContextMenu("@Resources.Functions <span class='caret'></span>", [
+            "<a href='#' class='edit-action'  data-toggle='modal' data-controller-name='ViewTemplate' data-action-name='Edit?id=@Model.Id' data-model-name='ViewTemplate'>@Resources.Edit</a>"
+        ]);*@
+
+        $("#ViewTemplateForm input, #ViewTemplateForm textarea").blur(function() {
+            Update();
+        });
+
+        //setTimeout(function(){
+        //    $('#code-editor').css('height', '500px');
+        //},100);
+
+        $(".save-file").click(function () {
+            SaveEditorData(editor);
+        });
+
+        $(".delete-file").click(function () {
+            if(confirm("@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Delete ?")) {
+                var self = $(this);
+                var id = self.data('file-id');
+                $.post("/ViewTemplate/DeleteFileAsync", { "id" : id }, function (d, s, xhr) {
+                    console.log(d);
+                    console.log(s);
+                    console.log(xhr);
+                    console.log(xhr.responseJSON);
+                    var json = xhr.responseJSON;
+                    //$("#image_" + id).remove();
+                    self.parent().remove();
+                    if (json) { // has json object data
+                        //console.log(json);
+                    } else { // Model State is Invalid (required fields shown now)
+
+                    }
+                })
+                .fail(function (error) {
+                    console.log("error: ");
+                    console.log(error);
+                });
+            }
+        });
+    });
+
+    function Update() {
+        var url = "/ViewTemplate/Edit";
+        var form1 = $("#ViewTemplateForm");
+        var form2 = $("#files-to-upload");
+        var requestData = $.extend({}, form1.serializeObject(), form2.serializeObject());
+        //console.log(form2);
+        //$.post("/ViewTemplate/Edit", requestData, function (d, s, xhr) {
+        //    console.log(d);
+        //    console.log(s);
+        //    console.log(xhr);
+        //    console.log(xhr.responseJSON);
+        //    var json = xhr.responseJSON;
+        //    if (json) { // has json object data
+        //        //console.log(json);
+        //    } else { // Model State is Invalid (required fields shown now)
+
+        //    }
+        //})
+        //.fail(function (error) {
+        //    console.log("error: ");
+        //    console.log(error);
+        //});
+        //form.find("input[type=hidden], input[type=text], textarea, input[type=password]").val("");
+        //console.log(requestData);
+        $.ajax({
+            url: url,
+            type: "POST",
+            accept: 'application/json',
+            data: requestData,
+            success: function (result) {
+                console.log(result);
+            }
+        });
+    }
+
+    function SaveEditorData(_editor) {
+        //if(confirm("@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Save ?")) {
+        var id = $('#fileId').val();
+        var data = _editor.getValue();// self.parent().parent().find('textarea').val();
+        //alert(id);return false;
+        $.post("/ViewTemplate/SaveFileAsync", { "Id" : id, "Data" : data }, function (d, s, xhr) {
+            //console.log(d);
+            //console.log(s);
+            //console.log(xhr);
+            //console.log(xhr.responseJSON);
+            var json = xhr.responseJSON;
+            console.log(json);
+            $("#editor-status")
+                .html("Saved!")
+                .fadeIn("slow", function() {
+                    $(this).fadeOut("slow");
+                });
+            //.show("highlight", {}, 500, function() {
+            //    setTimeout(function() {
+            //        $( "#editor-status:visible" ).removeAttr( "style" ).fadeOut();
+            //    }, 1000 );
+            //});
+            if (json) {
+                //console.log(json);
+            } else { // Model State is Invalid (required fields shown now)
+
+            }
+        })
+        .fail(function (error) {
+            $("#editor-status")
+                .html("Error!")
+                .fadeIn("slow", function() {
+                    $(this).fadeOut("slow");
+                });
+            console.log("error: ");
+            console.log(error);
+        });
+        //}
+    }
+
+    function HandleUpload(idPrefix, e, onSuccess) {
+        console.log(e);
+        var files = e.files;
+        if (files.length > 0) {
+            var size = files[0].size;
+            //alert(size + " / " + maxFileSize);
+            if (size > maxFileSize) {
+                e.preventDefault();
+                alert("Fílan er ov stór. Vinaliga vel eina aðra ella minka um støddina á fíluni.");
+            }
+            else {
+                var ext = files[0].extension;
+                if (ext === ".js") {
+                    SetFileData(idPrefix, files[0]);
+                    if (onSuccess) {
+                        onSuccess();
+                    }
+                }
+                else {
+                    e.preventDefault();
+                    alert("Bert myndir eru loyvdar. Vinaliga vel eina aðra fílu.");
+                }
+            }
+        }
+    }
+
+    function onComplete() {
+        //https://github.com/macek/jquery-serialize-object
+        var url = "/ViewTemplate/AddFileToObject";
+        var form = $("#files-to-upload");
+        var requestData = $.extend({}, { ViewTemplateId: @Model.Id }, form.serializeObject());
+        form.find("input[type=hidden], input[type=text], textarea, input[type=password]").val("");
+        //console.log(requestData);
+        $.ajax({
+            url: url,
+            type: "POST",
+            accept: 'application/json',
+            data: requestData,
+            success: function (result) {
+                console.log("AddImageToViewTemplate result: ");
+                console.log(result);
+
+                @*var img = "<img src=" + @Url.Action("GetImage", "ViewTemplate", new { @id = 29 }) + " class='ViewTemplate-file' />";*@
+                //$.get("/ViewTemplate/GetImage", { id: 28}, function(data) {
+                //    $("#newlyAddedFiles").html("<img src='" + result + "' class='ViewTemplate-file' />");
+                //});
+                //var fileInfo = JSON.stringify(result);
+                $("#newlyAddedFiles").append("<li>Fíla løgd inn: " + result.Name + "(" + result.Length + ")</li>");// "<img src='" + result + "' class='ViewTemplate-file' />");
+            }
+        });
+    }
+
+    function getTimeDiff(stViewTemplateDate, endDate) {
+        var diff = endDate - stViewTemplateDate;
+        //console.log(diff);
+        var seconds = Math.round(diff / 1000.0);
+        return seconds;
+    }
+
+    function getTimeFormatted(time) {
+        var seconds = time % 60;
+        if (time < 60) {
+            //return seconds + " sekund";
+            return "00:00:" + ("0" + seconds).slice(-2);
+        }
+        var minutes = Math.round(Math.floor(time / 60));
+        if (minutes < 60) {
+            //return minutes + " min. " + seconds + " sekund";
+            return "00:" + ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
+        }
+        var hours = Math.round(Math.floor(minutes / 60));
+        minutes = minutes % 60;
+        //var hourStr = hours > 1 ? "tímar" : "tími";
+        //return hours + " " + hourStr + " " + minutes + " min. " + seconds + " sek.";
+        return hours + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
+    }
+</script>
+@section Scripts {
+    @Scripts.Render("~/js/cms.file")
+    @Scripts.Render("~/js/serialize")
+}

@@ -1,0 +1,13 @@
+﻿@using SimpleCMS.Models;
+@using Microsoft.AspNet.Identity;
+@*@section SidebarMenu {
+    <ul class="nav nav-pills nav-stacked nav-sidebar">
+        <li><a href="#/Manage">@Resources.ManageAccount</a></li>
+        <li><a href="#/EditBasicInfo">@Resources.EditBasicInfo</a></li>
+    </ul>
+}*@
+@section Scripts {
+    @Scripts.Render("~/js/jqueryval")
+}
+@*<div id="main"></div>*@
+@Html.Partial("_AccountFooter")

@@ -1,0 +1,102 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    var culture = General.Helpers.CultureHelper.GetCurrentCulture();
+    var cultureUILowerInvariant = General.Helpers.CultureHelper.GetCurrentUICultureLowerInvariant();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@ViewBag.Title - KT Húsið ASP.NET Bootstrap Application</title>
+    @Styles.Render("~/css/base")
+    @Scripts.Render("~/js/jquery")
+    @Scripts.Render("~/js/modernizr")
+    @Scripts.Render("~/css/jqueryui")
+    @Styles.Render("~/css/bootstrap")
+    @*@Styles.Render("~/css/fuelux")*@
+    @Styles.Render("~/css/bootstrap-datepicker")
+    @*@Styles.Render("~/css/editable")*@
+</head>
+@*<body class="fuelux">*@
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" rel="home" href="#" title="">
+                    <img style="max-width:275px; margin-top: -14px; height:inherit" src="~/Content/images/logo.gif">
+                </a>
+                @*@Html.ActionLink(@Core.Settings.Instance.AppName, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Resources.ChooseLanguage <span class="caret"></span></a>
+                    <ul id="languageSelect" class="dropdown-menu" role="menu">
+                        @{
+                                foreach (var item in General.Helpers.CultureHelper.Instance.Cultures)
+                                {
+                                <li>@Html.ActionLink(@item.Value.LanguageLocal.ToUpperFirst(), "SetCulture", "Home", new { culture = @item.Key }, null)</li>
+                            }
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+
+        <div id="main">
+            @RenderBody()
+        </div>
+        <hr />
+        <footer>
+            <p>@Core.Settings.Instance.AppRegInfo</p>
+        </footer>
+
+        @Html.Partial("_ModalDebugPartial")
+    </div><!--/.container-->
+    @Scripts.Render("~/js/bootstrap")
+    @Scripts.Render("~/js/bootstrap-datepicker")
+    @Scripts.Render("~/js/sammy")
+    @Scripts.Render("~/js/jqueryui")
+    @Scripts.Render("~/js/jqueryval")
+    @Scripts.Render("~/js/globalize")
+    @Scripts.Render("~/js/helpers")
+    @*@Scripts.Render("~/js/editable")*@
+    @*@Scripts.Render("~/js/fuelux")*@
+    @Scripts.Render("~/js/moment")
+    <script>
+        $(function () {
+            //$.fn.editable.defaults.mode = 'inline';
+
+            @*if (Modernizr.inputtypes.date) {
+                $(".datefield").datepicker({
+                    autoClose: true,
+                    format: 'dd-mm-yyyy'
+                    //language: "@culture.ToUpper()"
+                });
+            }*@
+            //$('.datefield').datepicker({
+            //})
+            //.on('changeDate', function (e) {
+            //    console.log(e);
+            //});
+            moment.locale("@culture.ToUpper()");
+            //console.log(moment.locale);
+            @*Globalize.locale("@culture.ToUpper()");*@
+            //$("#languageSelect li").on("click", function () {
+            //    $(this).parents("form").submit(); // post form
+            //});
+        });
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

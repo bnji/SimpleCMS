@@ -1,0 +1,26 @@
+@model SimpleCMS.Models.Blog.BlogItemContent
+@{
+    var culture = General.Helpers.CultureHelper.GetCurrentCulture();
+    var cultureUILowerInvariant = General.Helpers.CultureHelper.GetCurrentUICultureLowerInvariant();
+    var contentData = @Model.ContentData.Where(x => x.Translation.Language.ToLower().Equals(culture.ToLower())).FirstOrDefault();
+}
+@if (@contentData == null)
+{
+    @Html.Partial("~/SimpleCMS/Views/Shared/BlogViewTemplates/_ContentTranslationMissing.cshtml")
+}
+else
+{
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>@contentData.Title</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Raw(@HttpUtility.HtmlDecode(@contentData.Body))
+            </div>
+        </div>
+    </div>
+    <br />
+}

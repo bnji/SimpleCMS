@@ -1,0 +1,12 @@
+﻿@model SimpleCMS.Helpers.ActionLinkData
+
+<p>
+    @if (@Model != null)
+    {
+        @Html.ActionLink(@Resources.Create, "Create", @Model.ControllerName, @Model.RouteValues, @Model.HtmlAttributes)
+    }
+    else
+    {
+        @Html.ActionLink(@Resources.Create, "Create")
+    }
+</p>

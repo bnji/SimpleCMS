@@ -1,0 +1,762 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActiveFrom" xml:space="preserve">
+    <value>Virkið frá</value>
+  </data>
+  <data name="ActiveTo" xml:space="preserve">
+    <value>Virkið til</value>
+  </data>
+  <data name="AddBlogItemContent" xml:space="preserve">
+    <value>Legg grein inn</value>
+  </data>
+  <data name="AddBlogListContent" xml:space="preserve">
+    <value>Legg grein lista inn</value>
+  </data>
+  <data name="AddHtmlContent" xml:space="preserve">
+    <value>Legg HTML inn</value>
+  </data>
+  <data name="AddImageContent" xml:space="preserve">
+    <value>Legg mynd inn</value>
+  </data>
+  <data name="AddPageContent" xml:space="preserve">
+    <value>Legg síðu innihald inn</value>
+  </data>
+  <data name="Blog" xml:space="preserve">
+    <value>Bloggur</value>
+  </data>
+  <data name="Body" xml:space="preserve">
+    <value>Innihald</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Innihald</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Frágreiðing</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Tak niður</value>
+  </data>
+  <data name="Draft" xml:space="preserve">
+    <value>Kladda</value>
+  </data>
+  <data name="EditPage" xml:space="preserve">
+    <value>Broyt síðu</value>
+  </data>
+  <data name="EditPageContent" xml:space="preserve">
+    <value>Broyt innihald</value>
+  </data>
+  <data name="Excerpt" xml:space="preserve">
+    <value>Brot</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Fíla</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>Fílur</value>
+  </data>
+  <data name="HasRSS" xml:space="preserve">
+    <value>Hevur RSS?</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Hædd</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Mynd</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>Myndir</value>
+  </data>
+  <data name="IncludeInMenu" xml:space="preserve">
+    <value>Við í menu?</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Raðfesting</value>
+  </data>
+  <data name="IsDraft" xml:space="preserve">
+    <value>Kladda?</value>
+  </data>
+  <data name="IsPublished" xml:space="preserve">
+    <value>Útgivið?</value>
+  </data>
+  <data name="Keyword" xml:space="preserve">
+    <value>Lyklaorð</value>
+  </data>
+  <data name="Keywords" xml:space="preserve">
+    <value>Lyklaorð</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Síða</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Síður</value>
+  </data>
+  <data name="Permalink" xml:space="preserve">
+    <value>Permaleinkja</value>
+  </data>
+  <data name="PermalinkName" xml:space="preserve">
+    <value>Leinkju navn</value>
+  </data>
+  <data name="Plugin" xml:space="preserve">
+    <value>Ískoytisforrit</value>
+  </data>
+  <data name="Plugins" xml:space="preserve">
+    <value>Ískoytisforrit</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Útgev</value>
+  </data>
+  <data name="Published" xml:space="preserve">
+    <value>Útgivið</value>
+  </data>
+  <data name="PublishedBy" xml:space="preserve">
+    <value>Útgivið av</value>
+  </data>
+  <data name="PublishedOn" xml:space="preserve">
+    <value>Lagt út tann</value>
+  </data>
+  <data name="RowIndex" xml:space="preserve">
+    <value>Rað nummar</value>
+  </data>
+  <data name="RSS" xml:space="preserve">
+    <value>RSS</value>
+  </data>
+  <data name="Tag" xml:space="preserve">
+    <value>Frámerki</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Frámerkir</value>
+  </data>
+  <data name="TemplateName" xml:space="preserve">
+    <value>Skapilón navn</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Yvirskrift</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Legg út</value>
+  </data>
+  <data name="ViewName" xml:space="preserve">
+    <value>Skermmynd navn</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Vídd</value>
+  </data>
+  <data name="BlogItemContent" xml:space="preserve">
+    <value>Grein</value>
+  </data>
+  <data name="BlogListContent" xml:space="preserve">
+    <value>Grein listi</value>
+  </data>
+  <data name="HtmlContent" xml:space="preserve">
+    <value>HTML</value>
+  </data>
+  <data name="ImageContent" xml:space="preserve">
+    <value>Mynd</value>
+  </data>
+  <data name="PageItemContent" xml:space="preserve">
+    <value>Síðu innihald</value>
+  </data>
+  <data name="PageContentType" xml:space="preserve">
+    <value>Slag av síðu</value>
+  </data>
+  <data name="Template" xml:space="preserve">
+    <value>Skapilón</value>
+  </data>
+  <data name="ViewTemplate" xml:space="preserve">
+    <value>Skerm skapilón</value>
+  </data>
+  <data name="ViewTemplates" xml:space="preserve">
+    <value>Skerm skapilónir</value>
+  </data>
+  <data name="DeletePageContent" xml:space="preserve">
+    <value>Strika innihald</value>
+  </data>
+  <data name="Caption" xml:space="preserve">
+    <value>Myndartekstur</value>
+  </data>
+  <data name="DeletePage" xml:space="preserve">
+    <value>Strika síðu</value>
+  </data>
+  <data name="ContentTranslation" xml:space="preserve">
+    <value>Umseting av innihaldi</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Mál</value>
+  </data>
+  <data name="Languages" xml:space="preserve">
+    <value>Mál</value>
+  </data>
+  <data name="Translate" xml:space="preserve">
+    <value>Umset</value>
+  </data>
+  <data name="Translation" xml:space="preserve">
+    <value>Umseting</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Undansýn</value>
+  </data>
+  <data name="PreviewPage" xml:space="preserve">
+    <value>Undansýn síðu</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>Vanligt</value>
+  </data>
+  <data name="PageContentTypes" xml:space="preserve">
+    <value>Slag av síðum</value>
+  </data>
+  <data name="Shared" xml:space="preserve">
+    <value>Deilt</value>
+  </data>
+  <data name="AtomFeed" xml:space="preserve">
+    <value>Atom fóður</value>
+  </data>
+  <data name="IsAtomFeed" xml:space="preserve">
+    <value>Er Atom fóður?</value>
+  </data>
+  <data name="IsFeed" xml:space="preserve">
+    <value>Er fóður?</value>
+  </data>
+  <data name="IsRssFeed" xml:space="preserve">
+    <value>Er RSS fóður?</value>
+  </data>
+  <data name="RssFeed" xml:space="preserve">
+    <value>RSS fóður</value>
+  </data>
+  <data name="Parent" xml:space="preserve">
+    <value>Yvirskipað</value>
+  </data>
+  <data name="ParentPage" xml:space="preserve">
+    <value>Yvirskipað síða</value>
+  </data>
+  <data name="BlogSettings" xml:space="preserve">
+    <value>Blog stillingar</value>
+  </data>
+  <data name="FeedSettings" xml:space="preserve">
+    <value>Fóður stillingar</value>
+  </data>
+  <data name="GeneralSettings" xml:space="preserve">
+    <value>Vanligir stillingar</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Stillingar</value>
+  </data>
+  <data name="DefaultFrontPage" xml:space="preserve">
+    <value>Vanlig forsíða</value>
+  </data>
+  <data name="DefaultLanguage" xml:space="preserve">
+    <value>Vanligt tungumál</value>
+  </data>
+  <data name="PostsPerPage" xml:space="preserve">
+    <value>Postar pr. síðu</value>
+  </data>
+  <data name="ContentType" xml:space="preserve">
+    <value>Innihaldsslag</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>Fílu stødd</value>
+  </data>
+  <data name="Length" xml:space="preserve">
+    <value>Longd</value>
+  </data>
+  <data name="Activate" xml:space="preserve">
+    <value>Virkja</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Addressa</value>
+  </data>
+  <data name="Addresses" xml:space="preserve">
+    <value>Addressur</value>
+  </data>
+  <data name="AddressLine1" xml:space="preserve">
+    <value>Addressa teigur 1</value>
+  </data>
+  <data name="AddressLine2" xml:space="preserve">
+    <value>Addressa teigur 2</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>Aldur</value>
+  </data>
+  <data name="AnErrorHasOccurred" xml:space="preserve">
+    <value>Ein feilur uppstóð</value>
+  </data>
+  <data name="Authenticate" xml:space="preserve">
+    <value>Góðkenn</value>
+  </data>
+  <data name="Authentication" xml:space="preserve">
+    <value>Góðkenning</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Aftur</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Aftur til listan</value>
+  </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>Føðingardagur</value>
+  </data>
+  <data name="CareOf" xml:space="preserve">
+    <value>C/O</value>
+  </data>
+  <data name="ChangedBy" xml:space="preserve">
+    <value>Broytt av</value>
+  </data>
+  <data name="ChangedFrom" xml:space="preserve">
+    <value>Broytt frá</value>
+  </data>
+  <data name="ChangedTo" xml:space="preserve">
+    <value>Broytt til</value>
+  </data>
+  <data name="ChangeEvent" xml:space="preserve">
+    <value>Hending</value>
+  </data>
+  <data name="ChangeEvents" xml:space="preserve">
+    <value>Hendingar</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Broyt loyniorð</value>
+  </data>
+  <data name="Choose" xml:space="preserve">
+    <value>Vel</value>
+  </data>
+  <data name="ChooseLanguage" xml:space="preserve">
+    <value>Vel mál</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Býur / bygd</value>
+  </data>
+  <data name="ClickHereToLogIn" xml:space="preserve">
+    <value>Trýst her fyri at rita inn</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Lat aftur</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Viðmerking</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Viðmerkingar</value>
+  </data>
+  <data name="ConfirmAccount" xml:space="preserve">
+    <value>Vátta brúkarakontu</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Er tú vísur í at tú ynskir at strika hetta?</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Vátta nýtt loyniorð</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Vátta loyniorð</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Víðari</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Avrita</value>
+  </data>
+  <data name="Countries" xml:space="preserve">
+    <value>Lond</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="CountryCode" xml:space="preserve">
+    <value>Landa kota</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Stovna</value>
+  </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>Stovnað av</value>
+  </data>
+  <data name="CreatedOn" xml:space="preserve">
+    <value>Stovna tann</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Núverandi loyniorð</value>
+  </data>
+  <data name="DailyAdministrations" xml:space="preserve">
+    <value>Dagligar Umsitingar</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Dato</value>
+  </data>
+  <data name="DateRequired" xml:space="preserve">
+    <value>Teigurin skal verða ein dagfesting</value>
+  </data>
+  <data name="DeActivate" xml:space="preserve">
+    <value>Óvirkja</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Strika</value>
+  </data>
+  <data name="DeletedBy" xml:space="preserve">
+    <value>Strikað av</value>
+  </data>
+  <data name="DeletedOn" xml:space="preserve">
+    <value>Strikað tann</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Smálutir</value>
+  </data>
+  <data name="Disable" xml:space="preserve">
+    <value>Óvirkja</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Broyt</value>
+  </data>
+  <data name="EditApplicationSettings" xml:space="preserve">
+    <value>Broyt uppsetan fyri skipan</value>
+  </data>
+  <data name="EditBasicInfo" xml:space="preserve">
+    <value>Broyt grundleggjandi upplýsingar</value>
+  </data>
+  <data name="EditUserSettings" xml:space="preserve">
+    <value>Broyt brúkara uppsetan</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Teldupostur</value>
+  </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>Teldupostaddressa</value>
+  </data>
+  <data name="EmailAddresses" xml:space="preserve">
+    <value>Teldupostar</value>
+  </data>
+  <data name="EmailOrUserIdCode" xml:space="preserve">
+    <value>Teldupostur ella Brúkara kota</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>Tómt</value>
+  </data>
+  <data name="Functions" xml:space="preserve">
+    <value>Funkur</value>
+  </data>
+  <data name="Hometown" xml:space="preserve">
+    <value>Heimbýur</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="InputRequired" xml:space="preserve">
+    <value>Teigurin er kravdur</value>
+  </data>
+  <data name="InvalidLength" xml:space="preserve">
+    <value>Longdin er ikki gildi</value>
+  </data>
+  <data name="InvalidUsernameOrPassword" xml:space="preserve">
+    <value>Skeivt brúkaranavn ella loyniorð</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Virkin?</value>
+  </data>
+  <data name="IsPrimary" xml:space="preserve">
+    <value>Høvuðs?</value>
+  </data>
+  <data name="IsRequired" xml:space="preserve">
+    <value>Er kravt</value>
+  </data>
+  <data name="IsVerified" xml:space="preserve">
+    <value>Váttað?</value>
+  </data>
+  <data name="ItemChanged" xml:space="preserve">
+    <value>Lutur broyttur</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Innlesur</value>
+  </data>
+  <data name="LoadingPleaseWait" xml:space="preserve">
+    <value>Innlesur. Vinaliga bíða við...</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Útrita</value>
+  </data>
+  <data name="LogOn" xml:space="preserve">
+    <value>Innrita</value>
+  </data>
+  <data name="ManageAccount" xml:space="preserve">
+    <value>Umsit kontu</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Skrá</value>
+  </data>
+  <data name="Misc" xml:space="preserve">
+    <value>Ymist</value>
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
+    <value>Ymist</value>
+  </data>
+  <data name="MsgNewPasswordDontMatch" xml:space="preserve">
+    <value>Nýggja loyniorðið og endurtøkan av tí eru ikki eins.</value>
+  </data>
+  <data name="MsgNoLocalAccount" xml:space="preserve">
+    <value>Tú hevur ongan lokalan brúkara / loyniorð fyri síðuna. Stovna eina lokala kontu fyri at kunna innrita uttan uttanhýsis login.</value>
+  </data>
+  <data name="MsgPasswordDontMatch" xml:space="preserve">
+    <value>Loyniorðið og endurtøkan av tí eru ikki eins.</value>
+  </data>
+  <data name="MustBeAtleast" xml:space="preserve">
+    <value>skal í minsta lagi vera</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Nýtt loyniorð</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Nei</value>
+  </data>
+  <data name="NoUserFound" xml:space="preserve">
+    <value>Ongin brúkari funnin</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Loyniorð</value>
+  </data>
+  <data name="Person" xml:space="preserve">
+    <value>Persónur</value>
+  </data>
+  <data name="Persons" xml:space="preserve">
+    <value>Persónar</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Telefon nummar</value>
+  </data>
+  <data name="PhoneNumbers" xml:space="preserve">
+    <value>Telefon nummir</value>
+  </data>
+  <data name="PleaseCheckYourEmailToResetPassword" xml:space="preserve">
+    <value>Vinaliga kanna um tú hevur fingið ein teldupost fyri at nulstilla títt loyniorð</value>
+  </data>
+  <data name="PleaseSignIn" xml:space="preserve">
+    <value>Vinaliga innrita</value>
+  </data>
+  <data name="Postal" xml:space="preserve">
+    <value>Post nummar</value>
+  </data>
+  <data name="Postals" xml:space="preserve">
+    <value>Post nummur</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Dagfør</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Skráset</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Minst til mín</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Kravt</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Goym</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Leita</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="SetPassword" xml:space="preserve">
+    <value>Áset loyniorð</value>
+  </data>
+  <data name="SSN" xml:space="preserve">
+    <value>P-tal</value>
+  </data>
+  <data name="ThankYouForConfirmingYourAccount" xml:space="preserve">
+    <value>Takk fyri at hava vátta tína brúkarakontu</value>
+  </data>
+  <data name="TheExternalLoginWasRemoved" xml:space="preserve">
+    <value>Uttanhýsis login strikað</value>
+  </data>
+  <data name="TwoFactorAuthentication" xml:space="preserve">
+    <value>Tvey-stig góðkenning</value>
+  </data>
+  <data name="UpdatedBy" xml:space="preserve">
+    <value>Dagført av</value>
+  </data>
+  <data name="UpdatedOn" xml:space="preserve">
+    <value>Dagført tann</value>
+  </data>
+  <data name="UploadFile" xml:space="preserve">
+    <value>Send fílu upp</value>
+  </data>
+  <data name="Uri" xml:space="preserve">
+    <value>Vevsíða</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Brúkari</value>
+  </data>
+  <data name="UserDoesntExistOrNotConfirmed" xml:space="preserve">
+    <value>Brúkarin finnist ikki ella er enn ikki váttaður</value>
+  </data>
+  <data name="UserIdCode" xml:space="preserve">
+    <value>Brúkara kota</value>
+  </data>
+  <data name="UserInformation" xml:space="preserve">
+    <value>Brúkara upplýsingar</value>
+  </data>
+  <data name="UserLevel" xml:space="preserve">
+    <value>Brúkarastøði</value>
+  </data>
+  <data name="VAT" xml:space="preserve">
+    <value>V-TAL</value>
+  </data>
+  <data name="Verified" xml:space="preserve">
+    <value>Váttað</value>
+  </data>
+  <data name="Verify" xml:space="preserve">
+    <value>Vátta</value>
+  </data>
+  <data name="Website" xml:space="preserve">
+    <value>Vevsíða</value>
+  </data>
+  <data name="Websites" xml:space="preserve">
+    <value>Vevsíður</value>
+  </data>
+  <data name="Week" xml:space="preserve">
+    <value>Vika</value>
+  </data>
+  <data name="Weeks" xml:space="preserve">
+    <value>Vikur</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Ár</value>
+  </data>
+  <data name="Years" xml:space="preserve">
+    <value>Ár</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="YourPasswordHasBeenChanged" xml:space="preserve">
+    <value>Loyniorðið bleiv broytt</value>
+  </data>
+  <data name="YourPasswordHasBeenSet" xml:space="preserve">
+    <value>Loyniorð ásett</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Post nummar</value>
+  </data>
+  <data name="ZipCodes" xml:space="preserve">
+    <value>Post nummur</value>
+  </data>
+</root>

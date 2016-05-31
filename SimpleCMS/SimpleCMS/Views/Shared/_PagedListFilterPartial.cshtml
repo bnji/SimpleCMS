@@ -1,0 +1,22 @@
+﻿@{
+    var controllerName = ViewContext.GetControllerName();//.RouteData.Values["controller"].ToString();
+}
+
+@using (Html.BeginForm("Index", controllerName, FormMethod.Get, new { @class = "form-inline", @role = "form" }))
+{
+    <div class="form-group">
+        @Html.Label("filterByName", "Filter:", new { @class = "sr-only", @for = "filterName" })
+        @Html.TextBox("filterName", ViewBag.CurrentFilter as String, new { @id = "filterName", @class = "form-control input-xs", @placeholder = @Resources.FilterByName })
+    </div>
+    <input type="submit" class="btn btn-default btn-xs" value="@Resources.Filter" />
+    <button id="clear" class="btn btn-danger btn-xs">@Resources.Clear</button>
+    <script>
+        $(function () {
+            $("#clear").click(function (e) {
+                $(this).closest("form").find("input[name=filterName]").val("");
+                window.location.href = "@CMSExtensions.ControllerName";
+                @*e.preventDefault();*@
+            });
+        });
+    </script>
+}

@@ -1,0 +1,163 @@
+﻿@*@section SidebarMenu {
+        <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Overview</a></li>
+            <li><a href="#">Some nav link</a></li>
+        </ul>
+    }*@
+@{
+    var title = @SimpleCMS.SimpleCMS.Resources.Blog.Resources.Pages;
+    ViewBag.Title = title;
+}
+<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Id</th>
+            <th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Name</th>
+            <th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Title</th>
+            <th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Description</th>
+            @*<th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Keywords</th>
+                <th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Tags</th>
+                <th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Parent</th>
+                <th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Permalink</th>*@
+            <th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.PermalinkName</th>
+            @*<th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.TemplateName</th>*@
+            <th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.IncludeInMenu</th>
+            <th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.IsDraft</th>
+            <th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.IsPublished</th>
+            <th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.ActiveFrom</th>
+            <th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.ActiveTo</th>
+            <th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.IsRssFeed</th>
+            <th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.CreatedOn</th>
+            <th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.UpdatedOn</th>
+
+            @*<th>@Resources.Uri</th>
+                <th>@Resources.Start</th>
+                <th>@Resources.End</th>
+                <th>@Resources.Time</th>
+                <th>@Resources.UpdatedOn</th>
+                <th>@Resources.UpdatedBy</th>*@
+        </tr>
+    </thead>
+</table>
+<script>
+    $(function () {
+        var table = $('#example').DataTable({
+            "columnDefs": [{
+                "defaultContent": "-",
+                "targets": "_all"
+            }],
+            "ajax": '/@CMSExtensions.ControllerName/GetAjaxData',
+            "columns": [
+                { "data": "Id", "orderable": true },
+                {
+                    "data": "Name",
+                    "orderable": false,
+                    "render": function (data, type, full, meta) {
+                        return "<a href='/" + full.Permalink.Name + "'>" + data + "</a>";
+                    }
+                },
+                { "data": "Title", "orderable": true },
+                { "data": "Description", "orderable": true },
+                { "data": "Permalink.Name", "orderable": true },
+                {
+                    "data": "IncludeInMenu",
+                    "orderable": true,
+                    "render": function (data, type, full, meta) {
+                        return data ? "@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Yes" : "@SimpleCMS.SimpleCMS.Resources.Blog.Resources.No";
+                    }
+                },
+                {
+                    "data": "IsDraft",
+                    "orderable": true,
+                    "render": function (data, type, full, meta) {
+                        return data ? "@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Yes" : "@SimpleCMS.SimpleCMS.Resources.Blog.Resources.No";
+                    }
+                },
+                {
+                    "data": "IsPublished",
+                    "orderable": true,
+                    "render": function (data, type, full, meta) {
+                        return data ? "@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Yes" : "@SimpleCMS.SimpleCMS.Resources.Blog.Resources.No";
+                    }
+                },
+                {
+                    "data": "ActiveFrom",
+                    "orderable": true,
+                    "render": function (data, type, full, meta) {
+                        if (data) {
+                            return moment(data).format("lll");
+                        }
+                        return data;
+                    }
+                },
+                {
+                    "data": "ActiveTo",
+                    "orderable": true,
+                    "render": function (data, type, full, meta) {
+                        if (data) {
+                            return moment(data).format("lll");
+                        }
+                        return data;
+                    }
+                },
+                {
+                    "data": "IsRssFeed",
+                    "orderable": true,
+                    "render": function (data, type, full, meta) {
+                        return data ? "@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Yes" : "@SimpleCMS.SimpleCMS.Resources.Blog.Resources.No";
+                    }
+                },
+                {
+                    "data": "ChangeEvent.CreatedOn",
+                    "orderable": true,
+                    "render": function (data, type, full, meta) {
+                        return moment(data).format("lll");
+                    }
+                },
+                {
+                    "data": "ChangeEvent.UpdatedOn",
+                    "orderable": true,
+                    "render": function (data, type, full, meta) {
+                        return moment(data).format("lll");
+                    }
+                }
+            ],
+        });
+
+        $('#example tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                //var data = table.rows('.selected').data();
+                //console.log(data);
+                var data = table.row(this).data();
+                console.log(data);
+                //gridHandler.onChange(arg);
+                $(".edit-action").data("action-name", "Edit?id=" + data.Id);
+                $(".delete-action").data("action-name", "Delete?id=" + data.Id);
+
+            }
+        });
+
+        $('#example tbody').on('dblclick', 'tr', function () {
+            var data = table.row(this).data();
+            navigate('/' + data.Permalink.Name);
+        });
+
+        $(document).on("onDelete", function (e, d) {
+            table.row('.selected').remove().draw(false);
+            console.log("foobar");
+            console.log(e);
+            console.log(d);
+            //d.owner.parent().remove();
+        });
+
+    });
+</script>
+@section Scripts {
+    @Scripts.Render("~/js/cms.file")
+    @Scripts.Render("~/js/serialize")
+}

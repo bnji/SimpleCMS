@@ -1,0 +1,71 @@
+﻿@model SimpleCMS.ViewModels.BlogListContentCreateOrEditViewModel
+@if (!@Request.IsAjaxRequest())
+{
+    ViewBag.Title = @SimpleCMS.SimpleCMS.Resources.Blog.Resources.Create;
+    <h2>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Create</h2>
+}
+
+@*<script src="//cdn.ckeditor.com/4.5.1/full/ckeditor.js"></script>*@
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @if (!@Request.IsAjaxRequest())
+        {
+            <h4>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.BlogListContent</h4>
+            <hr />
+        }
+        @Html.ValidationSummary(true)
+
+        <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+        <input type="hidden" id="ParentId" name="ParentId" value="@Model.ParentId" />
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ViewTemplate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                <input id="ViewName" name="ViewName" type="text" class="form-control" placeholder="@SimpleCMS.SimpleCMS.Resources.Blog.Resources.ViewName" value="@(Model.ViewTemplateId.HasValue ? @Model.ViewTemplate.Name : "")" />
+            </div>
+            <div class="col-md-8">
+                <span id="ViewTemplateDescription" value="@(Model.ViewTemplate != null ? @Model.ViewTemplate.Description : "")"></span>
+                @Html.HiddenFor(m => m.ViewTemplateId)
+                @*<input type="hidden" id="ViewTemplateId" name="ViewTemplateId" value="@Model.ViewTemplateId" />*@
+            </div>
+        </div>
+
+        @if (!@Request.IsAjaxRequest())
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        }
+    </div>
+}
+<script>
+
+    var viewTemplateSource = CreateDataSource(10, "/ViewTemplate/Find", "#ViewName", { "pageContentTypeName": "BlogList", "canFindAnyViewTemplate" : true });
+
+    $(function () {
+
+        SetupAutoComplete($("#ViewName"), "Name", '#: data.Name #', viewTemplateSource, function (item) {
+            $("#ViewTemplateId").val(item.Id);
+            $("#ViewTemplateDescription").html(item.Description);
+        });
+
+
+
+    });
+</script>
+@if (!@Request.IsAjaxRequest())
+{
+    @Html.Partial("_BackToListPartial")
+
+    @section Scripts {
+        @Scripts.Render("~/js/jqueryval")
+        @*@Scripts.Render("~/js/cms.file")*@
+        @Scripts.Render("~/js/serialize")
+    }
+}

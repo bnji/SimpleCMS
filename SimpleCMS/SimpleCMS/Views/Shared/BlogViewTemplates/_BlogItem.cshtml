@@ -1,0 +1,78 @@
+@model SimpleCMS.Models.Blog.BlogItemContent
+@{
+    var culture = General.Helpers.CultureHelper.GetCurrentCulture();
+    var cultureUILowerInvariant = General.Helpers.CultureHelper.GetCurrentUICultureLowerInvariant();
+    var contentData = @Model.ContentData.Where(x => x.Translation.Language.ToLower().Equals(culture.ToLower())).FirstOrDefault();
+}
+@if (!Request.IsAuthenticated || CMSExtensions.IsPreview)
+{
+    <link rel="stylesheet" type="text/css" href="~/SimpleCMS/Content/blog/css/clean-blog.css">
+}
+<div id="blog-item-container">
+    @if (@contentData == null)
+    {
+        @Html.Partial("~/SimpleCMS/Views/Shared/BlogViewTemplates/_ContentTranslationMissing.cshtml")
+    }
+    else
+    {
+
+        var imgUrl = "";
+        var files = Model.Files.FilterDeleted().OrderBy(x => x.Index).ToList();
+        var file = files.FirstOrDefault();
+        var file2 = files.Skip(1).FirstOrDefault();
+        var data = HttpUtility.HtmlDecode(""+contentData.Body).Replace("<img ", "<img width='100%' ");
+        if (file != null)
+        {
+            var base64String = Convert.ToBase64String(file.ImageInfo.File.Data, 0, file.ImageInfo.File.Data.Length);
+            imgUrl = "data:image/png;base64," + base64String;
+        }
+        if (file2 != null)
+        {
+            var base64String = Convert.ToBase64String(file2.ImageInfo.File.Data, 0, file2.ImageInfo.File.Data.Length);
+            imgUrl = "data:image/png;base64," + base64String;
+            var img = "<img src='" + imgUrl + "' />";
+            data = data.Replace("[image-1]", img);
+        }
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url(@imgUrl)">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Hey: @contentData.Title</h1>
+                        <span style="padding:25px;"></span>
+                        <h3 class="subheading">@contentData.Excerpt</h3>
+                        <span class="meta">@SimpleCMS.SimpleCMS.Resources.Blog.Resources.PublishedBy <a href="#">@Model.PageContentInfo.PublishedBy</a> @Model.PageContentInfo.PublishedOn.Value.ToString("g")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    @Html.Raw(data)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    @Html.Partial("~/SimpleCMS/Views/Shared/BlogViewTemplates/_RRSSB.cshtml", @contentData)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    @if (!Request.IsAuthenticated || CMSExtensions.IsPreview)
+                        {
+                        <div class="fb-comments" data-href="@Request.Url.AbsoluteUri" data-width="100%" data-numposts="5"></div>
+                        }
+                </div>
+            </div>
+        </div>
+    </article>
+
+    }
+</div>

@@ -1,0 +1,146 @@
+﻿@*@section SidebarMenu {
+        <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Overview</a></li>
+            <li><a href="#">Some nav link</a></li>
+        </ul>
+    }*@
+@{
+    var title = @Resources.Gender;
+    var controllerName = ViewContext.GetControllerName();
+    ViewBag.Title = title;
+}
+@*<h2>@title</h2>*@
+@(Html.Kendo().Grid<SimpleCMS.ViewModels.ArtViewModel>()
+    .Name("gridArt")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.Id).Hidden();
+        columns.Bound(p => p.Name).Title(@Resources.Name);
+        columns.Bound(p => p.Description).Title(@Resources.Description);
+        columns.Bound(p => p.Artist.Name).Title(@Resources.FullName);
+        columns.Bound(p => p.ArtType.Name).Title(@Resources.Type);
+        //columns.Bound(p => p.UriString).Title(@Resources.Uri).ClientTemplate("<text><a target='_blank' href='http://#= UriString #'>#= UriString # </a></text>"); ;
+        //columns.Bound(p => p.Period.Start).Title(@Resources.Start).ClientTemplate("#if(Period.Start){#<span>#= kendo.toString(new Date(parseInt(Period.Start.replace(/[A-Za-z$--/]/g, ''))),'G') #</span>#}else{#<span>-</span>#}#");
+        //columns.Bound(p => p.Period.End).Title(@Resources.End).ClientTemplate("#if(Period.End){#<span>#= kendo.toString(new Date(parseInt(Period.End.replace(/[A-Za-z$--/]/g, ''))),'G') #</span>#}else{#<span>-</span>#}#");
+        //columns.Bound(p => p.Period.Length).Title(@Resources.Time).ClientTemplate("#if(Period.Length){#<span>#= kendo.format('{0:00}:{1:00}:{2:00}', Period.Length.Hours, Period.Length.Minutes, Period.Length.Seconds) #</span>#}else{#<span>-</span>#}#");
+        //columns.Bound(p => p.ChangeEventUpdatedOn).Format("{0:g}").Title(@Resources.UpdatedOn);
+        //columns.Bound(p => p.ChangeEventUpdatedByUserIdCode).Title(@Resources.UpdatedBy);
+        //columns.Command(command =>
+        //{
+        //    command
+        //        .Edit().Text(@Resources.Edit)
+        //        .HtmlAttributes(new { @class = "btn-xs" });
+        //    command
+        //        .Destroy()
+        //        .HtmlAttributes(new { @class = "hide" });
+        //})
+        //.Width(120);
+    })
+    .ToolBar(toolbar =>
+    {
+        toolbar.Template(@<text>
+            <div class="toolbar">
+                <input type="text" id="GridSearch" class="k-textbox" />
+                <button tabindex="-1" class="create-action k-button" data-toggle='modal' data-controller-name='Art' data-action-name='Create' data-model-name='Art'>@Resources.Create</button>
+                <button tabindex="-1" class="edit-action k-button" data-toggle='modal' data-controller-name='Art' data-action-name='' data-model-name='Art'>@Resources.Edit</button>
+                <button tabindex="-1" class="delete-action k-button" data-toggle='modal' data-controller-name='Art' data-action-name='' data-model-name='Art'>@Resources.Delete</button>
+            </div>
+        </text>);
+    })
+    .Reorderable(reorderable=>reorderable.Columns(false))
+    //.Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .Pageable(pageable => pageable
+        .Messages(m=>
+            m.ItemsPerPage(@Resources.ItemsPerPage)
+            .First(@Resources.First)
+            .Previous(@Resources.Previous)
+            .Next(@Resources.Next)
+            .Last(@Resources.Last)
+            .Refresh(@Resources.Refresh)
+            .Display("{0} - {1} " + @Resources.Of.ToLower() + " {2} " + @Resources.Items.ToLower())
+            .Page(@Resources.Page)
+            .Of(@Resources.Of))
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(10))
+    //.Filterable(ftb => ftb.Mode(GridFilterMode.Menu))
+    .Sortable()
+    //.Scrollable()
+    .Navigatable()
+    //.Groupable()
+    .Selectable()
+    .Events(events => events.Change("onChange").DataBound("onDataBound").DataBinding("onDataBinding"))
+    //.HtmlAttributes(new { style = "min-height:350px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(10)
+        .ServerOperation(true)
+        .Events(events => events.Error("error_handler"))
+        .Model(model => model.Id(p => p.Id))
+        .Read(read => read.Action("Read", "Art"))
+    )
+)
+<script>
+    var gridHandler;
+    $(function () {
+
+        gridHandler = new GridHandler("#gridArt", "#GridSearch");
+        gridHandler.focusSearch();
+        gridHandler.onDoubleClick = function (item) {
+            navigate('/Art/Details/' + item.Id);
+        };
+        gridHandler.onItemDelete = function (item) {
+            //console.log(item);
+            $(".delete-action").filter(":visible").click();
+        };
+        //gridHandler.onSearching = function () {
+        //  //Override search functionality
+        //};
+        //gridHandler.onKeydown = function (e) {
+        //  //Override default shortcuts
+        //}
+        gridHandler.onItemOpen = function (item) {
+            navigate('/Art/Details/' + item.Id);
+        };
+
+        $("#filter-today").click(function () {
+            $("#GridSearch").val(@DateTime.Now.ToString("ddMMyy")).keyup();
+        });
+        $("#filter-clear").click(function () {
+            $("#GridSearch").val("").keyup();
+        });
+    });
+
+
+    function onChange(arg) {
+        gridHandler.onChange(arg);
+        var id = gridHandler.currentItem().Id;
+        $(".edit-action").data("action-name", "Edit?id=" + id);
+        $(".delete-action").data("action-name", "Delete?id=" + id);
+    }
+
+    function onDataBound(arg) {
+        gridHandler.onDataBound(arg);
+    }
+
+    function onDataBinding(arg) {
+        gridHandler.onDataBinding(arg);
+    }
+
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>
+@section Scripts {
+    @Scripts.Render("~/js/cms.file")
+}

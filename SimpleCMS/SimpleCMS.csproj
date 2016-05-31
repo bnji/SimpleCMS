@@ -1,0 +1,2210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{66B1BC58-FFFF-4B30-9C7C-DFB5544DC0A8}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SimpleCMS</RootNamespace>
+    <AssemblyName>SimpleCMS</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.4.0.0-alpha1\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc">
+      <HintPath>..\packages\Autofac.Mvc5.3.3.3\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FiftyOne.Foundation, Version=3.1.10.2, Culture=neutral, PublicKeyToken=e967ae578dabd98e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\51Degrees.mobi-WebMatrix.3.1.10.2\lib\NET40\FiftyOne.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>lib\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Kendo.Mvc">
+      <HintPath>lib\Kendo.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.4\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData">
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.4\lib\net40\Microsoft.Data.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocol.Extensions, Version=1.0.2.33, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Protocol.Extensions.1.0.2.206221351\lib\net45\Microsoft.IdentityModel.Protocol.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OpenIdConnect">
+      <HintPath>..\packages\Microsoft.Owin.Security.OpenIdConnect.3.0.1\lib\net45\Microsoft.Owin.Security.OpenIdConnect.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.20622.1351, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.4.0.2.206221351\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Spatial, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.6.4\lib\net40\System.Spatial.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.5.7.0\lib\net45\System.Web.Http.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="Thinktecture.IdentityServer3">
+      <HintPath>..\packages\Thinktecture.IdentityServer3.1.6.1\lib\net45\Thinktecture.IdentityServer3.dll</HintPath>
+    </Reference>
+    <Reference Include="Twilio.Api, Version=3.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Twilio.3.6.27\lib\3.5\Twilio.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\BundleMobileConfig.cs" />
+    <Compile Include="SimpleCMS\ConfigExtensions\CultureConfig.cs" />
+    <Compile Include="SimpleCMS\ConfigExtensions\SimpleCMSBundleConfig.cs" />
+    <Compile Include="SimpleCMS\ConfigExtensions\SimpleCMSRouteConfig.cs" />
+    <Compile Include="SimpleCMS\ConfigExtensions\SimpleCMSStartupConfig.cs" />
+    <Compile Include="SimpleCMS\Enums\ChangeEventType.cs" />
+    <Compile Include="SimpleCMS\Extensions\BootstrapExtensions.cs" />
+    <Compile Include="SimpleCMS\Extensions\Extensions.cs" />
+    <Compile Include="SimpleCMS\Helpers\CookieHelper.cs" />
+    <Compile Include="SimpleCMS\Helpers\CultureHelper.cs" />
+    <Compile Include="SimpleCMS\Helpers\CultureInfo.cs" />
+    <Compile Include="SimpleCMS\Helpers\CustomAssemblyResolver.cs" />
+    <Compile Include="SimpleCMS\Helpers\DateTimeHelper.cs" />
+    <Compile Include="SimpleCMS\Helpers\Debug.cs" />
+    <Compile Include="SimpleCMS\Helpers\DecimalModelBinder.cs" />
+    <Compile Include="SimpleCMS\ConfigExtensions\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="SimpleCMS\ConfigExtensions\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
+    <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
+    <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageAreaRegistration.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageConfigurationExtensions.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\CollectionModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ComplexTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\DictionaryModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumValueDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\IModelDocumentationProvider.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\KeyValuePairModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescriptionGenerator.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameAttribute.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameHelper.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterAnnotation.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\SimpleTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\Models\HelpPageApiModel.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleKey.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ImageSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\InvalidSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ObjectGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
+    <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="SimpleCMS\BLL\AccountHandler.cs" />
+    <Compile Include="SimpleCMS\BLL\ChangeEventHandler.cs" />
+    <Compile Include="SimpleCMS\Controllers.API\RSSController.cs" />
+    <Compile Include="SimpleCMS\Controllers\AccountController.cs" />
+    <Compile Include="SimpleCMS\Controllers\BlogFeedSettingsController.cs" />
+    <Compile Include="SimpleCMS\Controllers\BlogItemController.cs" />
+    <Compile Include="SimpleCMS\Controllers\BlogListController.cs" />
+    <Compile Include="SimpleCMS\Controllers\BlogWebsiteSettingsController.cs" />
+    <Compile Include="SimpleCMS\Controllers\ContentTranslationController.cs" />
+    <Compile Include="SimpleCMS\Controllers\Controller.cs" />
+    <Compile Include="SimpleCMS\Controllers\CustomContentController.cs" />
+    <Compile Include="SimpleCMS\Controllers\FileController.cs" />
+    <Compile Include="SimpleCMS\Controllers\HomeController.cs" />
+    <Compile Include="SimpleCMS\Controllers\ImageBrowserController.cs" />
+    <Compile Include="SimpleCMS\Controllers\ImageContentController.cs" />
+    <Compile Include="SimpleCMS\Controllers\ImageController.cs" />
+    <Compile Include="SimpleCMS\Controllers\PageContentTypeController.cs" />
+    <Compile Include="SimpleCMS\Controllers\PageController.cs" />
+    <Compile Include="SimpleCMS\Controllers\PageItemController.cs" />
+    <Compile Include="SimpleCMS\Controllers\PluginsController.cs" />
+    <Compile Include="SimpleCMS\Controllers\RssController.cs" />
+    <Compile Include="SimpleCMS\Controllers\ViewTemplateController.cs" />
+    <Compile Include="SimpleCMS\DAL\BootstrapConfiguration.cs" />
+    <Compile Include="SimpleCMS\DAL\BootstrapContext.cs" />
+    <Compile Include="SimpleCMS\DAL\BootstrapInitializer.cs" />
+    <Compile Include="SimpleCMS\DAL\DALConfiguration.cs" />
+    <Compile Include="SimpleCMS\Extensions\ControllerExtensions.cs" />
+    <Compile Include="SimpleCMS\Extensions\LoggingFilterAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="SimpleCMS\Helpers\ActionLinkData.cs" />
+    <Compile Include="SimpleCMS\Helpers\CMSExtensions.cs" />
+    <Compile Include="SimpleCMS\Helpers\Constants.cs" />
+    <Compile Include="SimpleCMS\Helpers\CustomViewEngine.cs" />
+    <Compile Include="SimpleCMS\Helpers\DynamicXml.cs" />
+    <Compile Include="SimpleCMS\Helpers\EnumDescription.cs" />
+    <Compile Include="SimpleCMS\Helpers\EnumHelper.cs" />
+    <Compile Include="SimpleCMS\Helpers\Extensions.cs" />
+    <Compile Include="SimpleCMS\Helpers\FeedResult.cs" />
+    <Compile Include="SimpleCMS\Helpers\FileHelper.cs" />
+    <Compile Include="SimpleCMS\Helpers\FileUploadHandlerParameters.cs" />
+    <Compile Include="SimpleCMS\Helpers\FormDeleteData.cs" />
+    <Compile Include="SimpleCMS\Helpers\HtmlRemoval.cs" />
+    <Compile Include="SimpleCMS\Helpers\HtmlTrimmer.cs" />
+    <Compile Include="SimpleCMS\Helpers\Http.cs" />
+    <Compile Include="SimpleCMS\Helpers\ISettings.cs" />
+    <Compile Include="SimpleCMS\Helpers\JsonHelper.cs" />
+    <Compile Include="SimpleCMS\Helpers\LoadPluginParameters.cs" />
+    <Compile Include="SimpleCMS\Helpers\Settings.cs" />
+    <Compile Include="SimpleCMS\Hubs\MessageHub.cs" />
+    <Compile Include="IdentityConfig.cs" />
+    <Compile Include="SimpleCMS\Interfaces\IHasChangeEvent.cs" />
+    <Compile Include="SimpleCMS\Interfaces\IHasContentData.cs" />
+    <Compile Include="SimpleCMS\Interfaces\IHasEntity.cs" />
+    <Compile Include="SimpleCMS\Interfaces\IHasFile.cs" />
+    <Compile Include="SimpleCMS\Interfaces\IHasId.cs" />
+    <Compile Include="SimpleCMS\Interfaces\IHasPageContentFile.cs" />
+    <Compile Include="SimpleCMS\Interfaces\IHasPerson.cs" />
+    <Compile Include="SimpleCMS\Interfaces\IHasStuff.cs" />
+    <Compile Include="SimpleCMS\Interfaces\IModel.cs" />
+    <Compile Include="SimpleCMS\Interfaces\IPageContentWithChangeEvent.cs" />
+    <Compile Include="SimpleCMS\Interfaces\IRepository.cs" />
+    <Compile Include="SimpleCMS\Interfaces\ViewModelBase.cs" />
+    <Compile Include="SimpleCMS\Interfaces\ViewModelBaseWithChangeEvent.cs" />
+    <Compile Include="SimpleCMS\Managers\FileUploadHandler.cs" />
+    <Compile Include="Migrations\201503091958348_InitialDb.cs" />
+    <Compile Include="Migrations\201503091958348_InitialDb.Designer.cs">
+      <DependentUpon>201503091958348_InitialDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="SimpleCMS\Models\Misc\Address.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\BlogFeedSettings.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\BlogItemContent.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\BlogItemContentData.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\BlogWebsiteSettings.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\ContentTranslation.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\CustomContent.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\CustomContentData.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\ImageContent.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\ImageContentData.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\ImageInfo.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\Page.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\PageContent.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\PageContentFile.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\PageContentInfo.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\PageContentType.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\PageItemContent.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\PageItemContentData.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\Pagination.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\Permalink.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\Plugin.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\PluginFile.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\ViewTemplate.cs" />
+    <Compile Include="SimpleCMS\Models\Blog\ViewTemplateFile.cs" />
+    <Compile Include="SimpleCMS\Models\Misc\ChangeEvent.cs" />
+    <Compile Include="SimpleCMS\Models\Misc\ChangeEventItem.cs" />
+    <Compile Include="SimpleCMS\Models\Misc\City.cs" />
+    <Compile Include="SimpleCMS\Models\Misc\Country.cs" />
+    <Compile Include="SimpleCMS\Models\Misc\EmailAddress.cs" />
+    <Compile Include="SimpleCMS\Models\Misc\Entity.cs" />
+    <Compile Include="SimpleCMS\Models\Misc\File.cs" />
+    <Compile Include="SimpleCMS\Models\Misc\Home.cs" />
+    <Compile Include="SimpleCMS\Models\KendoEditor\DirectoryBrowser.cs" />
+    <Compile Include="SimpleCMS\Models\KendoEditor\EntryType.cs" />
+    <Compile Include="SimpleCMS\Models\KendoEditor\FileBrowserEntry.cs" />
+    <Compile Include="SimpleCMS\Models\KendoEditor\FitImageResizer.cs" />
+    <Compile Include="SimpleCMS\Models\KendoEditor\ImageSize.cs" />
+    <Compile Include="SimpleCMS\Models\KendoEditor\ThumbnailCreator.cs" />
+    <Compile Include="SimpleCMS\Models\Misc\Person.cs" />
+    <Compile Include="SimpleCMS\Models\Misc\Phone.cs" />
+    <Compile Include="SimpleCMS\Models\Misc\Postal.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleCMS\Resources\Blog\Resources.da.Designer.cs">
+      <DependentUpon>Resources.da.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SimpleCMS\Resources\Blog\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SimpleCMS\Resources\Blog\Resources.fo.Designer.cs">
+      <DependentUpon>Resources.fo.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Startup.cs" />
+    <Compile Include="SimpleCMS\ViewModels\AccountViewModels.cs" />
+    <Compile Include="SimpleCMS\ViewModels\BlogFeedSettingsViewModel.cs" />
+    <Compile Include="SimpleCMS\ViewModels\BlogItemContentViewModel.cs" />
+    <Compile Include="SimpleCMS\ViewModels\BlogListContentViewModel.cs" />
+    <Compile Include="SimpleCMS\ViewModels\BlogWebsiteSettingsViewModel.cs" />
+    <Compile Include="SimpleCMS\ViewModels\ContentTranslationViewModel.cs" />
+    <Compile Include="SimpleCMS\ViewModels\CustomContentViewModel.cs" />
+    <Compile Include="SimpleCMS\ViewModels\FileUploadInfo.cs" />
+    <Compile Include="SimpleCMS\ViewModels\FileViewModel.cs" />
+    <Compile Include="SimpleCMS\ViewModels\IdentityModels.cs" />
+    <Compile Include="SimpleCMS\ViewModels\ImageContentViewModel.cs" />
+    <Compile Include="SimpleCMS\ViewModels\ImageInfoViewModel.cs" />
+    <Compile Include="SimpleCMS\ViewModels\jQueryDataTableParamModel.cs" />
+    <Compile Include="SimpleCMS\ViewModels\PageContentFileViewModel.cs" />
+    <Compile Include="SimpleCMS\ViewModels\PageContentTypeViewModel.cs" />
+    <Compile Include="SimpleCMS\ViewModels\PageContentViewModel.cs" />
+    <Compile Include="SimpleCMS\ViewModels\PageItemContentViewModel.cs" />
+    <Compile Include="SimpleCMS\ViewModels\PageViewModel.cs" />
+    <Compile Include="SimpleCMS\ViewModels\PaginationViewModel.cs" />
+    <Compile Include="SimpleCMS\ViewModels\PluginFileViewModel.cs" />
+    <Compile Include="SimpleCMS\ViewModels\PluginViewModel.cs" />
+    <Compile Include="SimpleCMS\ViewModels\ViewTemplateDataViewModel.cs" />
+    <Compile Include="SimpleCMS\ViewModels\ViewTemplateViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\XmlDocument.XML" />
+    <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="SimpleCMS\Content\blog\css\clean-blog.css" />
+    <Content Include="SimpleCMS\Content\blog\css\mixins.css" />
+    <Content Include="SimpleCMS\Content\blog\css\sticky-footer.css" />
+    <Content Include="SimpleCMS\Content\blog\css\variables.css" />
+    <None Include="SimpleCMS\Content\blog\less\sticky-footer.less" />
+    <Content Include="SimpleCMS\Content\bootstrap-dashboard.css" />
+    <Content Include="SimpleCMS\Content\bootstrap-theme.css" />
+    <Content Include="SimpleCMS\Content\bootstrap-theme.min.css" />
+    <Content Include="SimpleCMS\Content\bootstrap.bak.css" />
+    <Content Include="SimpleCMS\Content\bootstrap.bak.min.css" />
+    <Content Include="SimpleCMS\Content\bootstrap-extensions.css" />
+    <Content Include="SimpleCMS\Content\bootstrap3-editable\css\bootstrap-editable.css" />
+    <Content Include="SimpleCMS\Content\bootstrap3-editable\img\clear.png" />
+    <Content Include="SimpleCMS\Content\bootstrap3-editable\img\loading.gif" />
+    <Content Include="SimpleCMS\Content\bootstrap3-editable\js\bootstrap-editable.js" />
+    <Content Include="SimpleCMS\Content\bootstrap3-editable\js\bootstrap-editable.min.js" />
+    <Content Include="SimpleCMS\Content\bootstrap\bootstrap.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\adapters\jquery.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\build-config.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\ckeditor.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\config.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\contents.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\af.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\ar.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\bg.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\bn.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\bs.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\ca.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\cs.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\cy.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\da.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\de.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\el.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\en-au.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\en-ca.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\en-gb.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\en.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\eo.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\es.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\et.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\eu.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\fa.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\fi.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\fo.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\fr-ca.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\fr.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\gl.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\gu.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\he.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\hi.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\hr.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\hu.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\id.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\is.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\it.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\ja.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\ka.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\km.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\ko.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\ku.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\lt.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\lv.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\mk.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\mn.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\ms.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\nb.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\nl.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\no.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\pl.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\pt-br.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\pt.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\ro.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\ru.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\si.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\sk.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\sl.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\sq.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\sr-latn.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\sr.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\sv.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\th.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\tr.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\tt.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\ug.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\uk.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\vi.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\zh-cn.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\lang\zh.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\a11yhelp.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\af.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\ar.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\bg.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\ca.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\cs.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\cy.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\da.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\de.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\el.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\en-gb.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\en.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\eo.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\es.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\et.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\fa.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\fi.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\fo.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\fr-ca.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\fr.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\gl.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\gu.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\he.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\hi.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\hr.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\hu.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\id.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\it.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\ja.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\km.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\ko.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\ku.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\lt.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\lv.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\mk.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\mn.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\nb.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\nl.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\no.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\pl.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\pt-br.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\pt.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\ro.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\ru.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\si.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\sk.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\sl.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\sq.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\sr-latn.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\sr.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\sv.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\th.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\tr.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\tt.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\ug.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\uk.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\vi.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\zh-cn.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\zh.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\a11yhelp\dialogs\lang\_translationstatus.txt" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\about\dialogs\about.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\about\dialogs\hidpi\logo_ckeditor.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\about\dialogs\logo_ckeditor.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\clipboard\dialogs\paste.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\colordialog\dialogs\colordialog.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\dialog\dialogDefinition.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\div\dialogs\div.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\find\dialogs\find.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\flash\dialogs\flash.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\flash\images\placeholder.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\forms\dialogs\button.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\forms\dialogs\checkbox.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\forms\dialogs\form.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\forms\dialogs\hiddenfield.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\forms\dialogs\radio.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\forms\dialogs\select.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\forms\dialogs\textarea.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\forms\dialogs\textfield.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\forms\images\hiddenfield.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\icons.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\icons_hidpi.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\iframe\dialogs\iframe.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\iframe\images\placeholder.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\image\dialogs\image.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\image\images\noimage.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\link\dialogs\anchor.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\link\dialogs\link.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\link\images\anchor.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\link\images\hidpi\anchor.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\liststyle\dialogs\liststyle.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\magicline\images\hidpi\icon-rtl.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\magicline\images\hidpi\icon.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\magicline\images\icon-rtl.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\magicline\images\icon.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\pagebreak\images\pagebreak.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\pastefromword\filter\default.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\preview\preview.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\scayt\dialogs\options.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\scayt\dialogs\toolbar.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\showblocks\images\block_address.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\showblocks\images\block_blockquote.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\showblocks\images\block_div.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\showblocks\images\block_h1.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\showblocks\images\block_h2.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\showblocks\images\block_h3.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\showblocks\images\block_h4.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\showblocks\images\block_h5.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\showblocks\images\block_h6.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\showblocks\images\block_p.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\showblocks\images\block_pre.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\dialogs\smiley.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\angel_smile.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\angel_smile.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\angry_smile.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\angry_smile.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\broken_heart.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\broken_heart.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\confused_smile.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\confused_smile.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\cry_smile.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\cry_smile.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\devil_smile.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\devil_smile.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\embaressed_smile.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\embarrassed_smile.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\embarrassed_smile.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\envelope.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\envelope.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\heart.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\heart.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\kiss.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\kiss.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\lightbulb.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\lightbulb.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\omg_smile.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\omg_smile.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\regular_smile.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\regular_smile.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\sad_smile.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\sad_smile.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\shades_smile.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\shades_smile.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\teeth_smile.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\teeth_smile.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\thumbs_down.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\thumbs_down.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\thumbs_up.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\thumbs_up.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\tongue_smile.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\tongue_smile.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\tounge_smile.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\whatchutalkingabout_smile.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\whatchutalkingabout_smile.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\wink_smile.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\smiley\images\wink_smile.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\af.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\ar.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\bg.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\ca.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\cs.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\cy.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\da.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\de.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\el.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\en-gb.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\en.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\eo.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\es.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\et.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\fa.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\fi.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\fr-ca.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\fr.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\gl.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\he.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\hr.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\hu.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\id.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\it.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\ja.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\km.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\ko.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\ku.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\lt.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\lv.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\nb.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\nl.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\no.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\pl.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\pt-br.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\pt.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\ru.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\si.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\sk.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\sl.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\sq.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\sv.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\th.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\tr.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\tt.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\ug.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\uk.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\vi.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\zh-cn.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\zh.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\lang\_translationstatus.txt" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\specialchar\dialogs\specialchar.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\tabletools\dialogs\tableCell.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\table\dialogs\table.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\templates\dialogs\templates.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\templates\dialogs\templates.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\templates\templates\default.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\templates\templates\images\template1.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\templates\templates\images\template2.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\templates\templates\images\template3.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\wsc\dialogs\ciframe.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\wsc\dialogs\tmpFrameset.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\wsc\dialogs\wsc.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\wsc\dialogs\wsc.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\wsc\dialogs\wsc_ie.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\css\samples.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\img\github-top.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\img\header-bg.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\img\header-separator.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\img\logo.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\img\navigation-tip.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\index.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\js\sample.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\js\sf.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\ajax.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\api.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\appendto.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\assets\inlineall\logo.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\assets\outputxhtml\outputxhtml.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\assets\sample.jpg" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\assets\uilanguages\languages.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\datafiltering.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\dialog\assets\my_dialog.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\dialog\dialog.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\divreplace.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\enterkey\enterkey.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\htmlwriter\assets\outputforflash\outputforflash.swf" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\htmlwriter\assets\outputforflash\swfobject.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\htmlwriter\outputforflash.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\htmlwriter\outputhtml.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\index.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\inlineall.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\inlinebycode.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\inlinetextarea.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\jquery.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\magicline\magicline.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\readonly.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\replacebyclass.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\replacebycode.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\sample.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\sample.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\tabindex.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\toolbar\toolbar.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\uicolor.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\uilanguages.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\wysiwygarea\fullpage.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\xhtmlstyle.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\toolbarconfigurator\css\fontello.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\toolbarconfigurator\font\fontello.svg" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\toolbarconfigurator\font\LICENSE.txt" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\toolbarconfigurator\index.html" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\toolbarconfigurator\js\abstracttoolbarmodifier.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\toolbarconfigurator\js\fulltoolbareditor.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\toolbarconfigurator\js\toolbarmodifier.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\toolbarconfigurator\js\toolbartextmodifier.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\toolbarconfigurator\lib\codemirror\codemirror.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\toolbarconfigurator\lib\codemirror\codemirror.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\toolbarconfigurator\lib\codemirror\javascript.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\toolbarconfigurator\lib\codemirror\neo.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\toolbarconfigurator\lib\codemirror\show-hint.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\toolbarconfigurator\lib\codemirror\show-hint.js" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\dialog.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\dialog_ie.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\dialog_ie7.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\dialog_ie8.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\dialog_iequirks.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\editor.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\editor_gecko.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\editor_ie.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\editor_ie7.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\editor_ie8.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\editor_iequirks.css" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\icons.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\icons_hidpi.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\images\arrow.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\images\close.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\images\hidpi\close.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\images\hidpi\lock-open.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\images\hidpi\lock.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\images\hidpi\refresh.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\images\lock-open.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\images\lock.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\images\refresh.png" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\images\spinner.gif" />
+    <Content Include="SimpleCMS\Content\ckeditor\styles.js" />
+    <Content Include="SimpleCMS\Content\DataTables\css\autoFill.bootstrap.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\autoFill.bootstrap.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\autoFill.dataTables.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\autoFill.dataTables.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\autoFill.foundation.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\autoFill.foundation.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\autoFill.jqueryui.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\autoFill.jqueryui.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\buttons.bootstrap.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\buttons.bootstrap.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\buttons.bootstrap4.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\buttons.bootstrap4.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\buttons.dataTables.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\buttons.dataTables.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\buttons.foundation.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\buttons.foundation.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\buttons.jqueryui.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\buttons.jqueryui.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\colReorder.bootstrap.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\colReorder.bootstrap.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\colReorder.dataTables.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\colReorder.dataTables.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\colReorder.foundation.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\colReorder.foundation.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\colReorder.jqueryui.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\colReorder.jqueryui.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\dataTables.bootstrap.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\dataTables.bootstrap.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\dataTables.bootstrap4.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\dataTables.bootstrap4.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\dataTables.foundation.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\dataTables.foundation.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\dataTables.jqueryui.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\dataTables.jqueryui.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\dataTables.material.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\dataTables.material.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\dataTables.semanticui.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\dataTables.semanticui.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\dataTables.uikit.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\dataTables.uikit.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\fixedColumns.bootstrap.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\fixedColumns.bootstrap.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\fixedColumns.dataTables.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\fixedColumns.dataTables.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\fixedColumns.foundation.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\fixedColumns.foundation.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\fixedColumns.jqueryui.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\fixedColumns.jqueryui.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\fixedHeader.bootstrap.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\fixedHeader.bootstrap.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\fixedHeader.dataTables.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\fixedHeader.dataTables.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\fixedHeader.foundation.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\fixedHeader.foundation.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\fixedHeader.jqueryui.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\fixedHeader.jqueryui.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\jquery.dataTables.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\jquery.dataTables.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\jquery.dataTables_themeroller.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\keyTable.bootstrap.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\keyTable.bootstrap.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\keyTable.dataTables.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\keyTable.dataTables.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\keyTable.foundation.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\keyTable.foundation.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\keyTable.jqueryui.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\keyTable.jqueryui.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\responsive.bootstrap.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\responsive.bootstrap.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\responsive.dataTables.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\responsive.dataTables.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\responsive.foundation.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\responsive.foundation.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\responsive.jqueryui.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\responsive.jqueryui.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\rowReorder.bootstrap.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\rowReorder.bootstrap.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\rowReorder.dataTables.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\rowReorder.dataTables.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\rowReorder.foundation.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\rowReorder.foundation.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\rowReorder.jqueryui.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\rowReorder.jqueryui.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\scroller.bootstrap.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\scroller.bootstrap.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\scroller.dataTables.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\scroller.dataTables.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\scroller.foundation.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\scroller.foundation.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\scroller.jqueryui.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\scroller.jqueryui.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\select.bootstrap.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\select.bootstrap.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\select.dataTables.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\select.dataTables.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\select.foundation.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\select.foundation.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\select.jqueryui.css" />
+    <Content Include="SimpleCMS\Content\DataTables\css\select.jqueryui.min.css" />
+    <Content Include="SimpleCMS\Content\DataTables\images\details_close.png" />
+    <Content Include="SimpleCMS\Content\DataTables\images\details_open.png" />
+    <Content Include="SimpleCMS\Content\DataTables\images\sort_asc.png" />
+    <Content Include="SimpleCMS\Content\DataTables\images\sort_asc_disabled.png" />
+    <Content Include="SimpleCMS\Content\DataTables\images\sort_both.png" />
+    <Content Include="SimpleCMS\Content\DataTables\images\sort_desc.png" />
+    <Content Include="SimpleCMS\Content\DataTables\images\sort_desc_disabled.png" />
+    <Content Include="SimpleCMS\Content\DataTables\swf\flashExport.swf" />
+    <Content Include="SimpleCMS\Content\datepicker.css" />
+    <Content Include="SimpleCMS\Content\datepicker3.css" />
+    <Content Include="SimpleCMS\Content\fancybox\blank.gif" />
+    <Content Include="SimpleCMS\Content\fancybox\fancybox_buttons.png" />
+    <Content Include="SimpleCMS\Content\fancybox\fancybox_loading%402x.gif" />
+    <Content Include="SimpleCMS\Content\fancybox\fancybox_loading.gif" />
+    <Content Include="SimpleCMS\Content\fancybox\fancybox_overlay.png" />
+    <Content Include="SimpleCMS\Content\fancybox\fancybox_sprite%402x.png" />
+    <Content Include="SimpleCMS\Content\fancybox\fancybox_sprite.png" />
+    <Content Include="SimpleCMS\Content\font-awesome.css" />
+    <Content Include="SimpleCMS\Content\font-awesome.min.css" />
+    <Content Include="SimpleCMS\Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="SimpleCMS\Content\fuelux\css\fuelux.css" />
+    <Content Include="SimpleCMS\Content\fuelux\css\fuelux.min.css" />
+    <Content Include="SimpleCMS\Content\fuelux\fonts\fuelux.svg" />
+    <Content Include="SimpleCMS\Content\fuelux\js\fuelux.js" />
+    <Content Include="SimpleCMS\Content\fuelux\js\fuelux.min.js" />
+    <Content Include="SimpleCMS\Content\images\ajax-loader.gif" />
+    <Content Include="SimpleCMS\Content\images\ajax-loader.png" />
+    <Content Include="SimpleCMS\Content\images\icons-18-black.png" />
+    <Content Include="SimpleCMS\Content\images\icons-18-white.png" />
+    <Content Include="SimpleCMS\Content\images\icons-36-black.png" />
+    <Content Include="SimpleCMS\Content\images\icons-36-white.png" />
+    <Content Include="SimpleCMS\Content\images\logo.gif" />
+    <Content Include="SimpleCMS\Content\images\logo3.png" />
+    <Content Include="SimpleCMS\Content\images\logo.png" />
+    <Content Include="SimpleCMS\Content\jquery.fancybox-buttons.css" />
+    <Content Include="SimpleCMS\Content\jquery.fancybox-thumbs.css" />
+    <Content Include="SimpleCMS\Content\jquery.fancybox.css" />
+    <Content Include="SimpleCMS\Content\jquery.mobile-1.1.0.css" />
+    <Content Include="SimpleCMS\Content\jquery.mobile-1.1.0.min.css" />
+    <Content Include="SimpleCMS\Content\jquery.mobile.structure-1.1.0.css" />
+    <Content Include="SimpleCMS\Content\jquery.mobile.structure-1.1.0.min.css" />
+    <Content Include="SimpleCMS\Content\jquery.mobile.theme-1.1.0.css" />
+    <Content Include="SimpleCMS\Content\jquery.mobile.theme-1.1.0.min.css" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\ajax-loader.gif" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\action-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\action-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\alert-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\alert-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\arrow-d-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\arrow-d-l-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\arrow-d-l-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\arrow-d-r-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\arrow-d-r-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\arrow-d-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\arrow-l-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\arrow-l-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\arrow-r-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\arrow-r-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\arrow-u-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\arrow-u-l-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\arrow-u-l-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\arrow-u-r-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\arrow-u-r-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\arrow-u-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\audio-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\audio-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\back-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\back-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\bars-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\bars-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\bullets-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\bullets-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\calendar-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\calendar-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\camera-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\camera-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\carat-d-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\carat-d-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\carat-l-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\carat-l-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\carat-r-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\carat-r-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\carat-u-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\carat-u-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\check-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\check-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\clock-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\clock-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\cloud-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\cloud-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\comment-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\comment-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\delete-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\delete-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\edit-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\edit-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\eye-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\eye-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\forbidden-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\forbidden-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\forward-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\forward-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\gear-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\gear-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\grid-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\grid-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\heart-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\heart-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\home-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\home-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\info-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\info-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\location-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\location-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\lock-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\lock-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\mail-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\mail-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\minus-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\minus-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\navigation-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\navigation-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\phone-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\phone-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\plus-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\plus-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\power-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\power-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\recycle-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\recycle-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\refresh-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\refresh-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\search-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\search-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\shop-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\shop-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\star-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\star-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\tag-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\tag-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\user-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\user-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\video-black.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-png\video-white.png" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\action-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\action-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\alert-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\alert-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\arrow-d-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\arrow-d-l-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\arrow-d-l-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\arrow-d-r-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\arrow-d-r-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\arrow-d-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\arrow-l-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\arrow-l-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\arrow-r-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\arrow-r-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\arrow-u-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\arrow-u-l-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\arrow-u-l-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\arrow-u-r-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\arrow-u-r-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\arrow-u-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\audio-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\audio-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\back-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\back-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\bars-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\bars-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\bullets-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\bullets-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\calendar-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\calendar-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\camera-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\camera-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\carat-d-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\carat-d-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\carat-l-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\carat-l-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\carat-r-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\carat-r-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\carat-u-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\carat-u-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\check-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\check-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\clock-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\clock-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\cloud-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\cloud-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\comment-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\comment-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\delete-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\delete-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\edit-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\edit-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\eye-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\eye-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\forbidden-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\forbidden-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\forward-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\forward-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\gear-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\gear-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\grid-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\grid-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\heart-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\heart-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\home-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\home-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\info-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\info-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\location-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\location-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\lock-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\lock-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\mail-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\mail-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\minus-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\minus-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\navigation-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\navigation-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\phone-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\phone-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\plus-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\plus-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\power-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\power-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\recycle-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\recycle-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\refresh-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\refresh-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\search-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\search-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\shop-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\shop-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\star-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\star-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\tag-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\tag-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\user-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\user-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\video-black.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\images\icons-svg\video-white.svg" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\jquery.mobile-1.4.5.css" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\jquery.mobile-1.4.5.js" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\jquery.mobile-1.4.5.min.css" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\jquery.mobile-1.4.5.min.js" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\jquery.mobile.external-png-1.4.5.css" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\jquery.mobile.external-png-1.4.5.min.css" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\jquery.mobile.icons-1.4.5.css" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\jquery.mobile.icons-1.4.5.min.css" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\jquery.mobile.inline-png-1.4.5.css" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\jquery.mobile.inline-png-1.4.5.min.css" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\jquery.mobile.inline-svg-1.4.5.css" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\jquery.mobile.inline-svg-1.4.5.min.css" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\jquery.mobile.structure-1.4.5.css" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\jquery.mobile.structure-1.4.5.min.css" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\jquery.mobile.theme-1.4.5.css" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\jquery.mobile.theme-1.4.5.min.css" />
+    <Content Include="SimpleCMS\Content\jqueryMobile\jquery.mobile-1.4.5.min.map" />
+    <Content Include="SimpleCMS\Content\ckeditor\CHANGES.md" />
+    <Content Include="SimpleCMS\Content\ckeditor\LICENSE.md" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\scayt\LICENSE.md" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\scayt\README.md" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\wsc\LICENSE.md" />
+    <Content Include="SimpleCMS\Content\ckeditor\plugins\wsc\README.md" />
+    <Content Include="SimpleCMS\Content\ckeditor\README.md" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\img\Thumbs.db" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\assets\posteddata.php" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\htmlwriter\assets\outputforflash\outputforflash.fla" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\old\sample_posteddata.php" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\toolbarconfigurator\font\config.json" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\toolbarconfigurator\font\fontello.eot" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\toolbarconfigurator\font\fontello.ttf" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
+    <Content Include="SimpleCMS\Content\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
+    <Content Include="SimpleCMS\Content\ckeditor\skins\moono\readme.md" />
+    <Content Include="SimpleCMS\Content\blog\less\clean-blog.less" />
+    <Content Include="SimpleCMS\Content\blog\less\mixins.less" />
+    <Content Include="SimpleCMS\Content\blog\less\variables.less" />
+    <Content Include="SimpleCMS\Content\DataTables\css\mixins.scss" />
+    <Content Include="SimpleCMS\Content\DataTables\css\common.scss" />
+    <Content Include="SimpleCMS\Content\general.css" />
+    <Content Include="SimpleCMS\Content\kendo\css\kendo.common-bootstrap.min.css" />
+    <Content Include="SimpleCMS\Content\kendo\css\kendo.common.min.css" />
+    <Content Include="SimpleCMS\Content\kendo\css\kendo.dataviz.default.min.css" />
+    <Content Include="SimpleCMS\Content\kendo\css\kendo.dataviz.min.css" />
+    <Content Include="SimpleCMS\Content\kendo\css\kendo.dataviz.mobile.min.css" />
+    <Content Include="SimpleCMS\Content\kendo\css\kendo.default.min.css" />
+    <Content Include="SimpleCMS\Content\kendo\css\kendo.uniform.min.css" />
+    <Content Include="SimpleCMS\Content\kendo\js\jquery.min.js" />
+    <Content Include="SimpleCMS\Content\kendo\js\kendo.aspnetmvc.min.js" />
+    <Content Include="SimpleCMS\Content\kendo\js\kendo.culture.da.min.js" />
+    <Content Include="SimpleCMS\Content\kendo\js\kendo.culture.en.min.js" />
+    <Content Include="SimpleCMS\Content\kendo\js\kendo.culture.fo.min.js" />
+    <Content Include="SimpleCMS\Content\kendo\js\kendo.ui.core.min.js" />
+    <Content Include="SimpleCMS\Content\kendo\images\loading-image.gif" />
+    <Content Include="SimpleCMS\Content\kendo\images\loading.gif" />
+    <Content Include="SimpleCMS\Content\kendo\images\loading_2x.gif" />
+    <Content Include="SimpleCMS\Content\kendo\Sources.txt" />
+    <Content Include="SimpleCMS\Content\Site.Mobile.css" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-ar-AR.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-bg-BG.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-ca-ES.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-cs-CZ.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-da-DK.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-de-DE.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-es-ES.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-es-EU.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-fa-IR.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-fi-FI.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-fr-FR.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-he-IL.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-hu-HU.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-id-ID.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-it-IT.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-ja-JP.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-ko-KR.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-lt-LT.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-nb-NO.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-nl-NL.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-pl-PL.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-pt-BR.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-pt-PT.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-ro-RO.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-ru-RU.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-sk-SK.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-sl-SI.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-sr-RS-Latin.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-sr-RS.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-sv-SE.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-th-TH.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-tr-TR.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-uk-UA.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-vi-VN.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-zh-CN.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\lang\summernote-zh-TW.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\plugin\hello\summernote-ext-hello.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\plugin\specialchars\summernote-ext-specialchars.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\summernote.css" />
+    <Content Include="SimpleCMS\Content\summernote-editor\summernote.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\summernote.min.js" />
+    <Content Include="SimpleCMS\Content\summernote-editor\font\summernote.eot" />
+    <Content Include="SimpleCMS\Content\summernote-editor\font\summernote.ttf" />
+    <Content Include="SimpleCMS\Content\summernote-editor\font\summernote.woff" />
+    <None Include="SimpleCMS\Errors\404.cshtml" />
+    <Content Include="SimpleCMS\Data\Images\contact-bg.jpg" />
+    <Content Include="SimpleCMS\Data\Images\demo.jpg" />
+    <Content Include="SimpleCMS\Data\Images\post-bg.jpg" />
+    <Content Include="SimpleCMS\Data\Plugins\fitvid.demo.js" />
+    <Content Include="SimpleCMS\Data\Plugins\jquery.fitvids.js" />
+    <Content Include="SimpleCMS\Data\Plugins\rrssb.css" />
+    <Content Include="SimpleCMS\Data\Plugins\rrssb.min.js" />
+    <Content Include="SimpleCMS\Data\Plugins\test.css" />
+    <Content Include="SimpleCMS\Data\Plugins\test.js" />
+    <Content Include="SimpleCMS\Data\empty.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="favicon.ico" />
+    <Content Include="SimpleCMS\fonts\fontawesome-webfont.svg" />
+    <Content Include="SimpleCMS\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="SimpleCMS\Content\files\cultures.json" />
+    <Content Include="SimpleCMS\Content\files\countries.json" />
+    <Content Include="SimpleCMS\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="SimpleCMS\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="SimpleCMS\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="SimpleCMS\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="SimpleCMS\Content\bootstrap-theme.css.map" />
+    <Content Include="SimpleCMS\Content\bootstrap.css.map" />
+    <Content Include="Areas\HelpPage\Views\Web.config" />
+    <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\SimpleTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ModelDescriptionLink.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\KeyValuePairModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\EnumTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\DictionaryModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+    <Content Include="SimpleCMS\Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="SimpleCMS\Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="SimpleCMS\Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="SimpleCMS\Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="SimpleCMS\Content\bootstrap\wells.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\utilities.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\type.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\tooltip.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\thumbnails.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\theme.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\tables.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\scaffolding.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\responsive-utilities.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\responsive-embed.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\progress-bars.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\print.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\popovers.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\panels.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\pagination.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\pager.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\normalize.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\navs.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\navbar.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\modals.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\vendor-prefixes.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\text-overflow.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\text-emphasis.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\table-row.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\tab-focus.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\size.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\responsive-visibility.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\resize.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\reset-filter.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\progress-bar.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\panels.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\pagination.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\opacity.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\nav-vertical-align.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\nav-divider.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\list-group.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\labels.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\image.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\hide-text.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\grid-framework.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\grid.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\gradients.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\forms.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\clearfix.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\center-block.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\buttons.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\border-radius.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\background-variant.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins\alerts.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\mixins.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\media.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\list-group.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\labels.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\jumbotron.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\input-groups.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\grid.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\glyphicons.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\forms.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\dropdowns.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\component-animations.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\code.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\close.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\carousel.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\buttons.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\button-groups.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\breadcrumbs.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\bootstrap.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\badges.less" />
+    <Content Include="SimpleCMS\Content\bootstrap\alerts.less" />
+    <Content Include="SimpleCMS\Content\bootstrap-dashboard.less" />
+    <Content Include="SimpleCMS\Content\bootstrap-extensions.less" />
+    <Content Include="SimpleCMS\Content\general.less" />
+    <Content Include="SimpleCMS\Content\bootstrap3-editable\img\Thumbs.db" />
+    <Content Include="SimpleCMS\Content\fuelux\css\fuelux.css.map" />
+    <Content Include="SimpleCMS\Content\fuelux\fonts\fuelux.eot" />
+    <Content Include="SimpleCMS\Content\fuelux\fonts\fuelux.ttf" />
+    <Content Include="SimpleCMS\Content\fuelux\fonts\fuelux.woff" />
+    <Content Include="SimpleCMS\fonts\fontawesome-webfont.woff" />
+    <Content Include="SimpleCMS\fonts\fontawesome-webfont.ttf" />
+    <Content Include="SimpleCMS\fonts\fontawesome-webfont.eot" />
+    <Content Include="SimpleCMS\fonts\FontAwesome.otf" />
+    <None Include="SimpleCMS\Scripts\jquery-2.1.3.intellisense.js" />
+    <Content Include="MvcDiagnostics.aspx" />
+    <Content Include="SimpleCMS\README.txt" />
+    <Content Include="SimpleCMS\Scripts\ace.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\autoFill.bootstrap.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\autoFill.bootstrap.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\autoFill.foundation.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\autoFill.foundation.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\autoFill.jqueryui.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\autoFill.jqueryui.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\buttons.bootstrap.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\buttons.bootstrap.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\buttons.bootstrap4.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\buttons.bootstrap4.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\buttons.colVis.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\buttons.colVis.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\buttons.flash.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\buttons.flash.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\buttons.foundation.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\buttons.foundation.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\buttons.html5.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\buttons.html5.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\buttons.jqueryui.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\buttons.jqueryui.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\buttons.print.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\buttons.print.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.autoFill.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.autoFill.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.bootstrap.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.bootstrap.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.bootstrap4.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.bootstrap4.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.buttons.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.buttons.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.colReorder.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.colReorder.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.fixedColumns.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.fixedColumns.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.fixedHeader.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.fixedHeader.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.foundation.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.foundation.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.jqueryui.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.jqueryui.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.keyTable.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.keyTable.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.material.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.material.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.responsive.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.responsive.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.rowReorder.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.rowReorder.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.scroller.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.scroller.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.select.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.select.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.semanticui.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.semanticui.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.uikit.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\dataTables.uikit.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\jquery.dataTables.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\jquery.dataTables.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\responsive.bootstrap.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\responsive.bootstrap.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\responsive.foundation.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\responsive.foundation.min.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\responsive.jqueryui.js" />
+    <Content Include="SimpleCMS\Scripts\DataTables\responsive.jqueryui.min.js" />
+    <Content Include="SimpleCMS\Scripts\jquery.fancybox-buttons.js" />
+    <Content Include="SimpleCMS\Scripts\jquery.fancybox-media.js" />
+    <Content Include="SimpleCMS\Scripts\jquery.fancybox-thumbs.js" />
+    <Content Include="SimpleCMS\Scripts\jquery.fancybox.js" />
+    <Content Include="SimpleCMS\Scripts\jquery.fancybox.pack.js" />
+    <Content Include="SimpleCMS\Scripts\jquery.mobile-1.1.0.js" />
+    <Content Include="SimpleCMS\Scripts\jquery.mobile-1.1.0.min.js" />
+    <Content Include="SimpleCMS\Scripts\jquery.mousewheel-3.0.6.pack.js" />
+    <Content Include="SimpleCMS\Scripts\jquery.serialize-object.js" />
+    <Content Include="SimpleCMS\Scripts\jquery.signalR-2.2.0.js" />
+    <Content Include="SimpleCMS\Scripts\jquery.signalR-2.2.0.min.js" />
+    <Content Include="SimpleCMS\Scripts\jquery.todictionary.js" />
+    <Content Include="SimpleCMS\Scripts\cms.file.upload.handler.js" />
+    <Content Include="SimpleCMS\Scripts\jquery-2.1.3.js" />
+    <Content Include="SimpleCMS\Scripts\jquery-2.1.3.min.js" />
+    <None Include="SimpleCMS\Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="SimpleCMS\Scripts\jquery.validate.js" />
+    <Content Include="SimpleCMS\Scripts\jquery.validate.min.js" />
+    <Content Include="SimpleCMS\Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="SimpleCMS\Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="SimpleCMS\Scripts\json2.js" />
+    <Content Include="SimpleCMS\Scripts\json2.min.js" />
+    <Content Include="SimpleCMS\Scripts\knockout-3.3.0.debug.js" />
+    <Content Include="SimpleCMS\Scripts\knockout-3.3.0.js" />
+    <Content Include="SimpleCMS\Scripts\cms.general.js" />
+    <Content Include="SimpleCMS\Scripts\cms.knockout.extensions.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.ar.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.az.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.bg.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.bs.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.ca.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.cs.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.cy.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.da.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.de.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.el.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.en-GB.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.es.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.et.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.eu.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.fa.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.fi.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.fo.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.fr-CH.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.fr.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.gl.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.he.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.hr.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.hu.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.hy.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.id.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.is.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.it-CH.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.it.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.ja.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.ka.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.kh.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.kk.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.kr.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.lt.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.lv.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.mk.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.ms.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.nb.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.nl-BE.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.nl.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.no.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.pl.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.pt-BR.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.pt.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.ro.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.rs-latin.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.rs.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.ru.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.sk.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.sl.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.sq.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.sr-latin.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.sr.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.sv.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.sw.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.th.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.tr.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.uk.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.vi.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.zh-CN.js" />
+    <Content Include="SimpleCMS\Scripts\locales\bootstrap-datepicker.zh-TW.js" />
+    <Content Include="SimpleCMS\Scripts\modernizr-2.8.3.js" />
+    <Content Include="SimpleCMS\Scripts\moment-with-locales.js" />
+    <Content Include="SimpleCMS\Scripts\moment-with-locales.min.js" />
+    <Content Include="SimpleCMS\Scripts\moment.js" />
+    <Content Include="SimpleCMS\Scripts\moment.min.js" />
+    <Content Include="SimpleCMS\Scripts\npm.js" />
+    <Content Include="SimpleCMS\Scripts\rx.lite.extras.js" />
+    <Content Include="SimpleCMS\Scripts\rx.lite.extras.min.js" />
+    <Content Include="SimpleCMS\Scripts\shortcut.js" />
+    <Content Include="SimpleCMS\Scripts\underscore.min.js" />
+    <Content Include="SimpleCMS\Views\Home\Mobile.cshtml" />
+    <Content Include="51Degrees.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SimpleCMS\Content\bootstrap\variables.less" />
+    <Content Include="mobile.cshtml" />
+    <Content Include="SimpleCMS\Scripts\bootstrap-datepicker-globalize.js" />
+    <Content Include="SimpleCMS\Scripts\bootstrap-datepicker.js" />
+    <Content Include="SimpleCMS\Scripts\bootstrap.js" />
+    <Content Include="SimpleCMS\Scripts\bootstrap.min.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.af-ZA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.af.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.am-ET.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.am.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ar-AE.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ar-BH.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ar-DZ.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ar-EG.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ar-IQ.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ar-JO.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ar-KW.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ar-LB.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ar-LY.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ar-MA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ar-OM.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ar-QA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ar-SA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ar-SY.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ar-TN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ar-YE.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ar.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.arn-CL.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.arn.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.as-IN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.as.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.az-Cyrl-AZ.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.az-Cyrl.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.az-Latn-AZ.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.az-Latn.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.az.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ba-RU.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ba.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.be-BY.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.be.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.bg-BG.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.bg.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.bn-BD.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.bn-IN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.bn.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.bo-CN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.bo.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.br-FR.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.br.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.bs-Cyrl-BA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.bs-Cyrl.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.bs-Latn-BA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.bs-Latn.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.bs.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ca-ES.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ca.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.co-FR.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.co.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.cs-CZ.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.cs.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.cy-GB.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.cy.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.da-DK.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.da.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.de-AT.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.de-CH.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.de-DE.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.de-LI.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.de-LU.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.de.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.dsb-DE.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.dsb.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.dv-MV.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.dv.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.el-GR.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.el.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.en-029.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.en-AU.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.en-BZ.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.en-CA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.en-GB.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.en-IE.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.en-IN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.en-JM.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.en-MY.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.en-NZ.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.en-PH.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.en-SG.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.en-TT.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.en-US.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.en-ZA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.en-ZW.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.es-AR.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.es-BO.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.es-CL.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.es-CO.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.es-CR.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.es-DO.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.es-EC.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.es-ES.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.es-GT.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.es-HN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.es-MX.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.es-NI.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.es-PA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.es-PE.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.es-PR.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.es-PY.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.es-SV.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.es-US.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.es-UY.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.es-VE.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.es.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.et-EE.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.et.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.eu-ES.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.eu.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.fa-IR.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.fa.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.fi-FI.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.fi.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.fil-PH.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.fil.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.fo-FO.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.fo.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.fr-BE.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.fr-CA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.fr-CH.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.fr-FR.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.fr-LU.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.fr-MC.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.fr.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.fy-NL.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.fy.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ga-IE.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ga.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.gd-GB.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.gd.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.gl-ES.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.gl.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.gsw-FR.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.gsw.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.gu-IN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.gu.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ha-Latn-NG.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ha-Latn.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ha.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.he-IL.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.he.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.hi-IN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.hi.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.hr-BA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.hr-HR.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.hr.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.hsb-DE.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.hsb.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.hu-HU.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.hu.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.hy-AM.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.hy.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.id-ID.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.id.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ig-NG.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ig.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ii-CN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ii.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.is-IS.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.is.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.it-CH.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.it-IT.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.it.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.iu-Cans-CA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.iu-Cans.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.iu-Latn-CA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.iu-Latn.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.iu.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ja-JP.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ja.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ka-GE.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ka.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.kk-KZ.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.kk.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.kl-GL.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.kl.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.km-KH.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.km.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.kn-IN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.kn.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ko-KR.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ko.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.kok-IN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.kok.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ky-KG.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ky.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.lb-LU.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.lb.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.lo-LA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.lo.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.lt-LT.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.lt.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.lv-LV.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.lv.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.mi-NZ.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.mi.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.mk-MK.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.mk.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ml-IN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ml.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.mn-Cyrl.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.mn-MN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.mn-Mong-CN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.mn-Mong.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.mn.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.moh-CA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.moh.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.mr-IN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.mr.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ms-BN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ms-MY.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ms.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.mt-MT.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.mt.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.nb-NO.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.nb.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ne-NP.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ne.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.nl-BE.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.nl-NL.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.nl.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.nn-NO.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.nn.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.no.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.nso-ZA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.nso.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.oc-FR.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.oc.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.or-IN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.or.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.pa-IN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.pa.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.pl-PL.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.pl.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.prs-AF.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.prs.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ps-AF.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ps.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.pt-BR.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.pt-PT.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.pt.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.qut-GT.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.qut.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.quz-BO.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.quz-EC.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.quz-PE.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.quz.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.rm-CH.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.rm.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ro-RO.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ro.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ru-RU.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ru.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.rw-RW.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.rw.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sa-IN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sa.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sah-RU.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sah.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.se-FI.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.se-NO.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.se-SE.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.se.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.si-LK.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.si.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sk-SK.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sk.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sl-SI.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sl.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sma-NO.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sma-SE.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sma.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.smj-NO.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.smj-SE.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.smj.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.smn-FI.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.smn.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sms-FI.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sms.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sq-AL.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sq.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sr-Cyrl-BA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sr-Cyrl-CS.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sr-Cyrl-ME.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sr-Cyrl-RS.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sr-Cyrl.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sr-Latn-BA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sr-Latn-CS.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sr-Latn-ME.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sr-Latn-RS.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sr-Latn.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sr.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sv-FI.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sv-SE.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sv.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sw-KE.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.sw.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.syr-SY.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.syr.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ta-IN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ta.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.te-IN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.te.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.tg-Cyrl-TJ.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.tg-Cyrl.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.tg.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.th-TH.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.th.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.tk-TM.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.tk.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.tn-ZA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.tn.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.tr-TR.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.tr.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.tt-RU.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.tt.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.tzm-Latn-DZ.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.tzm-Latn.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.tzm.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ug-CN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ug.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.uk-UA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.uk.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ur-PK.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.ur.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.uz-Cyrl-UZ.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.uz-Cyrl.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.uz-Latn-UZ.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.uz-Latn.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.uz.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.vi-VN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.vi.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.wo-SN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.wo.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.xh-ZA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.xh.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.yo-NG.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.yo.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.zh-CHS.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.zh-CHT.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.zh-CN.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.zh-Hans.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.zh-Hant.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.zh-HK.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.zh-MO.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.zh-SG.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.zh-TW.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.zh.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.zu-ZA.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.culture.zu.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\cultures\globalize.cultures.js" />
+    <Content Include="SimpleCMS\Scripts\globalize\globalize.js" />
+    <Content Include="SimpleCMS\Scripts\jquery-2.1.3.min.map" />
+    <Content Include="SimpleCMS\Scripts\respond.js" />
+    <Content Include="SimpleCMS\Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="SimpleCMS\Scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="SimpleCMS\Scripts\respond.min.js" />
+    <Content Include="SimpleCMS\Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="SimpleCMS\Views\Web.config" />
+    <Content Include="SimpleCMS\Views\_ViewStart.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\Error.cshtml" />
+    <Content Include="SimpleCMS\Views\Home\About.cshtml" />
+    <Content Include="SimpleCMS\Views\Home\Contact.cshtml" />
+    <Content Include="SimpleCMS\Views\Home\Index.cshtml" />
+    <Content Include="SimpleCMS\Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="SimpleCMS\Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="SimpleCMS\Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="SimpleCMS\Views\Account\ForgotPassword.cshtml" />
+    <Content Include="SimpleCMS\Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="SimpleCMS\Views\Account\Login.cshtml" />
+    <Content Include="SimpleCMS\Views\Account\Register.cshtml" />
+    <Content Include="SimpleCMS\Views\Account\ResetPassword.cshtml" />
+    <Content Include="SimpleCMS\Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_ChangeEventPartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_EditDetailsDeletePartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_EditBackToListPartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_CreatePartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_BackToListPartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_DeleteHeaderPartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_DeleteFooterPartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Home\Index.Mobile.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_WebsiteDetailsPartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_ListViewWithModal.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_WebsiteEditPartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_WebsiteDeletePartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_PagedListFilterPartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_PagedListFooterPartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Home\Apitester.cshtml" />
+    <Content Include="SimpleCMS\Scripts\underscore.min.map" />
+    <Content Include="SimpleCMS\Views\Account\ChangePassword.cshtml" />
+    <Content Include="SimpleCMS\Views\Account\EditBasicInfo.cshtml" />
+    <Content Include="SimpleCMS\Views\Account\EditUserSettings.cshtml" />
+    <Content Include="SimpleCMS\Views\Account\Index.cshtml" />
+    <Content Include="SimpleCMS\Views\Account\_AccountFooter.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_CreateFooterPartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_DatePickerPartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_EditDetailsDeletePartial2.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_LoginPartialNavbar.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_LoginPartialPage.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_ModalCRUDPartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_ModalDebugPartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_ModalHelpPartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_PagedListFooterJSPartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_PagedListHeaderJSPartial.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_ShortcutsHelp.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_SidebarUserInfo.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\DisplayTemplates\DateTime2.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\DisplayTemplates\DateTime3.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_FileUploadHandler.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_Layout.Mobile.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\_ViewSwitcher.cshtml" />
+    <Content Include="SimpleCMS\Views\Page\Index.cshtml" />
+    <Content Include="SimpleCMS\Views\Page\PermaLink.cshtml" />
+    <Content Include="SimpleCMS\Views\Plugins\Index.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\BlogViewTemplates\_LoadPlugin.cshtml" />
+    <Content Include="SimpleCMS\Views\Plugins\CreateOrEdit.cshtml" />
+    <Content Include="SimpleCMS\Views\Plugins\Delete.cshtml" />
+    <Content Include="SimpleCMS\Views\Plugins\Details.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\BlogViewTemplates\_BlogItem.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\BlogViewTemplates\_ImageContent.cshtml" />
+    <Content Include="SimpleCMS\Views\File\CreateOrEdit.cshtml" />
+    <Content Include="SimpleCMS\Views\File\Delete.cshtml" />
+    <Content Include="SimpleCMS\Views\File\Details.cshtml" />
+    <Content Include="SimpleCMS\Views\File\_Index.cshtml" />
+    <Content Include="SimpleCMS\Views\File\Index.cshtml" />
+    <Content Include="SimpleCMS\Views\Page\CreateOrEdit.cshtml" />
+    <Content Include="SimpleCMS\Views\Page\Delete.cshtml" />
+    <Content Include="SimpleCMS\Views\Page\Details.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\BlogViewTemplates\_BlogItemFrontPage.cshtml" />
+    <Content Include="SimpleCMS\Views\ViewTemplate\CreateOrEdit.cshtml" />
+    <Content Include="SimpleCMS\Views\ViewTemplate\Delete.cshtml" />
+    <Content Include="SimpleCMS\Views\ViewTemplate\Details.cshtml" />
+    <Content Include="SimpleCMS\Views\ViewTemplate\Index.cshtml" />
+    <Content Include="SimpleCMS\Views\BlogItem\CreateOrEdit.cshtml" />
+    <Content Include="SimpleCMS\Views\BlogItem\Delete.cshtml" />
+    <Content Include="SimpleCMS\Views\PageItem\CreateOrEdit.cshtml" />
+    <Content Include="SimpleCMS\Views\PageItem\Delete.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\BlogViewTemplates\_PageItem.cshtml" />
+    <Content Include="SimpleCMS\Views\ContentTranslation\CreateOrEdit.cshtml" />
+    <Content Include="SimpleCMS\Views\ContentTranslation\Delete.cshtml" />
+    <Content Include="SimpleCMS\Views\ContentTranslation\Details.cshtml" />
+    <Content Include="SimpleCMS\Views\ContentTranslation\Index.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\BlogViewTemplates\_ContentTranslationMissing.cshtml" />
+    <Content Include="SimpleCMS\Views\PageContentType\CreateOrEdit.cshtml" />
+    <Content Include="SimpleCMS\Views\PageContentType\Delete.cshtml" />
+    <Content Include="SimpleCMS\Views\PageContentType\Details.cshtml" />
+    <Content Include="SimpleCMS\Views\PageContentType\Index.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\BlogViewTemplates\_ViewTemplateMissing.cshtml" />
+    <Content Include="SimpleCMS\Views\ImageContent\CreateOrEdit.cshtml" />
+    <Content Include="SimpleCMS\Views\ImageContent\Delete.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\BlogViewTemplates\_BlogList.cshtml" />
+    <Content Include="SimpleCMS\Views\BlogList\CreateOrEdit.cshtml" />
+    <Content Include="SimpleCMS\Views\BlogList\Delete.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\BlogViewTemplates\_Footer.cshtml" />
+    <Content Include="SimpleCMS\Views\Rss\Index.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\BlogViewTemplates\_Layout.cshtml" />
+    <Content Include="SimpleCMS\Views\BlogWebsiteSettings\Details.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\BlogViewTemplates\_LayoutMenu.cshtml" />
+    <Content Include="SimpleCMS\Views\BlogFeedSettings\Details.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\BlogViewTemplates\_Pagination.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\BlogViewTemplates\_BlogListAjax.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\BlogViewTemplates\_BlogListAjaxInfiniteScroll.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\BlogViewTemplates\_FBInit.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\BlogViewTemplates\_RRSSB.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\BlogViewTemplates\_ContactForm.cshtml" />
+    <Content Include="SimpleCMS\Views\Image\Create.cshtml" />
+    <Content Include="SimpleCMS\Views\Image\Delete.cshtml" />
+    <Content Include="SimpleCMS\Views\Image\Details.cshtml" />
+    <Content Include="SimpleCMS\Views\Image\Index.cshtml" />
+    <Content Include="SimpleCMS\Views\Image\Edit.cshtml" />
+    <Content Include="SimpleCMS\Views\Shared\BlogViewTemplates\_BlogItemLargeImage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\Files\" />
+    <Folder Include="SimpleCMS\Views\Shared\BlogTemplates\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201503091958348_InitialDb.resx">
+      <DependentUpon>201503091958348_InitialDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimpleCMS\Resources\Blog\Resources.da.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.da.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimpleCMS\Resources\Blog\Resources.fo.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.fo.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimpleCMS\Resources\Blog\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>App_Data\XmlDocument.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56738</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:44308</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

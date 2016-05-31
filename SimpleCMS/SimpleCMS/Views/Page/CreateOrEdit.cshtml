@@ -1,0 +1,208 @@
+﻿@model SimpleCMS.ViewModels.PageCreateOrEditViewModel
+@if (!@Request.IsAjaxRequest())
+{
+    ViewBag.Title = @SimpleCMS.SimpleCMS.Resources.Blog.Resources.Create;
+    <h2>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Create</h2>
+}
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "CreatePage" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @if (!@Request.IsAjaxRequest())
+        {
+            <h4>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Page</h4>
+            <hr />
+        }
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @id = "Name" } })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Keywords, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Keywords, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Keywords)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tags, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tags, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tags)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PermalinkName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PermalinkName, new { htmlAttributes = new { @class = "form-control", @id = "PermalinkName", @validationMessage = @SimpleCMS.SimpleCMS.Resources.Blog.Resources.PermalinkName + " " + SimpleCMS.SimpleCMS.Resources.Blog.Resources.IsRequired.ToLower() } })
+                @Html.ValidationMessageFor(model => model.PermalinkName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IncludeInMenu, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.IncludeInMenu, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IncludeInMenu)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsDraft, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.IsDraft, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IsDraft)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsPublished, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.IsPublished, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IsPublished)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ActiveFrom, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ActiveFrom, new { htmlAttributes = new { @class = "form-control datefield" } })
+                @Html.ValidationMessageFor(model => model.ActiveFrom)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ActiveTo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ActiveTo, new { htmlAttributes = new { @class = "form-control datefield" } })
+                @Html.ValidationMessageFor(model => model.ActiveTo)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.IsRssFeed, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.IsRssFeed, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IsRssFeed)
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Parent, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                <input id="ParentName" name="ParentName" type="text" class="form-control" placeholder="@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Page" value="@(Model.Parent != null ? @Model.Parent.Name : "")" />
+            </div>
+            <div class="col-md-8">
+                <span id="ParentDescription"></span>
+                <input type="hidden" id="ParentId" name="ParentId" value="@Model.ParentId" />
+            </div>
+        </div>
+        
+        @if (!@Request.IsAjaxRequest())
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        }
+    </div>
+}
+<script>
+
+    var pageSource = CreateDataSource(10, "/Page/Find", "#ParentName");
+    var permalinkName = '@Model.PermalinkName';
+    var form = $("#CreatePage");
+    var validator;
+
+    $(function () {
+        activateDatePicker();
+
+        ParseInputDate("#ActiveFrom, #ActiveTo");
+
+        SetupAutoComplete($("#ParentName"), "Name", '#: data.Name #', pageSource, function (item) {
+            $("#ParentId").val(item.Id);
+            $("#ParentDescription").html(item.Description);
+        });
+
+        $("#Name").keyup(function () {
+            validatePermalinkName($(this).val(), function (json) {
+                $("#PermalinkName").val(json);
+            });
+        });
+        $("#PermalinkName").blur(function () {
+            var self = $(this);
+            validatePermalinkName(self.val(), function (json) {
+                self.val(json);
+            });
+        });
+
+
+        kendo.init(form);
+        validator = form.kendoValidator({
+            messages: {
+                required: function (input) {
+                    //return input.attr("data-val-message");
+                    //return "Kravt";
+                    var msg = input.data("msg");
+                    return msg;
+                    //return msg != "undefined" && msg != null ? msg : "kravt";
+                }
+            }
+        }).data("kendoValidator");
+
+        $("input, textarea").one("change, blur", function () {
+            var isValid = validator.validate();
+            console.log(isValid);
+        });
+    });
+
+    function validatePermalinkName(text, callback) {
+        $.post("/Page/CleanUrl", { text: text, current: permalinkName }, function (json) {
+            var target = $(document).find("[data-valmsg-for='PermalinkName']");
+            if (json.length === 0) {
+                target.html('@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Required');
+            } else {
+                target.html('');
+            }
+            callback(json);
+        });
+    }
+
+</script>
+@if (!@Request.IsAjaxRequest())
+{
+    @Html.Partial("_BackToListPartial")
+
+    @section Scripts {
+        @Scripts.Render("~/js/jqueryval")
+        @*@Scripts.Render("~/js/cms.file")*@
+        @Scripts.Render("~/js/serialize")
+    }
+}

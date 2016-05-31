@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = @SimpleCMS.SimpleCMS.Resources.Blog.Resources.ConfirmAccount;
+}
+
+<h2>@ViewBag.Title</h2>
+<div>
+    <p>
+        @SimpleCMS.SimpleCMS.Resources.Blog.Resources.ThankYouForConfirmingYourAccount. @SimpleCMS.SimpleCMS.Resources.Blog.Resources.Please @Html.ActionLink(@SimpleCMS.SimpleCMS.Resources.Blog.Resources.ClickHereToLogIn, "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+    </p>
+</div>

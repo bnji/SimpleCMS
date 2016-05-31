@@ -1,0 +1,129 @@
+﻿@model IEnumerable<SimpleCMS.Models.File>
+@if (!@Request.IsAjaxRequest())
+{
+    ViewBag.Title = @SimpleCMS.SimpleCMS.Resources.Blog.Resources.Details;
+}
+<style>
+    .art-image {
+        width:100%;
+    }
+    .delete-file {
+        text-align:right;
+    }
+</style>
+<div>
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Partial("_FileUploadHandler", new SimpleCMS.Helpers.FileUploadHandlerParameters() { Accept = "image/*", ControllerName = "File", Multiple = true })
+            <br />
+            <ul id="newlyAddedImages"></ul>
+            @{
+                var count = 0;
+                foreach (var file in Model)
+                {
+                    var base64String = Convert.ToBase64String(@file.Data, 0, @file.Data.Length);
+                    var imgUrl = "data:image/jpg;base64," + base64String;
+                    @Html.Raw(count % 2 == 0 ? "<div class=row>" : "")
+                    <div class="col-md-6">
+                        <div id="image_@file.Id">
+                            <a title="@Resources.Delete" href="#" class="delete-file pull-right" data-file-id="@file.Id">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                @*@Resources.Delete*@
+                            </a>
+                            <br />
+                            @*<img src="@Url.Action("GetFile", "File", new { @id = file.Id })" class="art-image" />*@
+                            <img src="@imgUrl" width="25%" height="25%" />
+                            <br />
+                        </div>
+                    </div>
+                    @Html.Raw(count % 2 == 1 ? "</div>" : "")
+                    count++;
+                }
+            }
+        </div>
+    </div>
+</div>
+<script>
+
+    $(function () {
+        @*$.navbarContextMenu("@Resources.Functions <span class='caret'></span>", [
+            "<a href='#' class='edit-action'  data-toggle='modal' data-controller-name='Art' data-action-name='Edit?id=@Model.Id' data-model-name='Art'>@Resources.Edit</a>"
+        ]);*@
+
+        $(".delete-file").click(function () {
+            if(confirm("@Resources.Delete ?")) {
+                var self = $(this);
+                var id = self.data('file-id');
+                $.post("/File/DeleteFileAsync", { "id": id }, function (d, s, xhr) {
+                    console.log(d);
+                    console.log(s);
+                    console.log(xhr);
+                    console.log(xhr.responseJSON);
+                    var json = xhr.responseJSON;
+                    //$("#image_" + id).remove();
+                    self.parent().remove();
+                    if (json) { // has json object data
+                        //console.log(json);
+                    } else { // Model State is Invalid (required fields shown now)
+
+                    }
+                })
+                .fail(function (error) {
+                    console.log("error: ");
+                    console.log(error);
+                });
+            }
+        });
+    });
+
+    function onComplete() {
+        //https://github.com/macek/jquery-serialize-object
+        @*var url = "/Art/AddImageToArt";
+        var form = $("#art-images");
+        var requestData = $.extend({}, { ArtId: @Model.Id }, form.serializeObject());
+        form.find("input[type=hidden], input[type=text], textarea, input[type=password]").val("");
+        //console.log(requestData);
+        $.ajax({
+            url: url,
+            type: "POST",
+            accept: 'application/json',
+            data: requestData,
+            success: function (result) {
+                console.log("AddImageToArt result: ");
+                console.log(result);
+                
+                $("#newlyAddedImages").append("<li>Fíla løgd inn: " + result.Name + "(" + result.Length + ")</li>");// "<img src='" + result + "' class='art-image' />");
+            }
+        });*@
+
+    }
+
+    function getTimeDiff(startDate, endDate) {
+        var diff = endDate - startDate;
+        //console.log(diff);
+        var seconds = Math.round(diff / 1000.0);
+        return seconds;
+    }
+
+    function getTimeFormatted(time) {
+        var seconds = time % 60;
+        if (time < 60) {
+            //return seconds + " sekund";
+            return "00:00:" + ("0" + seconds).slice(-2);
+        }
+        var minutes = Math.round(Math.floor(time / 60));
+        if (minutes < 60) {
+            //return minutes + " min. " + seconds + " sekund";
+            return "00:" + ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
+        }
+        var hours = Math.round(Math.floor(minutes / 60));
+        minutes = minutes % 60;
+        //var hourStr = hours > 1 ? "tímar" : "tími";
+        //return hours + " " + hourStr + " " + minutes + " min. " + seconds + " sek.";
+        return hours + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
+    }
+</script>
+@section Scripts {
+    @Scripts.Render("~/js/cms.file")
+    @Scripts.Render("~/js/serialize")
+}

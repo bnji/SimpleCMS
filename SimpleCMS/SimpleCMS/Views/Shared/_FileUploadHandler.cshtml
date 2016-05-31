@@ -1,0 +1,48 @@
+﻿@model SimpleCMS.Helpers.FileUploadHandlerParameters
+
+<form id="files-to-upload">
+@{
+    for (int i = 0; i < @Model.MaxItems; i++)
+    {
+        var prefix = "Files_" + @i + "_";
+        var fileName = prefix + "FileName";
+        var fileExt = prefix + "Extension";
+        var fileUID = prefix + "UID";
+        <input type="hidden" id="@fileName" name="Files[@i][FileName]" />
+        <input type="hidden" id="@fileExt" name="Files[@i][Ext]" />
+        <input type="hidden" id="@fileUID" name="Files[@i][UID]" />
+        <span class="field-validation-valid text-danger" data-valmsg-for="Files[@i][FileName]" data-valmsg-replace="true"></span>
+    }
+}
+</form>
+@*@(Html.Kendo()
+    .Upload()
+    .Name("Files")
+    .HtmlAttributes(new { accept = @Model.Accept })
+    .ShowFileList(true)
+    .Multiple(@Model.Multiple)
+    .Events(e => e
+        .Upload("onUpload")
+        .Success("onSuccess")
+        .Complete("onComplete")
+        .Select("onSelect")
+        .Cancel("onCancel")
+        .Remove("onRemove")
+    ).Messages(m => m
+        .Select("Viðfest")
+        .Cancel("Ógilda")
+        .Retry("Royn aftur")
+        .StatusUploading("Leggur út fílu")
+        .StatusUploaded("Fíla er løgd út")
+        .Remove("Strika")
+        .UploadSelectedFiles("Legg út valdu fílur")
+        .DropFilesHere("Hála og slepp fílu/r her")
+        .HeaderStatusUploaded("Liðugt")
+        .HeaderStatusUploading("Leggur út fílu/r")
+        .StatusFailed("Miseydnaðist")
+    )
+    .Async(a => a
+        .Save("SaveFile", @Model.ControllerName, @Model.SaveFileRouteValues)
+        .Remove("RemoveFile", @Model.ControllerName, @Model.DeleteFileRouteValues)
+        .AutoUpload(@Model.AutoUpload)
+    ))*@

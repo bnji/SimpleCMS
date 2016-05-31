@@ -1,0 +1,202 @@
+﻿@*@model SimpleCMS.Models.Blog.Page*@
+@{
+    var rssLink = "";
+}
+<div class="navbar navbar-inverse navbar-fixed-top navbar-custom" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @*<a class="navbar-brand" rel="home" href='/' title="@Core.Settings.Instance.AppName">
+                    <img style="max-width:275px; padding-bottom:5px; padding-top:5px; margin-top: -14px; height:inherit" src="~/Content/images/logo.png">
+                </a>*@
+            @Html.ActionLink(@SimpleCMS.Settings.Instance.AppName, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <style>
+            ul.nav li.dropdown:hover > ul.dropdown-menu {
+                display: block;
+            }
+
+            .navbar .dropdown-menu {
+                margin-top: 0px;
+            }
+        </style>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                @*<li>@Html.ActionLink("Home", "Index", "DocFinder")</li>*@
+                @{
+                    using (var db = new SimpleCMS.DAL.BootstrapContext())
+                    {
+                        rssLink = "/" + db.BlogFeedSettings.FirstOrDefault().UriName;
+                        var pages = db.Pages.Where(x => x.IncludeInMenu && x.Parent == null && x.Pages.Count >= 0).ToList();
+                        @Html.Raw(AddPageMenuItems(pages));
+                    }
+                }
+
+                @helper AddPageMenuItems(List<SimpleCMS.Models.Blog.Page> pages)
+{
+    foreach (var page in pages)
+    {
+        if (page.Parent == null && page.Pages.Count == 0)
+        {
+            <li><a href="~/@page.Permalink.Name">@page.Name</a></li>
+        }
+        else
+        {
+            <li class="dropdown">
+                <a href="~/@page.Permalink.Name" class="dropdown-toggle" @*data-toggle="dropdown"*@>@page.Name <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    @*@foreach (var subPage in page.Pages)
+                        {
+                            <li><a href="~/@subPage.Permalink.Name">@subPage.Name @subPage.Pages.Count</a></li>
+                        }*@
+                    @Html.Raw(AddPageMenuItems(page.Pages.ToList()))
+                </ul>
+            </li>
+        }
+    }
+}
+                @*@{
+                        var user = User.Identity.Name;
+                        if (("" + user).ToLower().Equals("hammerbenjamin@gmail.com"))
+                        {
+                            <li>@Html.ActionLink("Scan", "Scan", "DocFinder")</li>
+                        }
+                    }*@
+                @*<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Resources.DailyAdministrations <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink(@Resources.Members, "Index", "SupportNote")</li>
+                        </ul>
+                    </li>*@
+
+                <li id="context-dropdown-menu" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <!-- shortcuts related to the current context will be added here -->
+                    </ul>
+                </li>
+            </ul>
+            @Html.Partial("_LoginPartialNavbar")
+
+            <ul class="nav navbar-nav navbar-right">
+                @*<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Resources.Miscellaneous <span class="caret"></span></a><ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Addresses", "Index", "Address")</li>
+                        </ul>
+                    </li>*@
+                @*<li><a href="#">Link</a></li>*@
+                <li><a href="@rssLink"><i class="fa fa-rss"></i> </a></li>
+
+
+                @{
+                    @*if (Request.IsAuthenticated && !CMSExtensions.IsPreview && Model != null)
+                    {
+                        var createAction = "Create?parentId=" + @Model.Id;
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Resources.Edit <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="#" tabindex="-1" class="edit-action blog-menu-item" data-toggle='modal' data-controller-name='Page' data-action-name='Edit?id=@Model.Id' data-model-name='Page'>
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> @SimpleCMS.SimpleCMS.Resources.Blog.Resources.EditPage
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" tabindex="-1" class="delete-action blog-menu-item" data-toggle='modal' data-controller-name='Page' data-action-name='Delete?id=@Model.Id' data-model-name='Page'>
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> @SimpleCMS.SimpleCMS.Resources.Blog.Resources.DeletePage
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Request.Url?isPreview=true" tabindex="-1" class="blog-menu-item">
+                                        <span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span> @SimpleCMS.SimpleCMS.Resources.Blog.Resources.PreviewPage
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" tabindex="-1" class="create-action blog-menu-item" data-toggle='modal' data-controller-name='PageItem' data-action-name='@createAction' data-model-name='BlogItemContent'>
+                                        <span class="glyphicon glyphicon-book" aria-hidden="true"></span> @SimpleCMS.SimpleCMS.Resources.Blog.Resources.AddPageContent
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" tabindex="-1" class="create-action blog-menu-item" data-toggle='modal' data-controller-name='BlogItem' data-action-name='@createAction' data-model-name='BlogItemContent'>
+                                        <span class="glyphicon glyphicon-font" aria-hidden="true"></span> @SimpleCMS.SimpleCMS.Resources.Blog.Resources.AddBlogItemContent
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" tabindex="-1" class="create-action blog-menu-item" data-toggle='modal' data-controller-name='BlogList' data-action-name='@createAction' data-model-name='PageContent'>
+                                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> @SimpleCMS.SimpleCMS.Resources.Blog.Resources.AddBlogListContent
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" tabindex="-1" class="create-action blog-menu-item" data-toggle='modal' data-controller-name='PageContent' data-action-name='AddHtmlContent' data-model-name='HtmlContent'>
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> @SimpleCMS.SimpleCMS.Resources.Blog.Resources.AddHtmlContent
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" tabindex="-1" class="create-action blog-menu-item" data-toggle='modal' data-controller-name='ImageContent' data-action-name='@createAction' data-model-name='ImageContent'>
+                                        <span class="glyphicon glyphicon-picture" aria-hidden="true"></span> @SimpleCMS.SimpleCMS.Resources.Blog.Resources.AddImageContent
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>    
+                    }*@
+                    if (Request.IsAuthenticated)
+                    {
+                        if (Model == null) 
+                        { 
+                            //var controllerName = ViewContext.GetControllerName();
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Edit <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#" tabindex="-1" class="create-action" data-toggle='modal' data-controller-name='@CMSExtensions.ControllerName' data-action-name='Create' data-model-name='Page'>
+                                            @SimpleCMS.SimpleCMS.Resources.Blog.Resources.Create
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" tabindex="-1" class="edit-action" data-toggle='modal' data-controller-name='@CMSExtensions.ControllerName' data-action-name='' data-model-name='Page'>
+                                            @SimpleCMS.SimpleCMS.Resources.Blog.Resources.Edit
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" tabindex="-1" class="delete-action" data-toggle='modal' data-controller-name='@CMSExtensions.ControllerName' data-action-name='' data-model-name='Page'>
+                                            @SimpleCMS.SimpleCMS.Resources.Blog.Resources.Delete
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">@SimpleCMS.SimpleCMS.Resources.Blog.Resources.DailyAdministrations <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink(@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Pages, "Index", "Page")</li>
+                                <li>@Html.ActionLink(@SimpleCMS.SimpleCMS.Resources.Blog.Resources.ViewTemplates, "Index", "ViewTemplate")</li>
+                                <li>@Html.ActionLink(@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Plugins, "Index", "Plugins")</li>
+                                @*<li>@Html.ActionLink(@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Files, "Index", "File")</li>*@
+                                <li>@Html.ActionLink(@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Images, "Index", "Image")</li>
+                                <li>@Html.ActionLink(@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Languages, "Index", "ContentTranslation")</li>
+                                <li>@Html.ActionLink(@SimpleCMS.SimpleCMS.Resources.Blog.Resources.PageContentTypes, "Index", "PageContentType")</li>
+                                <li>@Html.ActionLink(@SimpleCMS.SimpleCMS.Resources.Blog.Resources.BlogSettings, "Index", "BlogWebsiteSettings")</li>
+                                <li>@Html.ActionLink(@SimpleCMS.SimpleCMS.Resources.Blog.Resources.FeedSettings, "Index", "BlogFeedSettings")</li>
+                            </ul>
+                        </li>
+                    }
+                }
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-flag"></i> @SimpleCMS.SimpleCMS.Resources.Blog.Resources.ChooseLanguage <span class="caret"></span></a>
+                    <ul id="languageSelect" class="dropdown-menu" role="menu">
+                        @{
+                            foreach (var item in General.Helpers.CultureHelper.Instance.Cultures)
+                            {
+                                <li>@Html.ActionLink(@item.Value.LanguageLocal.ToUpperFirst(), "SetCulture", "Home", new { culture = @item.Key }, null)</li>
+                            }
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

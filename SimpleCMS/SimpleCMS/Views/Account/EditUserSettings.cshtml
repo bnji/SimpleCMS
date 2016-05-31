@@ -1,0 +1,50 @@
+﻿@model SimpleCMS.Models.ApplicationUserSettingsViewModel
+@{
+    ViewBag.Title = @Resources.EditUserSettings;
+}
+@*@{
+    var userId = User.Identity.GetUserId();
+    var manager = new UserManager<SimpleCMS.Models.ApplicationUser>(new Microsoft.AspNet.Identity.EntityFramework.UserStore<SimpleCMS.Models.ApplicationUser>(new SimpleCMS.Models.ApplicationDbContext()));
+    var currentUser = manager.FindById(userId);
+}*@
+
+<div class="row">
+    <div class="col-md-offset-3 col-md-5">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><strong>@ViewBag.Title</strong></h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-horizontal">
+                                <h4>@Resources.EditUserSettings</h4>
+                                <hr />
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <input type="submit" value="@Resources.Save" class="btn btn-primary" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Html.Partial("_AccountFooter")
+@Html.Partial("_DatePickerPartial")

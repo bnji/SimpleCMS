@@ -1,0 +1,327 @@
+﻿@model SimpleCMS.Models.Blog.Page
+@{
+    ViewBag.PageTitle = @Model.Title;
+}
+<style>
+    .blog-menu-item {
+        padding-left: 7px;
+    }
+</style>
+@*@{
+        var createAction = "Create?parentId=" + @Model.Id;
+    }*@
+@*@section EditPageContentMenu {
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Resources.Edit <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li>
+                    <a href="#" tabindex="-1" class="edit-action pull-left blog-menu-item" data-toggle='modal' data-controller-name='Page' data-action-name='Edit?id=@Model.Id' data-model-name='Page'>
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> @SimpleCMS.SimpleCMS.Resources.Blog.Resources.EditPage
+                    </a>
+                </li>
+            </ul>
+        </li>
+    }*@
+@{
+    @*<a href="#" class="edit-page pull-left"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> @SimpleCMS.SimpleCMS.Resources.Blog.Resources.EditPage</a>*@
+    if (Request.IsAuthenticated && !CMSExtensions.IsPreview)
+    {
+        var createAction = "Create?parentId=" + @Model.Id;
+        <div>
+            @CMSExtensions.DisplayDebugInfo()
+        </div>
+        <a href="#" tabindex="-1" class="edit-action pull-left blog-menu-item" data-toggle='modal' data-controller-name='Page' data-action-name='Edit?id=@Model.Id' data-model-name='Page'>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> @SimpleCMS.SimpleCMS.Resources.Blog.Resources.EditPage
+        </a>
+        <a href="#" tabindex="-1" class="delete-action pull-left blog-menu-item" data-toggle='modal' data-controller-name='Page' data-action-name='Delete?id=@Model.Id' data-model-name='Page'>
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> @SimpleCMS.SimpleCMS.Resources.Blog.Resources.DeletePage
+        </a>
+        <a href="@Request.Url?isPreview=true" tabindex="-1" class="pull-left blog-menu-item">
+            <span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span> @SimpleCMS.SimpleCMS.Resources.Blog.Resources.PreviewPage
+        </a>
+        @*<a href="#" tabindex="-1" class="create-action pull-left blog-menu-item" data-toggle='modal' data-controller-name='PageItem' data-action-name='@createAction' data-model-name='BlogItemContent'>
+        <span class="glyphicon glyphicon-book" aria-hidden="true"></span> @SimpleCMS.SimpleCMS.Resources.Blog.Resources.AddPageContent
+    </a>*@
+        <a href="#" tabindex="-1" class="create-action pull-left blog-menu-item" data-toggle='modal' data-controller-name='BlogItem' data-action-name='@createAction' data-model-name='BlogItemContent'>
+            <span class="glyphicon glyphicon-font" aria-hidden="true"></span> @SimpleCMS.SimpleCMS.Resources.Blog.Resources.AddBlogItemContent
+        </a>
+        <a href="#" tabindex="-1" class="create-action pull-left blog-menu-item" data-toggle='modal' data-controller-name='BlogList' data-action-name='@createAction' data-model-name='PageContent'>
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span> @SimpleCMS.SimpleCMS.Resources.Blog.Resources.AddBlogListContent
+        </a>
+        @*<a href="#" tabindex="-1" class="create-action pull-left blog-menu-item" data-toggle='modal' data-controller-name='PageContent' data-action-name='AddHtmlContent' data-model-name='HtmlContent'>
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> @SimpleCMS.SimpleCMS.Resources.Blog.Resources.AddHtmlContent
+        </a>
+        <a href="#" tabindex="-1" class="create-action pull-left blog-menu-item" data-toggle='modal' data-controller-name='ImageContent' data-action-name='@createAction' data-model-name='ImageContent'>
+            <span class="glyphicon glyphicon-picture" aria-hidden="true"></span> @SimpleCMS.SimpleCMS.Resources.Blog.Resources.AddImageContent
+        </a>*@
+        <br />
+        @*using (var db = new SimpleCMS.DAL.BootstrapContext())
+            {
+                foreach (var p in db.PageContentTypes.ToList())
+                {
+                    <div>
+                         @p.Name  @p.Description
+                        <br />
+                    </div>
+                }
+            }*@
+    }
+    @*if (!string.IsNullOrEmpty(@Model.Title))
+        {
+            <h1>@Model.Title</h1>
+        }*@
+    <div id="sortable-horizontal">
+        @foreach (var pageContent in @Model.Content.FilterDeleted().OrderBy(x => x.Index))
+        {
+            @*<div>@pageContent.PageContentInfo.Id</div>*@
+            var isActive = Request.IsAuthenticated || (!pageContent.PageContentInfo.ActiveFrom.HasValue || (DateTime.Compare(DateTime.Now, pageContent.PageContentInfo.ActiveFrom.Value) >= 0 && DateTime.Compare(DateTime.Now, pageContent.PageContentInfo.ActiveTo.Value) <= 0));
+            if (Request.IsAuthenticated)
+            {
+                if (!CMSExtensions.IsPreview)
+                {
+                    @:<div class="sortable-item" id="@pageContent.Id" data-pagecontent-type="@pageContent.PageContentType.Name">
+                }
+                var controllerName = pageContent.PageContentType.Name;
+                //var editActionName = "Edit?id=" + pageContent.Id + "&language=" + culture.ToLower();
+                var deleteActionName = "Delete?id=" + pageContent.Id;
+                var modelName = pageContent.PageContentType.Name + "Content";
+                using (var db = new SimpleCMS.DAL.BootstrapContext())
+                {
+                    if (!CMSExtensions.IsPreview)
+                    {
+                        <span class="pull-left">@SimpleCMS.SimpleCMS.Resources.Blog.Resources.EditPageContent</span>
+                    }
+                    foreach (var lang in db.ContentTranslations.ToList())
+                    {
+                        if (!CMSExtensions.IsPreview)
+                        {
+                            var editActionName = "Edit?id=" + pageContent.Id + "&language=" + lang.Language.ToLower();
+                            <a href='#' tabindex='-1' class='edit-action pull-left blog-menu-item' data-toggle='modal' data-controller-name='@controllerName' data-action-name='@editActionName' data-model-name='@modelName'><span class='glyphicon glyphicon-edit' aria-hidden='true'></span> @lang.Language.ToUpper()</a>
+                        }
+                    }
+                }
+                @*<a href='#' tabindex='-1' class='edit-action pull-left' data-toggle='modal' data-controller-name='@CMSExtensions.ControllerName' data-action-name='@editActionName' data-model-name='@modelName'><span class='glyphicon glyphicon-edit' aria-hidden='true'></span> @SimpleCMS.SimpleCMS.Resources.Blog.Resources.EditPageContent</a>*@
+                if (!CMSExtensions.IsPreview && Request.IsAuthenticated)
+                {
+                    <a href='#' tabindex='-1' class='delete-action pull-left blog-menu-item' data-toggle='modal' data-controller-name='@controllerName' data-action-name='@deleteActionName' data-model-name='@modelName'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span> @SimpleCMS.SimpleCMS.Resources.Blog.Resources.DeletePageContent (@pageContent.PageContentType.Name)</a>
+                    <br />
+            @pageContent.ViewTemplate.Name
+                }
+            }
+
+            if (pageContent.ViewTemplate == null)
+            {
+                @Html.Partial("~/SimpleCMS/Views/Shared/BlogViewTemplates/_ViewTemplateMissing.cshtml")
+            }
+            else
+            {
+                if (!CMSExtensions.IsPreview && Request.IsAuthenticated)
+                {
+
+                }
+                if (isActive)
+                {
+                    try
+                    {
+                        @*@Html.Partial("~/SimpleCMS/Views/Shared/BlogViewTemplates/" + pageContent.ViewTemplate.Name + ".cshtml", @pageContent.BlogItemContent)*@
+                        if (pageContent.PageContentType.Name.Equals("BlogItem"))
+                        {
+                            @Html.Partial("~/SimpleCMS/Views/Shared/BlogViewTemplates/" + pageContent.ViewTemplate.Name + ".cshtml", @pageContent.BlogItemContent)
+                        }
+                        else if (pageContent.PageContentType.Name.Equals("BlogList"))
+                        {
+                            @Html.Partial("~/SimpleCMS/Views/Shared/BlogViewTemplates/" + pageContent.ViewTemplate.Name + ".cshtml")
+                        }
+                        else if (pageContent.PageContentType.Name.Equals("PageItem"))
+                        {
+                            @Html.Partial("~/SimpleCMS/Views/Shared/BlogViewTemplates/" + pageContent.ViewTemplate.Name + ".cshtml", @pageContent.PageItemContent)
+                        }
+                        @*else if (pageContent.PageContentType.Name.Equals("ImageContent"))
+                        {
+                            @Html.Partial("~/SimpleCMS/Views/Shared/BlogViewTemplates/" + pageContent.ViewTemplate.Name + ".cshtml", @pageContent.ImageContent)
+                        }*@
+                    }
+                    catch (Exception ex)
+                    {
+                        if (!SimpleCMS.CMSExtensions.IsPreview && Request.IsAuthenticated) 
+                        { 
+                            <label class="label-danger">
+                                @SimpleCMS.SimpleCMS.Resources.Blog.Resources.Error: @ex.Message
+                            </label>
+                        }
+                    }
+                }
+            }
+            if (Request.IsAuthenticated && !SimpleCMS.CMSExtensions.IsPreview)
+            {
+                @:</div>
+            }
+        }
+    </div>
+}
+@if (Request.IsAuthenticated && !CMSExtensions.IsPreview)
+{
+    @(Html.Kendo().Sortable()
+        .For("#sortable-horizontal")
+        .ContainerSelector("#sortable-horizontal")
+        .Axis(SortableAxis.Y)
+        .Cursor("move")
+        .Placeholder("<div class='placeholder'>Drop Here!</div>")
+        .HintHandler("hint")
+        .Events(events => events.Start("onStart").Move("onMove").End("onEnd").Change("onChange").Cancel("onCancel"))
+    )
+}
+<script>
+    $(function () {
+        //$(document).on("onDelete", function (e, d) {
+        //    alert("item deleted...");
+        //    console.log(e);
+        //    console.log(d);
+        //    d.owner.parent().remove();
+        //});
+    });
+
+    function log(text) {
+        console.log(text);
+    }
+
+    function hint(element) {
+        return element.clone().addClass("hint");
+    }
+
+    function placeholder(element) {
+        return element.clone().addClass("placeholder");
+    }
+
+    function onStart(e) {
+        var id = e.sender.element.attr("id");
+        //log(id + " start: " + e.item.text());
+    }
+
+    function onMove(e) {
+        var id = e.sender.element.attr("id"),
+            placeholder = e.list.placeholder;
+
+        //log(id + " move to index: " + this.indexOf(placeholder));
+    }
+
+    function onEnd(e) {
+        var sortableItem = $(e.sender.element).find(".sortable-item");
+        var contentId = sortableItem.attr("id");
+        var pageItemContentType = $("#" + contentId).find('[data-pagecontent-type]').data("pagecontent-type");
+        var id = e.sender.element.attr("id"),
+            text = e.item.text(),
+            oldIndex = e.oldIndex,
+            newIndex = e.newIndex;
+        //log("pageItemContentType: " + pageItemContentType + " contentID: " + contentId + " id: " + id + " change: " + text + " newIndex: " + newIndex + " oldIndex: " + oldIndex + " action: " + e.action);
+
+        //alert("content id: " + contentId + " - old index: " + oldIndex + " - new index: " + newIndex);
+    }
+
+    function onChange(e) {
+        //log($(e.item).find(".sortable-item"));
+        //log(e.sender.element);
+        var sortableItem = e.item;//.find(".sortable-item");// $(e.sender.element).find(".sortable-item");
+        log(sortableItem);
+        var contentId = sortableItem.attr("id");
+        var pageItemContentType = $("#" + contentId).data("pagecontent-type");//.find('[data-pagecontent-type]').data("pagecontent-type");
+        var id = e.sender.element.attr("id"),
+            //text = e.item.text(),
+            newIndex = e.newIndex,
+            oldIndex = e.oldIndex;
+
+        log("pageItemContentType: " + pageItemContentType + " contentID: " + contentId + " id: " + id + " newIndex: " + newIndex + " oldIndex: " + oldIndex + " action: " + e.action);
+
+        //alert("content id: " + contentId + " - old index: " + oldIndex + " - new index: " + newIndex);
+        $.ajax({
+            url: "/Page/SetPageContentIndex",
+            type: "POST",
+            accept: 'application/json',
+            data: { 'pageContentId': contentId, 'newIndex': newIndex },
+            success: function (result) {
+                console.log(result);
+            }
+        });
+    }
+
+    function onCancel(e) {
+        log("cancel");
+    }
+
+
+
+    function placeholder(element) {
+        return element.clone().css("opacity", 0.1);
+    }
+
+    function hint(element) {
+        return element.clone().removeClass("k-state-selected");
+    }
+
+    function onImgChange(e) {
+        var listView = $("#listView").data("kendoListView"),
+            dataSource = listView.dataSource,
+            skip = dataSource.skip(),
+            oldIndex = e.oldIndex + skip,
+            newIndex = e.newIndex + skip,
+            data = dataSource.data(),
+            dataItem = dataSource.getByUid(e.item.data("uid"));
+
+        console.log(dataItem);
+        //alert("old index: " + oldIndex + " new index: " + newIndex);
+
+        dataSource.remove(dataItem);
+        dataSource.insert(newIndex, dataItem);
+
+        $.ajax({
+            url: "/BlogItem/SetBlogItemImageIndex",
+            type: "POST",
+            accept: 'application/json',
+            data: { 'id': dataItem.Id, 'newIndex': newIndex, 'oldIndex': oldIndex },
+            success: function (result) {
+                console.log(result);
+            }
+        });
+
+
+    }
+
+</script>
+<style>
+    #example {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    #sortable-horizontal {
+        overflow: hidden;
+    }
+
+    .sortable-item {
+        cursor: move;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 5px;
+        border: 1px dashed #000;
+    }
+
+    .placeholder {
+        display: inline-block;
+        width: 100%;
+        height: 115px;
+        border: 1px dashed #000;
+        background-color: #f3f5f7;
+        margin: 10px;
+        font-size: 1.3em;
+        font-weight: bold;
+        line-height: 125px;
+        vertical-align: middle;
+        color: #777;
+    }
+
+    .hint {
+        opacity: .6;
+    }
+</style>

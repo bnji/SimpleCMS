@@ -1,0 +1,14 @@
+﻿@{
+    var culture = General.Helpers.CultureHelper.GetCurrentCulture().ToLower();
+}
+<script>
+    $(function () {
+        var dateFormat = moment().locale('@culture').localeData()._longDateFormat.L.toLowerCase();
+        console.log("dateFormat: " + dateFormat);
+        $(".datefield").datepicker({
+            autoClose: true,
+            format: dateFormat,
+            language: '@culture'
+        });
+    });
+</script>

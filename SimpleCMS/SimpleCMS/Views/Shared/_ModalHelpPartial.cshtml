@@ -1,0 +1,17 @@
+﻿<div id="modalDebug" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Resources.Close</span></button>*@
+                <h4 class="modal-title">@Resources.Help</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+@*@Html.ModalDialog("debugModal", @Resources.Close, @Resources.Save, @Resources.Error, "", @Html.Action("Index", "Debug", new { IsPartial = true }))*@

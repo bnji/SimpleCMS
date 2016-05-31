@@ -1,0 +1,27 @@
+@model SimpleCMS.Models.Pagination
+@{
+    var baseUrl = Request.Url.GetLeftPart(UriPartial.Path) + "?page=";
+    var backLink = baseUrl + Model.BackIndex;
+    var forwardLink = baseUrl + Model.ForwardIndex;
+            
+    <nav class="text-center">
+        <ul class="pagination">
+            <li class="@(Model.BackIndex == 0 ? "disabled" : "")">
+                <a href="@backLink" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            @for (int i = Model.PageNumber; i < Model.To; i++)
+            {
+                var pageIndex = i + 1;
+                var link = baseUrl + "?isPreview=true&page=" + pageIndex;
+                <li class="@(i == Model.PageNumber ? "active": "")"><a href="@link">@pageIndex</a></li>
+            }
+            <li>
+                <a href="@forwardLink" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+}

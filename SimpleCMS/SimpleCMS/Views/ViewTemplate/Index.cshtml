@@ -1,0 +1,75 @@
+﻿@*@section SidebarMenu {
+        <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Overview</a></li>
+            <li><a href="#">Some nav link</a></li>
+        </ul>
+    }*@
+@{
+    var title = @SimpleCMS.SimpleCMS.Resources.Blog.Resources.ViewTemplate;    
+    ViewBag.Title = title;
+}
+<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Id</th>
+            <th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Name</th>
+            <th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.PageContentType</th>
+            <th>@SimpleCMS.SimpleCMS.Resources.Blog.Resources.Description</th>
+        </tr>
+    </thead>
+</table>
+<script>
+    $(function () {
+        var table = $('#example').DataTable({
+            "columnDefs": [{
+                "defaultContent": "-",
+                "targets": "_all"
+            }],
+            "ajax": '/@CMSExtensions.ControllerName/GetAjaxData',
+            "columns": [
+                { "data": "Id", "orderable": true },
+                {
+                    "data": "Name",
+                    "orderable": false,
+                    "render": function (data, type, full, meta) {
+                        return "<a href='/@CMSExtensions.ControllerName/Details/" + full.Id + "'>" + data + "</a>";
+                    }
+                },
+                { "data": "PageContentType.Name", "orderable": true },
+                { "data": "Description", "orderable": true }
+            ],
+        });
+
+        $('#example tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                var data = table.row(this).data();
+                $(".edit-action").data("action-name", "Edit?id=" + data.Id);
+                $(".delete-action").data("action-name", "Delete?id=" + data.Id);
+
+            }
+        });
+
+        $('#example tbody').on('dblclick', 'tr', function () {
+            var data = table.row(this).data();
+            navigate('/@CMSExtensions.ControllerName/Details/' + data.Id);
+        });
+
+        $(document).on("onDelete", function (e, d) {
+            table.row('.selected').remove().draw(false);
+            console.log("foobar");
+            console.log(e);
+            console.log(d);
+            //d.owner.parent().remove();
+        });
+
+    });
+</script>
+@section Scripts {
+    @Scripts.Render("~/js/cms.file")
+    @Scripts.Render("~/js/serialize")
+}

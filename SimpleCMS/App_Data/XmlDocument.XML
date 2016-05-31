@@ -1,0 +1,1832 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SimpleCMS</name>
+    </assembly>
+    <members>
+        <member name="T:SimpleCMS.Web.CustomAssemblyResolver">
+            <summary>
+            http://www.strathweb.com/2012/06/using-controllers-from-an-external-assembly-in-asp-net-web-api/
+            </summary>
+        </member>
+        <member name="T:SimpleCMS.DecimalModelBinder">
+            <summary>
+            Handle i18n decimal separators
+            Source: http://stackoverflow.com/questions/793459/how-to-set-decimal-separators-in-asp-net-mvc-controllers
+            </summary>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:SimpleCMS.Areas.HelpPage.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:SimpleCMS.Areas.HelpPage.Controllers.HelpController">
+            <summary>
+            The controller that will handle requests for the help page.
+            </summary>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Sets the sample directly for all actions with the specified media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,SimpleCMS.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the model description generator.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns>The <see cref="T:SimpleCMS.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:SimpleCMS.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:SimpleCMS.Areas.HelpPage.ModelDescriptions.ModelDescription">
+            <summary>
+            Describes a type model.
+            </summary>
+        </member>
+        <member name="T:SimpleCMS.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
+            <summary>
+            Generates model descriptions for given types.
+            </summary>
+        </member>
+        <member name="T:SimpleCMS.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
+            <summary>
+            Use this attribute to change the name of the <see cref="T:SimpleCMS.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
+            </summary>
+        </member>
+        <member name="T:SimpleCMS.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimpleCMS.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:SimpleCMS.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
+            <summary>
+            Gets or sets the <see cref="T:SimpleCMS.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
+            <summary>
+            Gets or sets the documentation for the request.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
+            <summary>
+            Gets or sets the <see cref="T:SimpleCMS.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
+            <summary>
+            Gets the request body parameter descriptions.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
+            <summary>
+            Gets or sets the <see cref="T:SimpleCMS.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
+            <summary>
+            Gets the resource property descriptions.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="T:SimpleCMS.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimpleCMS.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
+            <summary>
+            Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
+            stopping when the factory successfully returns a non-<see langref="null"/> object.
+            </summary>
+            <remarks>
+            Collection includes just <see cref="M:SimpleCMS.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
+            <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
+            <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,SimpleCMS.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,SimpleCMS.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:SimpleCMS.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:SimpleCMS.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
+            one using <see cref="M:SimpleCMS.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(SimpleCMS.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:SimpleCMS.Areas.HelpPage.ObjectGenerator"/>) and other
+            factories in <see cref="P:SimpleCMS.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Resolves the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The type.</returns>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},SimpleCMS.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
+        </member>
+        <member name="T:SimpleCMS.Areas.HelpPage.HelpPageSampleKey">
+            <summary>
+            This is used to identify the place where the sample should be applied.
+            </summary>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Creates a new <see cref="T:SimpleCMS.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Creates a new <see cref="T:SimpleCMS.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The CLR type.</param>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageSampleKey.#ctor(SimpleCMS.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:SimpleCMS.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:SimpleCMS.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="sampleDirection">The <see cref="P:SimpleCMS.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,SimpleCMS.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:SimpleCMS.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:SimpleCMS.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The <see cref="P:SimpleCMS.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="P:SimpleCMS.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+            <summary>
+            Gets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:SimpleCMS.Areas.HelpPage.HelpPageSampleKey.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:SimpleCMS.Areas.HelpPage.HelpPageSampleKey.MediaType">
+            <summary>
+            Gets the media type.
+            </summary>
+            <value>
+            The media type.
+            </value>
+        </member>
+        <member name="P:SimpleCMS.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+            <summary>
+            Gets the parameter names.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+            <summary>
+            Gets the <see cref="P:SimpleCMS.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            </summary>
+        </member>
+        <member name="T:SimpleCMS.Areas.HelpPage.ImageSample">
+            <summary>
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimpleCMS.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="T:SimpleCMS.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:SimpleCMS.Areas.HelpPage.ObjectGenerator">
+            <summary>
+            This class will create an object of a given type and populate it with sample data.
+            </summary>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+            <summary>
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="N:SimpleCMS.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
+            Complex types: POCO types.
+            Nullables: <see cref="T:System.Nullable`1"/>.
+            Arrays: arrays of simple types or complex types.
+            Key value pairs: <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            Tuples: <see cref="T:System.Tuple`1"/>, <see cref="T:System.Tuple`2"/>, etc
+            Dictionaries: <see cref="T:System.Collections.Generic.IDictionary`2"/> or anything deriving from <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            Collections: <see cref="T:System.Collections.Generic.IList`1"/>, <see cref="T:System.Collections.Generic.IEnumerable`1"/>, <see cref="T:System.Collections.Generic.ICollection`1"/>, <see cref="T:System.Collections.IList"/>, <see cref="T:System.Collections.IEnumerable"/>, <see cref="T:System.Collections.ICollection"/> or anything deriving from <see cref="T:System.Collections.Generic.ICollection`1"/> or <see cref="T:System.Collections.IList"/>.
+            Queryables: <see cref="T:System.Linq.IQueryable"/>, <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An object of the given type.</returns>
+        </member>
+        <member name="T:SimpleCMS.Areas.HelpPage.SampleDirection">
+            <summary>
+            Indicates whether the sample is used for request or response
+            </summary>
+        </member>
+        <member name="T:SimpleCMS.Areas.HelpPage.TextSample">
+            <summary>
+            This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:SimpleCMS.Areas.HelpPage.XmlDocumentationProvider">
+            <summary>
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:SimpleCMS.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimpleCMS.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="M:SimpleCMS.DAL.CustomSqlExecutionStrategy.#ctor">
+            <summary>
+            The default retry limit is 5, which means that the total amount of time spent 
+            between retries is 26 seconds plus the random factor.
+            </summary>
+        </member>
+        <member name="M:SimpleCMS.DAL.CustomSqlExecutionStrategy.#ctor(System.Int32,System.TimeSpan)">
+            <summary>
+            Creates a new instance of "PharylonExecutionStrategy" with the specified limits for
+            number of retries and the delay between retries.
+            </summary>
+            <param name="maxRetryCount"> The maximum number of retry attempts. </param>
+            <param name="maxDelay"> The maximum delay in milliseconds between retries. </param>
+        </member>
+        <member name="T:SimpleCMS.SimpleCMS.Resources.Blog.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Activate">
+            <summary>
+              Looks up a localized string similar to Activate.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ActiveFrom">
+            <summary>
+              Looks up a localized string similar to Active from.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ActiveTo">
+            <summary>
+              Looks up a localized string similar to Active to.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.AddBlogItemContent">
+            <summary>
+              Looks up a localized string similar to Add blog item.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.AddBlogListContent">
+            <summary>
+              Looks up a localized string similar to Add blog list.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.AddHtmlContent">
+            <summary>
+              Looks up a localized string similar to Add HTML.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.AddImageContent">
+            <summary>
+              Looks up a localized string similar to Add image.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.AddPageContent">
+            <summary>
+              Looks up a localized string similar to Add page content.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Address">
+            <summary>
+              Looks up a localized string similar to Address.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Addresses">
+            <summary>
+              Looks up a localized string similar to Addresses.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.AddressLine1">
+            <summary>
+              Looks up a localized string similar to Addresse Line 1.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.AddressLine2">
+            <summary>
+              Looks up a localized string similar to Addresse Line 2.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Age">
+            <summary>
+              Looks up a localized string similar to Age.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.AnErrorHasOccurred">
+            <summary>
+              Looks up a localized string similar to An error has occurred.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.AtomFeed">
+            <summary>
+              Looks up a localized string similar to Atom feed.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Authenticate">
+            <summary>
+              Looks up a localized string similar to Authenticate.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Authentication">
+            <summary>
+              Looks up a localized string similar to Authentication.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Back">
+            <summary>
+              Looks up a localized string similar to Back.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.BackToList">
+            <summary>
+              Looks up a localized string similar to Back to List.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Birthday">
+            <summary>
+              Looks up a localized string similar to Birthday.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Blog">
+            <summary>
+              Looks up a localized string similar to Blog.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.BlogItemContent">
+            <summary>
+              Looks up a localized string similar to Blog Item Content.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.BlogListContent">
+            <summary>
+              Looks up a localized string similar to Blog List Content.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.BlogSettings">
+            <summary>
+              Looks up a localized string similar to Blog Settings.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Body">
+            <summary>
+              Looks up a localized string similar to Body.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Caption">
+            <summary>
+              Looks up a localized string similar to Caption.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.CareOf">
+            <summary>
+              Looks up a localized string similar to C/O.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ChangedBy">
+            <summary>
+              Looks up a localized string similar to Changed by.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ChangedFrom">
+            <summary>
+              Looks up a localized string similar to Changed from.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ChangedTo">
+            <summary>
+              Looks up a localized string similar to Changed to.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ChangeEvent">
+            <summary>
+              Looks up a localized string similar to Change Event.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ChangeEvents">
+            <summary>
+              Looks up a localized string similar to Change Events.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ChangePassword">
+            <summary>
+              Looks up a localized string similar to Change Password.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Choose">
+            <summary>
+              Looks up a localized string similar to Choose.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ChooseLanguage">
+            <summary>
+              Looks up a localized string similar to Choose Language.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.City">
+            <summary>
+              Looks up a localized string similar to City.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ClickHereToLogIn">
+            <summary>
+              Looks up a localized string similar to Click here to log in.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Close">
+            <summary>
+              Looks up a localized string similar to Close.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Comment">
+            <summary>
+              Looks up a localized string similar to Comment.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Comments">
+            <summary>
+              Looks up a localized string similar to Comments.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ConfirmAccount">
+            <summary>
+              Looks up a localized string similar to Confirm user account.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ConfirmDelete">
+            <summary>
+              Looks up a localized string similar to Are you sure you want to delete this?.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ConfirmNewPassword">
+            <summary>
+              Looks up a localized string similar to Confirm new password.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ConfirmPassword">
+            <summary>
+              Looks up a localized string similar to Confirm Password.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Content">
+            <summary>
+              Looks up a localized string similar to Content.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ContentTranslation">
+            <summary>
+              Looks up a localized string similar to Content Translation.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ContentType">
+            <summary>
+              Looks up a localized string similar to Content Type.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Continue">
+            <summary>
+              Looks up a localized string similar to Continue.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Copy">
+            <summary>
+              Looks up a localized string similar to Copy.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Countries">
+            <summary>
+              Looks up a localized string similar to Countries.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Country">
+            <summary>
+              Looks up a localized string similar to Country.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.CountryCode">
+            <summary>
+              Looks up a localized string similar to Country Code.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Create">
+            <summary>
+              Looks up a localized string similar to Create.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.CreatedBy">
+            <summary>
+              Looks up a localized string similar to Created By.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.CreatedOn">
+            <summary>
+              Looks up a localized string similar to Created On.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.CurrentPassword">
+            <summary>
+              Looks up a localized string similar to Current Password.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.DailyAdministrations">
+            <summary>
+              Looks up a localized string similar to Daily Administrations.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Date">
+            <summary>
+              Looks up a localized string similar to Date.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.DateRequired">
+            <summary>
+              Looks up a localized string similar to The field must be a date.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.DeActivate">
+            <summary>
+              Looks up a localized string similar to Deactivate.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.DefaultFrontPage">
+            <summary>
+              Looks up a localized string similar to Default Frontpage.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.DefaultLanguage">
+            <summary>
+              Looks up a localized string similar to Default Language.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Delete">
+            <summary>
+              Looks up a localized string similar to Delete.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.DeletedBy">
+            <summary>
+              Looks up a localized string similar to Deleted By.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.DeletedOn">
+            <summary>
+              Looks up a localized string similar to Deleted On.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.DeletePage">
+            <summary>
+              Looks up a localized string similar to Delete Page.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.DeletePageContent">
+            <summary>
+              Looks up a localized string similar to Delete Content.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Description">
+            <summary>
+              Looks up a localized string similar to Description.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Details">
+            <summary>
+              Looks up a localized string similar to Details.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Disable">
+            <summary>
+              Looks up a localized string similar to Disable.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Download">
+            <summary>
+              Looks up a localized string similar to Download.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Draft">
+            <summary>
+              Looks up a localized string similar to Draft.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Edit">
+            <summary>
+              Looks up a localized string similar to Edit.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.EditApplicationSettings">
+            <summary>
+              Looks up a localized string similar to Edit Application Settings.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.EditBasicInfo">
+            <summary>
+              Looks up a localized string similar to Edit Basic Info.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.EditPage">
+            <summary>
+              Looks up a localized string similar to Edit Page.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.EditPageContent">
+            <summary>
+              Looks up a localized string similar to Edit Page Content.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.EditUserSettings">
+            <summary>
+              Looks up a localized string similar to Edit user settings.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Email">
+            <summary>
+              Looks up a localized string similar to Email.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.EmailAddress">
+            <summary>
+              Looks up a localized string similar to Email address.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.EmailAddresses">
+            <summary>
+              Looks up a localized string similar to Email Addresses.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.EmailOrUserIdCode">
+            <summary>
+              Looks up a localized string similar to Email or User code.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Empty">
+            <summary>
+              Looks up a localized string similar to Empty.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Enable">
+            <summary>
+              Looks up a localized string similar to Enable.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.EnterYourEmail">
+            <summary>
+              Looks up a localized string similar to Enter your email.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Error">
+            <summary>
+              Looks up a localized string similar to Error.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Excerpt">
+            <summary>
+              Looks up a localized string similar to Excerpt.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.FeedSettings">
+            <summary>
+              Looks up a localized string similar to Feed Settings.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.File">
+            <summary>
+              Looks up a localized string similar to File.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Files">
+            <summary>
+              Looks up a localized string similar to Files.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.FileSize">
+            <summary>
+              Looks up a localized string similar to File Size.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Functions">
+            <summary>
+              Looks up a localized string similar to Functions.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.General">
+            <summary>
+              Looks up a localized string similar to General.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.GeneralSettings">
+            <summary>
+              Looks up a localized string similar to General Settings.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.HasRSS">
+            <summary>
+              Looks up a localized string similar to Has RSS?.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Height">
+            <summary>
+              Looks up a localized string similar to Height.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Hometown">
+            <summary>
+              Looks up a localized string similar to Hometown.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.HtmlContent">
+            <summary>
+              Looks up a localized string similar to HTML Content.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Id">
+            <summary>
+              Looks up a localized string similar to Id.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Image">
+            <summary>
+              Looks up a localized string similar to Image.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ImageContent">
+            <summary>
+              Looks up a localized string similar to Image Content.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Images">
+            <summary>
+              Looks up a localized string similar to Images.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.IncludeInMenu">
+            <summary>
+              Looks up a localized string similar to Include in menu?.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Index">
+            <summary>
+              Looks up a localized string similar to Index.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.InputRequired">
+            <summary>
+              Looks up a localized string similar to The field is required.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.InvalidLength">
+            <summary>
+              Looks up a localized string similar to The length is invalid.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.InvalidUsernameOrPassword">
+            <summary>
+              Looks up a localized string similar to Invalid username or password.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.IsActive">
+            <summary>
+              Looks up a localized string similar to Is Active?.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.IsAtomFeed">
+            <summary>
+              Looks up a localized string similar to Is Atom feed?.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.IsDraft">
+            <summary>
+              Looks up a localized string similar to Is draft?.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.IsFeed">
+            <summary>
+              Looks up a localized string similar to Is feed?.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.IsPrimary">
+            <summary>
+              Looks up a localized string similar to Is Primary?.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.IsPublished">
+            <summary>
+              Looks up a localized string similar to Is published?.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.IsRequired">
+            <summary>
+              Looks up a localized string similar to Is required.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.IsRssFeed">
+            <summary>
+              Looks up a localized string similar to Is RSS feed?.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.IsVerified">
+            <summary>
+              Looks up a localized string similar to Is Verified?.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ItemChanged">
+            <summary>
+              Looks up a localized string similar to Item Changed.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Keyword">
+            <summary>
+              Looks up a localized string similar to Keyword.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Keywords">
+            <summary>
+              Looks up a localized string similar to Keywords.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Language">
+            <summary>
+              Looks up a localized string similar to Language.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Languages">
+            <summary>
+              Looks up a localized string similar to Languages.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Length">
+            <summary>
+              Looks up a localized string similar to Length.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Loading">
+            <summary>
+              Looks up a localized string similar to Loading.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.LoadingPleaseWait">
+            <summary>
+              Looks up a localized string similar to Loading. Please wait....
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.LogOff">
+            <summary>
+              Looks up a localized string similar to Log off.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.LogOn">
+            <summary>
+              Looks up a localized string similar to Log in.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ManageAccount">
+            <summary>
+              Looks up a localized string similar to Manage Account.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Menu">
+            <summary>
+              Looks up a localized string similar to Menu.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Misc">
+            <summary>
+              Looks up a localized string similar to Misc..
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Miscellaneous">
+            <summary>
+              Looks up a localized string similar to Miscellaneous.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.MsgNewPasswordDontMatch">
+            <summary>
+              Looks up a localized string similar to The new password and confirmation password do not match..
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.MsgNoLocalAccount">
+            <summary>
+              Looks up a localized string similar to You do not have a local username/password for this site. Add a local account so you can log in without an external login..
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.MsgPasswordDontMatch">
+            <summary>
+              Looks up a localized string similar to The password and confirmation password do not match..
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.MustBeAtleast">
+            <summary>
+              Looks up a localized string similar to must be atleast.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Name">
+            <summary>
+              Looks up a localized string similar to Name.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.NewPassword">
+            <summary>
+              Looks up a localized string similar to New Password.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.No">
+            <summary>
+              Looks up a localized string similar to No.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.NoUserFound">
+            <summary>
+              Looks up a localized string similar to No user found.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Page">
+            <summary>
+              Looks up a localized string similar to Page.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.PageContentType">
+            <summary>
+              Looks up a localized string similar to Page Content Type.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.PageContentTypes">
+            <summary>
+              Looks up a localized string similar to Page Content Types.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.PageItemContent">
+            <summary>
+              Looks up a localized string similar to Page Content.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Pages">
+            <summary>
+              Looks up a localized string similar to Pages.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Parent">
+            <summary>
+              Looks up a localized string similar to Parent.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ParentPage">
+            <summary>
+              Looks up a localized string similar to Parent page.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Password">
+            <summary>
+              Looks up a localized string similar to Password.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Permalink">
+            <summary>
+              Looks up a localized string similar to Permalink.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.PermalinkName">
+            <summary>
+              Looks up a localized string similar to Permalink name.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Person">
+            <summary>
+              Looks up a localized string similar to Person.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Persons">
+            <summary>
+              Looks up a localized string similar to Persons.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.PhoneNumber">
+            <summary>
+              Looks up a localized string similar to Phone Number.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.PhoneNumbers">
+            <summary>
+              Looks up a localized string similar to Phone Numbers.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.PleaseCheckYourEmailToResetPassword">
+            <summary>
+              Looks up a localized string similar to Please check your email to reset your password..
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.PleaseSignIn">
+            <summary>
+              Looks up a localized string similar to Please sign in.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Plugin">
+            <summary>
+              Looks up a localized string similar to Plugin.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Plugins">
+            <summary>
+              Looks up a localized string similar to Plugins.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Postal">
+            <summary>
+              Looks up a localized string similar to Zip Code.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Postals">
+            <summary>
+              Looks up a localized string similar to Zip Codes.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.PostsPerPage">
+            <summary>
+              Looks up a localized string similar to Posts per page.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Preview">
+            <summary>
+              Looks up a localized string similar to Preview.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.PreviewPage">
+            <summary>
+              Looks up a localized string similar to Preview Page.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Publish">
+            <summary>
+              Looks up a localized string similar to Publish.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Published">
+            <summary>
+              Looks up a localized string similar to Published.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.PublishedBy">
+            <summary>
+              Looks up a localized string similar to Published by.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.PublishedOn">
+            <summary>
+              Looks up a localized string similar to Published On.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Refresh">
+            <summary>
+              Looks up a localized string similar to Refresh.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Register">
+            <summary>
+              Looks up a localized string similar to Register.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.RememberMe">
+            <summary>
+              Looks up a localized string similar to Remember me.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Required">
+            <summary>
+              Looks up a localized string similar to Required.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.RowIndex">
+            <summary>
+              Looks up a localized string similar to Row Index.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.RSS">
+            <summary>
+              Looks up a localized string similar to RSS.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.RssFeed">
+            <summary>
+              Looks up a localized string similar to RSS feed.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Save">
+            <summary>
+              Looks up a localized string similar to Save.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Search">
+            <summary>
+              Looks up a localized string similar to Search.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Send">
+            <summary>
+              Looks up a localized string similar to Send.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.SetPassword">
+            <summary>
+              Looks up a localized string similar to Set Password.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Settings">
+            <summary>
+              Looks up a localized string similar to Settings.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Shared">
+            <summary>
+              Looks up a localized string similar to Shared.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.SSN">
+            <summary>
+              Looks up a localized string similar to Social Security Number.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.String1">
+            <summary>
+              Looks up a localized string similar to .
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Tag">
+            <summary>
+              Looks up a localized string similar to Tag.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Tags">
+            <summary>
+              Looks up a localized string similar to Tags.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Template">
+            <summary>
+              Looks up a localized string similar to Template.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.TemplateName">
+            <summary>
+              Looks up a localized string similar to Template name.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ThankYouForConfirmingYourAccount">
+            <summary>
+              Looks up a localized string similar to Thank  you for confirming your account.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.TheExternalLoginWasRemoved">
+            <summary>
+              Looks up a localized string similar to The external login was removed.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Title">
+            <summary>
+              Looks up a localized string similar to Title.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Translate">
+            <summary>
+              Looks up a localized string similar to Translate.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Translation">
+            <summary>
+              Looks up a localized string similar to Translation.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.TwoFactorAuthentication">
+            <summary>
+              Looks up a localized string similar to Two-factor Authentication.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.UpdatedBy">
+            <summary>
+              Looks up a localized string similar to Updated By.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.UpdatedOn">
+            <summary>
+              Looks up a localized string similar to Updated On.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Upload">
+            <summary>
+              Looks up a localized string similar to Upload.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.UploadFile">
+            <summary>
+              Looks up a localized string similar to Upload File.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Uri">
+            <summary>
+              Looks up a localized string similar to Website.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.User">
+            <summary>
+              Looks up a localized string similar to User.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.UserDoesntExistOrNotConfirmed">
+            <summary>
+              Looks up a localized string similar to The user either does not exist or is not confirmed.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.UserIdCode">
+            <summary>
+              Looks up a localized string similar to User code.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.UserInformation">
+            <summary>
+              Looks up a localized string similar to User Information.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.UserLevel">
+            <summary>
+              Looks up a localized string similar to User Level.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.VAT">
+            <summary>
+              Looks up a localized string similar to VAT.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Verified">
+            <summary>
+              Looks up a localized string similar to Verified.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Verify">
+            <summary>
+              Looks up a localized string similar to Verify.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ViewName">
+            <summary>
+              Looks up a localized string similar to View Name.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ViewTemplate">
+            <summary>
+              Looks up a localized string similar to View Template.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ViewTemplates">
+            <summary>
+              Looks up a localized string similar to View Templates.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Website">
+            <summary>
+              Looks up a localized string similar to Website.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Websites">
+            <summary>
+              Looks up a localized string similar to Websites.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Week">
+            <summary>
+              Looks up a localized string similar to Week.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Weeks">
+            <summary>
+              Looks up a localized string similar to Weeks.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Width">
+            <summary>
+              Looks up a localized string similar to Width.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Year">
+            <summary>
+              Looks up a localized string similar to Year.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Years">
+            <summary>
+              Looks up a localized string similar to Years.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.Yes">
+            <summary>
+              Looks up a localized string similar to Yes.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.YourPasswordHasBeenChanged">
+            <summary>
+              Looks up a localized string similar to Your password has been changed.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.YourPasswordHasBeenSet">
+            <summary>
+              Looks up a localized string similar to Your password has been set.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ZipCode">
+            <summary>
+              Looks up a localized string similar to Zip Code.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.SimpleCMS.Resources.Blog.Resources.ZipCodes">
+            <summary>
+              Looks up a localized string similar to Zip Codes.
+            </summary>
+        </member>
+        <member name="M:SimpleCMS.Enum.EnumHelper.GetDescription(System.Enum)">
+            <summary>
+            http://weblogs.asp.net/grantbarrington/enumhelper-getting-a-friendly-description-from-an-enum
+            Retrieve the description on the enum, e.g.
+            [Description("Bright Pink")]
+            BrightPink = 2,
+            Then when you pass in the enum, it will retrieve the description
+            </summary>
+            <param name="en">The Enumeration</param>
+            <returns>A string representing the friendly name</returns>
+        </member>
+        <member name="T:SimpleCMS.Html.HtmlRemoval">
+            <summary>
+            Methods to remove HTML from strings.
+            </summary>
+        </member>
+        <member name="M:SimpleCMS.Html.HtmlRemoval.StripTagsRegex(System.String)">
+            <summary>
+            Remove HTML from string with Regex.
+            </summary>
+        </member>
+        <member name="F:SimpleCMS.Html.HtmlRemoval._htmlRegex">
+            <summary>
+            Compiled regular expression for performance.
+            </summary>
+        </member>
+        <member name="M:SimpleCMS.Html.HtmlRemoval.StripTagsRegexCompiled(System.String)">
+            <summary>
+            Remove HTML from string with compiled Regex.
+            </summary>
+        </member>
+        <member name="M:SimpleCMS.Html.HtmlRemoval.StripTagsCharArray(System.String)">
+            <summary>
+            Remove HTML tags from string using char array.
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.Models.Phone.RawNumber">
+            <summary>
+            The number will be parsed using the 'libphonenumber' parser
+            https://code.google.com/p/libphonenumber/
+            </summary>
+        </member>
+        <member name="T:SimpleCMS.ViewModels.jQueryDataTableParamModel">
+            <summary>
+            Class that encapsulates most common parameters sent by DataTables plugin
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.ViewModels.jQueryDataTableParamModel.sEcho">
+            <summary>
+            Request sequence number sent by DataTable,
+            same value must be returned in response
+            </summary>       
+        </member>
+        <member name="P:SimpleCMS.ViewModels.jQueryDataTableParamModel.sSearch">
+            <summary>
+            Text used for filtering
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.ViewModels.jQueryDataTableParamModel.iDisplayLength">
+            <summary>
+            Number of records that should be shown in table
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.ViewModels.jQueryDataTableParamModel.iDisplayStart">
+            <summary>
+            First record that should be shown(used for paging)
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.ViewModels.jQueryDataTableParamModel.iColumns">
+            <summary>
+            Number of columns in table
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.ViewModels.jQueryDataTableParamModel.iSortingCols">
+            <summary>
+            Number of columns that are used in sorting
+            </summary>
+        </member>
+        <member name="P:SimpleCMS.ViewModels.jQueryDataTableParamModel.sColumns">
+            <summary>
+            Comma separated list of column names
+            </summary>
+        </member>
+        <member name="T:Backload.Bundles.BackloadBundles">
+            <summary>
+            Registers bundles for client side scripts and styles. This is an optional feature.
+            </summary>
+        </member>
+        <member name="M:Backload.Bundles.BackloadBundles.RegisterBundles(System.Web.Optimization.BundleCollection)">
+            <summary>
+            Registers bundles for the client side scripts and styles
+            </summary>
+            <param name="bundles">A BundleCollection instance</param>
+            <remarks>This is optional. The Backload component does not need bundeling internally.</remarks>
+        </member>
+        <member name="T:Backload.Bundles.BackloadBundles.BackloadBundleOrderer">
+            <summary>
+            Orders the scripts in the scripts like we added them.
+            </summary>
+        </member>
+        <member name="M:Backload.Bundles.BackloadBundles.BackloadBundleOrderer.OrderFiles(System.Web.Optimization.BundleContext,System.Collections.Generic.IEnumerable{System.IO.FileInfo})">
+            <summary>
+            Old IBundleOrderer interface
+            </summary>
+            <param name="context">BundleContext</param>
+            <param name="files">IEnumerable</param>
+            <returns>Ordered files</returns>
+        </member>
+        <member name="M:Backload.Bundles.BackloadBundles.BackloadBundleOrderer.OrderFiles(System.Web.Optimization.BundleContext,System.Collections.Generic.IEnumerable{System.Web.Optimization.BundleFile})">
+            <summary>
+            New IBundleOrderer interface
+            </summary>
+            <param name="context">BundleContext</param>
+            <param name="files">IEnumerable</param>
+            <returns>Ordered files</returns>
+        </member>
+        <member name="T:Backload.Controllers.BackloadController">
+            <summary>
+            The integrated controller to handle file requests. 
+            You can remove this code, if you have a custom controller or handler.
+            </summary>
+            <summary>
+            The integrated controller to handle file requests. 
+            You can remove this code, if you have a custom controller or a derived controller.
+            </summary>
+        </member>
+        <member name="M:Backload.Controllers.BackloadController.FileHandler">
+            <summary>
+            The Backload file handler. 
+            To access it in an Javascript ajax request use: <code>var url = "/{Application}/Backload/FileHandler/";</code>.
+            </summary>
+        </member>
+        <member name="M:Backload.Controllers.BackloadController.UploadHandler">
+            <summary>
+            This handler is for backward compatibility only. If you have a previous project updated to 
+            Backload release 2 or higher, please also update your calls in JavaScript to the new handler url
+            /Backload/Filehandler. After that you can remove this handler.
+            </summary>
+        </member>
+        <member name="T:Backload.Helper.ResultCreator">
+            <summary>
+            This helper class creates the result of type ActionResult from the IBackloadResult object
+            </summary>
+            <summary>
+            This helper class creates the result of type ActionResult from the IBackloadResult object
+            </summary>
+        </member>
+        <member name="M:Backload.Helper.ResultCreator.Write(System.Web.HttpResponse,Backload.Contracts.Context.IBackloadResult)">
+            <summary>
+            Writes the result directly into the response stream, e.g. for a classic ASP.NET or HTML response
+            </summary>
+            <param name="response">A standard HttpResponse object</param>
+            <param name="result">An IBackloadResult object</param>
+        </member>
+        <member name="M:Backload.Helper.ResultCreator.Create(Backload.Contracts.Context.IBackloadResult)">
+            <summary>
+            Returns an ActionResult depending on the requested type (Json or file data)
+            </summary>
+            <param name="result">An IBackloadResult instance</param>
+            <returns>An ActionResult instance</returns>
+        </member>
+        <member name="M:Backload.Helper.ResultCreator.Create(Backload.Contracts.Context.IJsonResult)">
+            <summary>
+            Creates the Json output for the files handled in this request
+            </summary>
+            <param name="result">A IFileStatusResult object with client plugin specfic data.</param>
+            <returns>JsonResult instance or a http HttpStatusCodeResult to send an http status</returns>
+        </member>
+        <member name="M:Backload.Helper.ResultCreator.Create(Backload.Contracts.Context.IFileDataResult)">
+            <summary>
+            Handles file data (bytes) if Backload is configured to handle file requests (e.g. thumbsUrlPattern) 
+            </summary>
+            <param name="result">A IFileDataResult object with file data (bytes).</param>
+            <returns>FileContentResult instance or a http HttpStatusCodeResult to send an http status</returns>
+        </member>
+        <member name="M:System.DateTimeHelper.ParseForReport(System.String,System.String,System.DateTimeKind)">
+            <summary>
+            http://stackoverflow.com/questions/179940/convert-utc-gmt-time-to-local-time
+            </summary>
+            <param name="dateTimeString"></param>
+            <param name="dateTimeFormat"></param>
+            <param name="dateTimeKind"></param>
+            <returns></returns>
+        </member>
+        <member name="T:General.Helpers.CultureHelper">
+            <summary>
+            Sources:
+            
+                Internationalization
+                http://afana.me/post/aspnet-mvc-internationalization.aspx
+                http://afana.me/post/aspnet-mvc-internationalization-part-2.aspx
+                
+                National Language Support (NLS) API Reference
+                http://www.microsoft.com/resources/msdn/goglobal/default.mspx
+                
+            
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:General.Helpers.CultureHelper.GetImplementedCulture(System.String)" -->
+        <member name="P:General.Helpers.CultureHelper.DefaultCulture">
+            <summary>
+            Returns default culture name which is the first name decalared (e.g. en-US)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:General.Helpers.CultureHelper.IsRighToLeft">
+            <summary>
+            Returns true if the language is a right-to-left language. Otherwise, false.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:BootstrapControllers.Controller`1.SortExpression(System.String)" -->
+        <member name="M:BootstrapControllers.Controller`1.CreateGetHook">
+            <summary>
+            Implement functionality that's called before any other code in the Create (GET) method.
+            </summary>
+        </member>
+    </members>
+</doc>

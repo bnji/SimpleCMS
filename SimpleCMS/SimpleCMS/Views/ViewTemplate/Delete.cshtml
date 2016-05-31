@@ -1,0 +1,8 @@
+﻿@model SimpleCMS.Models.Blog.ViewTemplate
+
+@Html.Partial("_DeleteHeaderPartial", new SimpleCMS.Helpers.FormDeleteData() { ViewTitle = "List" })
+@if (!@Request.IsAjaxRequest())
+{
+    // display any information to the user before deleting?
+}
+@Html.Partial("_DeleteFooterPartial", new SimpleCMS.Helpers.FormDeleteData() { Id = @Model.Id })

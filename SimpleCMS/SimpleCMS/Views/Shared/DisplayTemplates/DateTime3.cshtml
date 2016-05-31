@@ -1,0 +1,2 @@
+﻿@model Nullable<DateTime>
+@(Model.HasValue ? string.Format("{0:G}", Model.Value) : string.Empty)

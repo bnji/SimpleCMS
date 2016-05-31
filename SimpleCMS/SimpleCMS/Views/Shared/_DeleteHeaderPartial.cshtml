@@ -1,0 +1,16 @@
+﻿@model SimpleCMS.Helpers.FormDeleteData
+
+@{
+    ViewBag.Title = @Resources.Delete;
+}
+
+@if (!@Request.IsAjaxRequest())
+{
+    <h2>@Resources.Delete @Model.ViewTitle</h2>
+
+    <h3>@Resources.ConfirmDelete</h3>
+}
+else
+{
+    <h3>@Resources.ConfirmDelete</h3>
+}
