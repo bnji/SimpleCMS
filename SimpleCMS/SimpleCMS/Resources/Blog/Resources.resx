@@ -771,4 +771,13 @@
   <data name="ZipCodes" xml:space="preserve">
     <value>Zip Codes</value>
   </data>
+  <data name="CreateNewAccount" xml:space="preserve">
+    <value>Create a new account</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Forgot password</value>
+  </data>
+  <data name="UseLocalAccountToLogOn" xml:space="preserve">
+    <value>Use local account to log on</value>
+  </data>
 </root>

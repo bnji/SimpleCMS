@@ -759,4 +759,13 @@
   <data name="ZipCodes" xml:space="preserve">
     <value>Post nummur</value>
   </data>
+  <data name="CreateNewAccount" xml:space="preserve">
+    <value>Upprætta eina nýggja kontu</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Gloymt loyniorð</value>
+  </data>
+  <data name="UseLocalAccountToLogOn" xml:space="preserve">
+    <value>Innrita við einari lokalari kontu</value>
+  </data>
 </root>

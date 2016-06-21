@@ -1,3 +1,7 @@
+Installing: 
+Identity DB:
+	update-database -ConnectionStringName "DefaultConnection" -ConfigurationTypeName "Configuration"
+
 Initialize (create) database: update-database -configurationtypename:"DALConfiguration"
 
 Restoring SQL DB
@@ -6,7 +10,6 @@ If the DB Restore process is "stuck" in "restoring..." (with no recovery has pro
 
 EF 6 Update Database (run Code First Migrations on a remote SQL DB)
 Command: update-database -targetmigration:<NAME_OF_MIGRATION> -ConnectionStringName "<NAME_OF_CONNECTION_STRING_FOR_REMOTE_SQL_DB>"
-Example: update-database -ConnectionStringName "FMFWebAppContextRemote"
 
 Scaffolding:
  * use x86-platform to enable scaffolding if it fails

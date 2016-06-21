@@ -759,4 +759,13 @@
   <data name="ZipCodes" xml:space="preserve">
     <value>Postnumre</value>
   </data>
+  <data name="CreateNewAccount" xml:space="preserve">
+    <value>Opret en ny konto</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Glemt kodeord</value>
+  </data>
+  <data name="UseLocalAccountToLogOn" xml:space="preserve">
+    <value>Log ind med en lokal konto</value>
+  </data>
 </root>

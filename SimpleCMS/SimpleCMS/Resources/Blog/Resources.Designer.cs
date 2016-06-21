@@ -556,6 +556,15 @@ namespace SimpleCMS.SimpleCMS.Resources.Blog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create a new account.
+        /// </summary>
+        public static string CreateNewAccount {
+            get {
+                return ResourceManager.GetString("CreateNewAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Password.
         /// </summary>
         public static string CurrentPassword {
@@ -876,6 +885,15 @@ namespace SimpleCMS.SimpleCMS.Resources.Blog {
         public static string FileSize {
             get {
                 return ResourceManager.GetString("FileSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forgot password.
+        /// </summary>
+        public static string ForgotPassword {
+            get {
+                return ResourceManager.GetString("ForgotPassword", resourceCulture);
             }
         }
         
@@ -1812,6 +1830,15 @@ namespace SimpleCMS.SimpleCMS.Resources.Blog {
         public static string Uri {
             get {
                 return ResourceManager.GetString("Uri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use local account to log on.
+        /// </summary>
+        public static string UseLocalAccountToLogOn {
+            get {
+                return ResourceManager.GetString("UseLocalAccountToLogOn", resourceCulture);
             }
         }
         

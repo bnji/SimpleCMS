@@ -37,18 +37,10 @@ namespace SimpleCMS.Migrations
             //    );
             //
             
-            if (db.Roles.Where(x => x.Name == "User").FirstOrDefault() == null)
-            {
-                db.Roles.Add(new IdentityRole() { Id = "1", Name = "User" });
-            }
-            if (db.Roles.Where(x => x.Name == "Admin").FirstOrDefault() == null)
-            {
-                db.Roles.Add(new IdentityRole() { Id = "2", Name = "Admin" });
-            }
             //db.Roles.AddOrUpdate(x => x.Name, new IdentityRole() { Name = "User" });
             //db.Roles.AddOrUpdate(x => x.Name, new IdentityRole() { Name = "Admin" });
-
             InitializeAdminIdentity(db);
+            db.SaveChanges();
         }
 
         //private static ApplicationUserManager UserManager
@@ -67,6 +59,15 @@ namespace SimpleCMS.Migrations
         //Create User=hammerbenjamin@gmail.com with password=1qazXSW2 in the Admin role        
         public static void InitializeAdminIdentity(ApplicationDbContext db)
         {
+            if (db.Roles.Where(x => x.Name == "User").FirstOrDefault() == null)
+            {
+                db.Roles.Add(new IdentityRole() { Id = "1", Name = "User" });
+            }
+            if (db.Roles.Where(x => x.Name == "Admin").FirstOrDefault() == null)
+            {
+                db.Roles.Add(new IdentityRole() { Id = "2", Name = "Admin" });
+            }
+
             var roleStore = new RoleStore<IdentityRole>(db);
             var roleManager = new RoleManager<IdentityRole>(roleStore);
             var userStore = new UserStore<ApplicationUser>(db);
@@ -78,12 +79,12 @@ namespace SimpleCMS.Migrations
             const string roleName = "Admin";
 
             //Create Role Admin if it does not exist
-            var role = roleManager.FindByName(roleName);
-            if (role == null)
-            {
-                role = new IdentityRole(roleName);
-                var roleresult = roleManager.Create(role);
-            }
+            //var role = roleManager.FindByName(roleName);
+            //if (role == null)
+            //{
+            //    role = new IdentityRole(roleName);
+            //    var roleresult = roleManager.Create(role);
+            //}
 
             var user = userManager.FindByName(name);
             if (user == null)
@@ -95,9 +96,9 @@ namespace SimpleCMS.Migrations
 
             // Add user admin to Role Admin if not already added
             var rolesForUser = userManager.GetRoles(user.Id);
-            if (!rolesForUser.Contains(role.Name))
+            if (!rolesForUser.Contains(roleName))
             {
-                var result = userManager.AddToRole(user.Id, role.Name);
+                var result = userManager.AddToRole(user.Id, roleName);
             }
         }
     }
